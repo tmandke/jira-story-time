@@ -1,33 +1,31 @@
 {
-  "name": "Jira Story time",
-  "version": "0.0.1",
+  "name":             "Jira Story time",
+  "version":          "0.0.1",
   "manifest_version": 2,
-  "description": "this adds overlay to ",
-  "homepage_url": "http://extensionizr.com",
+  "description":      "this adds overlay to ",
+  "homepage_url":     "http://extensionizr.com",
+  "default_locale":   "en",
+  "permissions": [ "https://*/*" ],
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16":   "src/icons/icon16.png",
+    "48":   "src/icons/icon48.png",
+    "128":  "src/icons/icon128.png"
   },
-  "default_locale": "en",
-  "permissions": [
-    "https://*/*"
-  ],
   "content_scripts": [
     {
+      "run_at": "document_end",
       "html": [ 
         "src/templates/board.html", 
         "src/templates/storytoggle.html" 
       ],
-      "run_at": "document_end",
-      "matches": ["https://jira2.workday.com/secure/RapidBoard.jspa*"],
-      "css": ["src/inject/inject.css"],
+      "matches": [ "https://jira2.workday.com/secure/RapidBoard.jspa*" ],
       "js": [
-        "js/jquery/jquery.min.js", 
-        "src/inject/util.js", 
-        "src/inject/stories.js", 
-        "src/inject/templates.js", 
-        "src/inject/inject.js"]
+        "src/js/jquery.min.js", 
+        "src/js/util.js", 
+        "src/js/stories.js", 
+        "src/js/templates.js", 
+        "src/js/main.js"
+      ]
     }
   ],
   "web_accessible_resources": [
