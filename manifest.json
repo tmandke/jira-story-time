@@ -15,12 +15,23 @@
   ],
   "content_scripts": [
     {
-      "html": [ "src/templates/board.html" ],
+      "html": [ 
+        "src/templates/board.html", 
+        "src/templates/storytoggle.html" 
+      ],
       "run_at": "document_end",
       "matches": ["https://jira2.workday.com/secure/RapidBoard.jspa*"],
       "css": ["src/inject/inject.css"],
-      "js": ["js/jquery/jquery.min.js", "js/angular/angular.min.js", "src/inject/inject.js"]
+      "js": [
+        "js/jquery/jquery.min.js", 
+        "src/inject/util.js", 
+        "src/inject/stories.js", 
+        "src/inject/templates.js", 
+        "src/inject/inject.js"]
     }
   ],
-  "web_accessible_resources": ["src/templates/board.html"]
+  "web_accessible_resources": [
+    "src/templates/board.html", 
+    "src/templates/storytoggle.html" 
+  ]
 }
