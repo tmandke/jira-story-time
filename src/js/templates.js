@@ -3,7 +3,7 @@ window.JiraStoryTime.Templates = {
   fetchAll: function ( OnDone ) {
     _this = this;
     counter = 0;
-    tmpls = [ 'board', 'storytoggle' ];
+    tmpls = [ 'board', 'storytoggle', 'boardRow', 'boardStory' ];
 
     $.map(tmpls, function (file_name) {
       $.ajax({

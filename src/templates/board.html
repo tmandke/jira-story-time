@@ -1,7 +1,7 @@
 <div class="overlay">
   <style scoped="scoped">
     .overlay {
-      display: none;
+      display: block;
       z-index: 2;
       background: #000;
       position: fixed;
@@ -12,6 +12,36 @@
       text-align: center;
       color: white;
     }
+    #story_board {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .story_board_row {
+      flex-grow: 1;
+      min-width: 30px;
+      margin: 5px;
+      background: #48482A;
+    }
+    .story {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;      
+      border-width: 1px;
+      border-color: white;
+      padding: 4px;
+      margin-bottom: 2px;
+      border-radius: 2px;
+      border-style: solid;
+    }
+    .story_id {
+      display: block;
+      float: center;
+    }
+    .story_summary {
+      text-align: left;
+    }
+
   </style>
   <a id="close_story_board">Close</a>
   <div id="story_board">

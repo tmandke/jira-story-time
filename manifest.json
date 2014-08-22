@@ -13,23 +13,17 @@
   },
   "content_scripts": [
     {
-      "run_at": "document_end",
-      "html": [ 
-        "src/templates/board.html", 
-        "src/templates/storytoggle.html" 
-      ],
-      "matches": [ "https://jira2.workday.com/secure/RapidBoard.jspa*" ],
-      "js": [
-        "src/js/jquery.min.js", 
-        "src/js/util.js", 
-        "src/js/stories.js", 
-        "src/js/templates.js", 
+      "run_at":   "document_end",
+      "html":     [ "src/templates/*.html" ],
+      "matches":  [ "https://jira2.workday.com/secure/RapidBoard.jspa*" ],
+      "js":       [ 
+        "src/js/jquery.min.js",
+        "src/js/util.js",
+        "src/js/templates.js",
+        "src/js/stories.js",
         "src/js/main.js"
-      ]
+       ]
     }
   ],
-  "web_accessible_resources": [
-    "src/templates/board.html", 
-    "src/templates/storytoggle.html" 
-  ]
+  "web_accessible_resources": [ "src/templates/*.html" ]
 }

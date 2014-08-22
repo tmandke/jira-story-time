@@ -2,11 +2,25 @@ window.JiraStoryTime.Templates.fetchAll( function () {
   $("#ghx-modes").append(window.JiraStoryTime.Templates.storytoggle);
   $("#story-toggle").on("click", function () {
 
-    window.JiraStoryTime.Stories.fetchStories( function ( backlog_stories ) {
-      backlog_stories_names = jQuery.map( backlog_stories, function( s ) { return ( "[" + s.key + "] " + s.summary ); });
+    var renderStory = function (dom, story) {
+      dom.append(window.JiraStoryTime.Templates.boardStory);
+      dom = $(dom[0].lastChild);
+      dom.find(".story_id").html(story.id);
+      dom.find(".story_summary").html(story.summary);
+    }
+
+    var renderRow = function (points, stories) {
+      $("#story_board").append(window.JiraStoryTime.Templates.boardRow);
+      $("#story_board")[0].lastChild.setAttribute('data-story-points', points);
+      $($("#story_board")[0].lastChild).find('.story_board_row_points').html(points);
+      $.each(stories, function() {
+        renderStory($($("#story_board")[0].lastChild), this);
+      });
+    }
+
+    window.JiraStoryTime.Stories.fetchStories( function ( partitioned_backlog_stories ) {
       $(document.body).append(window.JiraStoryTime.Templates.board);
-      $(".overlay")[0].setAttribute('style', 'display:block');
-      $("#story_board").html(backlog_stories_names.join("</br>"));
+      $.each(partitioned_backlog_stories, renderRow);
       $("#close_story_board").on("click", function () {
         $('.overlay')[0].remove();
       });
