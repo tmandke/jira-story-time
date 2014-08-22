@@ -1,12 +1,19 @@
 window.JiraStoryTime.Templates.fetchAll( function () {
+  function isStoryTime () {
+    return window.JiraStoryTime.Util.deparam(location.href.split("?")[1])['story_time'] == "true";
+  };
+
+  function setStoryTime (st) {
+    params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1]);
+    params['story_time'] = st;
+    newUrl = location.href.split("?")[0] + "?" + $.param(params);
+    history.pushState(null, null, newUrl);
+  };
+
   $("#ghx-modes").append(window.JiraStoryTime.Templates.storytoggle);
   function renderStoryTime() {
-    params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1]);
-    if(params['story_time'] != true) {
-      params['story_time'] = true;
-      newUrl = location.href.split("?")[0] + "?" + $.param(params);
-      history.pushState(null, null, newUrl);
-    }
+    if( !isStoryTime() )
+      setStoryTime(true);
 
     var renderStory = function (dom, story) {
       dom.append(window.JiraStoryTime.Templates.boardStory);
@@ -29,6 +36,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
       $.each(partitioned_backlog_stories, renderRow);
       $("#close_story_board").on("click", function () {
         $('.overlay')[0].remove();
+        setStoryTime(false);
       });
     });
 
@@ -45,8 +53,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
   };
 
   $("#story-toggle").on("click", renderStoryTime);
-  params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1]);
-  if(params['story_time'] === "true") 
+  if(isStoryTime())
     renderStoryTime();
  
 });
