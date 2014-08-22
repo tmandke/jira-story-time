@@ -18,6 +18,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     var renderStory = function (dom, story) {
       dom.append(window.JiraStoryTime.Templates.boardStory);
       dom = $(dom[0].lastChild);
+      dom[0].setAttribute('data-story-id', story.id);
       dom.find(".story_id").html(story.id);
       dom.find(".story_summary").html(story.summary);
     }
@@ -34,6 +35,8 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     window.JiraStoryTime.Stories.fetchStories( function ( partitioned_backlog_stories ) {
       $(document.body).append(window.JiraStoryTime.Templates.board);
       $.each(partitioned_backlog_stories, renderRow);
+
+      window.JiraStoryTime.DragController.setup();
       $("#close_story_board").on("click", function () {
         $('.overlay')[0].remove();
         setStoryTime(false);

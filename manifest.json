@@ -21,6 +21,7 @@
         "src/js/util.js",
         "src/js/templates.js",
         "src/js/stories.js",
+        "src/js/dragController.js",
         "src/js/main.js"
        ]
     }
