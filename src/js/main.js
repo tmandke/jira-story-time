@@ -1,6 +1,12 @@
 window.JiraStoryTime.Templates.fetchAll( function () {
   $("#ghx-modes").append(window.JiraStoryTime.Templates.storytoggle);
-  $("#story-toggle").on("click", function () {
+  function renderStoryTime() {
+    params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1]);
+    if(params['story_time'] != true) {
+      params['story_time'] = true;
+      newUrl = location.href.split("?")[0] + "?" + $.param(params);
+      history.pushState(null, null, newUrl);
+    }
 
     var renderStory = function (dom, story) {
       dom.append(window.JiraStoryTime.Templates.boardStory);
@@ -36,6 +42,11 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     //   console.log(response);
     // });
 
-  });
+  };
 
+  $("#story-toggle").on("click", renderStoryTime);
+  params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1]);
+  if(params['story_time'] === "true") 
+    renderStoryTime();
+ 
 });
