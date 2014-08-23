@@ -1,7 +1,15 @@
-window.JiraStoryTime = window.JiraStoryTime || {}
+window.JiraStoryTime = window.JiraStoryTime || {};
 var Story = function ( data ) {
   this.data = data;
 };
+Story.id = 'id';
+Story.description = 'description';
+Story.summary = 'summary';
+Story.business = 'customfield_10003';
+Story.points = 'customfield_10002';
+Story.NoPoints = '--';
+Story.devMode = true;
+Story.autoUpdate = true;
 
 Story.prototype.getFullStory = function () {
   return $.ajax({
@@ -16,25 +24,43 @@ Story.prototype.setMoreData = function (data) {
   this.moreData = data;
   var _this = this;
   data.fields.forEach(function(f){
-    switch (f.label) {
-      case "Business Value": _this.business = f.value; break;
-      case "Description": _this.description = f.html; break;
+    switch (f.id) {
+      case Story.summary: _this.summary = f.value; break;
+      case Story.points: _this.points = (f.value || ""); break;
+      case Story.business: _this.business = (f.value || ""); break;
+      case Story.description: _this.description = f.html; break;
     }
   });
+  if (Story.autoUpdate == true)
+    setTimeout( function () {
+      _this.getFullStory()} , 60000);
 };
 
 Story.prototype.render = function( changed_field ){
   el = $("#story-" + this.data.id);
   el.find(".story-" + changed_field).html(this[changed_field]);
   if (changed_field == "points") 
+    var pts = this.points == "" ? Story.NoPoints : this.points;
     if (this.isCurrent)
-      $('#story-points-' + this.points + ' > div:nth-child(2)').after(el);
+      $('#story-points-' + pts + ' > div:nth-child(2)').after(el);
     else
-      $('#story-points-' + this.points).append(el);
+      $('#story-points-' + pts).append(el);
 
 };
+
 Story.prototype.setPoints = function(newPoints){
-  this.points = newPoints;
+  this.points = newPoints == Story.NoPoints ? "" : newPoints;
+  if (Story.devMode != true) {
+    $.ajax({
+      url: "/rest/greenhopper/1.0/xboard/issue/update-field.json",
+      context: document.body,
+      type: 'PUT',
+      headers: {'Content-Type' : 'application/json' },
+      data: '{"fieldId": "' + Story.points + '", "issueIdOrKey": ' + this.id + ', "newValue": "' + this.points + '"}'
+    }).done(function(response) {
+      console.log(response);
+    });
+  }
 };
 
 Story.prototype.initialize = function ( el ) {

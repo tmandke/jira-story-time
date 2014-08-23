@@ -18,7 +18,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     $.when(window.JiraStoryTime.Stories.fetchStories()).done(function (a) {
 
       $(document.body).append(window.JiraStoryTime.Templates.board);
-      [0, 1, 2, 3, 5, 8, 13, 21, "undefined"].forEach(function(points){
+      [0, 1, 2, 3, 5, 8, 13, 21, window.JiraStoryTime.Story.NoPoints].forEach(function(points){
         $("#story_board").append(window.JiraStoryTime.Templates.boardRow);
         $("#story_board")[0].lastChild.setAttribute('data-story-points', points);
         $("#story_board")[0].lastChild.setAttribute('id', 'story-points-' + points);
@@ -33,19 +33,9 @@ window.JiraStoryTime.Templates.fetchAll( function () {
       $("#close_story_board").on("click", function () {
         $('.overlay')[0].remove();
         setStoryTime(false);
+        window.JiraStoryTime.Story.autoUpdate = false;
       });
     });
-
-    // $.ajax({
-    //   url: "/rest/greenhopper/1.0/xboard/issue/update-field.json",
-    //   context: document.body,
-    //   type: 'PUT',
-    //   headers: {'Content-Type' : 'application/json' },
-    //   data: '{"fieldId": "customfield_10002", "issueIdOrKey": 10517, "newValue": "1"}'
-    // }).done(function(response) {
-    //   console.log(response);
-    // });
-
   };
 
   $("#story-toggle").on("click", renderStoryTime);
