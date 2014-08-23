@@ -15,27 +15,19 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     if( !isStoryTime() )
       setStoryTime(true);
 
-    var renderStory = function (dom, story) {
-      dom.append(window.JiraStoryTime.Templates.boardStory);
-      dom = $(dom[0].lastChild);
-      dom[0].setAttribute('data-story-id', story.id);
-      dom[0].setAttribute('id', "story-" + story.id);
-      dom.find(".story_id").html(story.id);
-      dom.find(".story_summary").html(story.summary);
-    }
+    $.when(window.JiraStoryTime.Stories.fetchStories()).done(function (a) {
 
-    var renderRow = function (points, stories) {
-      $("#story_board").append(window.JiraStoryTime.Templates.boardRow);
-      $("#story_board")[0].lastChild.setAttribute('data-story-points', points);
-      $($("#story_board")[0].lastChild).find('.story_board_row_points').html(points);
-      $.each(stories, function() {
-        renderStory($($("#story_board")[0].lastChild), this);
-      });
-    }
-
-    window.JiraStoryTime.Stories.fetchStories( function ( partitioned_backlog_stories ) {
       $(document.body).append(window.JiraStoryTime.Templates.board);
-      $.each(partitioned_backlog_stories, renderRow);
+      [0, 1, 2, 3, 5, 8, 13, 21, "undefined"].forEach(function(points){
+        $("#story_board").append(window.JiraStoryTime.Templates.boardRow);
+        $("#story_board")[0].lastChild.setAttribute('data-story-points', points);
+        $("#story_board")[0].lastChild.setAttribute('id', 'story-points-' + points);
+        $($("#story_board")[0].lastChild).find('.story_board_row_points').html(points);
+      });
+      var undefinedCol = $($("#story_board")[0].lastChild);
+      window.JiraStoryTime.Stories.backlog_stories.forEach(function(s) {
+        s.initialize(undefinedCol)
+      });
 
       window.JiraStoryTime.DragController.setup();
       $("#close_story_board").on("click", function () {
