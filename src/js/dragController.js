@@ -2,15 +2,13 @@ window.JiraStoryTime = window.JiraStoryTime || {}
 window.JiraStoryTime.DragController = {
   handleDragStart: function (e) {
     this.style.opacity = '0.4';  // this / e.target is the source node.
+    e.dataTransfer.setData("Text", e.target.id);
   },
 
   handleDragOver: function (e) {
     if (e.preventDefault) {
       e.preventDefault(); // Necessary. Allows us to drop.
     }
-
-    e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-
     return false;
   },
 
@@ -35,16 +33,20 @@ window.JiraStoryTime.DragController = {
     if (e.stopPropagation) {
       e.stopPropagation(); // stops the browser from redirecting.
     }
+    var id = e.dataTransfer.getData("Text");
+    e.target.parentElement.appendChild(document.getElementById(id));
+    $(e.target).hide();
 
     // See the section on the DataTransfer object.
+
 
     return false;
   },
 
   handleDragEnd: function (e) {
     // this/e.target is the source node.
-    this.style.opacity = '1';
     [].forEach.call(window.JiraStoryTime.DragController.cols, function (col) {
+      col.style.opacity = '1';
       col.classList.remove('over');
     });
   },

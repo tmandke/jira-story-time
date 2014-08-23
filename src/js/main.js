@@ -19,6 +19,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
       dom.append(window.JiraStoryTime.Templates.boardStory);
       dom = $(dom[0].lastChild);
       dom[0].setAttribute('data-story-id', story.id);
+      dom[0].setAttribute('id', "story-" + story.id);
       dom.find(".story_id").html(story.id);
       dom.find(".story_summary").html(story.summary);
     }
