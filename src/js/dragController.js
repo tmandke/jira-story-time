@@ -2,7 +2,7 @@ window.JiraStoryTime = window.JiraStoryTime || {}
 window.JiraStoryTime.DragController = {
   handleDragStart: function (e) {
     this.style.opacity = '0.4';  // this / e.target is the source node.
-    e.dataTransfer.setData("Text", e.target.id);
+    e.dataTransfer.setData("storyId", $(e.target).closest('.story')[0].getAttribute('id'));
   },
 
   handleDragOver: function (e) {
@@ -33,8 +33,8 @@ window.JiraStoryTime.DragController = {
     if (e.stopPropagation) {
       e.stopPropagation(); // stops the browser from redirecting.
     }
-    var id = e.dataTransfer.getData("Text");
-    e.target.parentElement.appendChild(document.getElementById(id));
+    var newPoints = this.parentElement.getAttribute("data-story-points");
+    $("#" + e.dataTransfer.getData("storyId")).trigger('pointsChanged', [newPoints]);
     $(e.target).hide();
 
     // See the section on the DataTransfer object.

@@ -22,12 +22,18 @@ Story.prototype.render = function( changed_field ){
   if (changed_field == "points") 
     $('#story-points-' + this.points).append(el);
 };
+Story.prototype.setPoints = function(newPoints){
+  this.points = newPoints;
+};
 
 Story.prototype.initialize = function ( el ) {
   el.append(window.JiraStoryTime.Templates.boardStory);
   dom = el[0].lastChild;
   dom.setAttribute('data-story-id', this.data.id);
   dom.setAttribute('id', "story-" + this.data.id);
+  $(dom).on('pointsChanged', this, function(e, newPoints) {
+    e.data.setPoints(newPoints);
+  });
 
   Object.observe(this, Story.observer);
   this.id = this.data.id;
