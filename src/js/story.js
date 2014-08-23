@@ -27,7 +27,11 @@ Story.prototype.render = function( changed_field ){
   el = $("#story-" + this.data.id);
   el.find(".story-" + changed_field).html(this[changed_field]);
   if (changed_field == "points") 
-    $('#story-points-' + this.points).append(el);
+    if (this.isCurrent)
+      $('#story-points-' + this.points + ' > div:nth-child(2)').after(el);
+    else
+      $('#story-points-' + this.points).append(el);
+
 };
 Story.prototype.setPoints = function(newPoints){
   this.points = newPoints;
