@@ -38,6 +38,9 @@ Story.prototype.initialize = function ( el ) {
   dom = el[0].lastChild;
   dom.setAttribute('data-story-id', this.data.id);
   dom.setAttribute('id', "story-" + this.data.id);
+  this.isCurrent = ($.inArray(this.data.id, window.JiraStoryTime.Stories.current_stories) > -1);
+  dom.setAttribute('draggable', !this.isCurrent);
+
   $(dom).on('pointsChanged', this, function(e, newPoints) {
     e.data.setPoints(newPoints);
   });

@@ -51,6 +51,15 @@
       border-radius: 2px;
       border-style: solid;
     }
+    .story[draggable=true] {
+      cursor:move;
+    }
+    .story[draggable=false] {
+      user-select: none;
+      cursor:not-allowed;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+    }
     .story-top {
       display: flex;
       flex-direction: row;
