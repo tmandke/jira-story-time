@@ -14,6 +14,13 @@ Story.prototype.getFullStory = function () {
 
 Story.prototype.setMoreData = function (data) {
   this.moreData = data;
+  var _this = this;
+  data.fields.forEach(function(f){
+    switch (f.label) {
+      case "Business Value": _this.business = f.value; break;
+      case "Description": _this.description = f.html; break;
+    }
+  });
 };
 
 Story.prototype.render = function( changed_field ){

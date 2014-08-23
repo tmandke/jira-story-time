@@ -9,7 +9,6 @@
       height: 100%;
       top: 0px;
       left: 0px;
-      text-align: center;
       color: white;
       overflow-y: scroll;
     }
@@ -27,6 +26,9 @@
       display:none;
       margin:-2px;
 
+    }
+    .story_board_row_points {
+      text-align: center;
     }
     .story_board_row {
       position: relative;
@@ -49,12 +51,20 @@
       border-radius: 2px;
       border-style: solid;
     }
-    .story_id {
-      display: block;
-      float: center;
+    .story-top {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
-    .story_summary {
-      text-align: left;
+    .story .story-description {
+      display: none;
+      overflow-x: auto;
+      padding: 2px;
+      border-style: dotted;
+      border-width: 1px;
+    }
+    .story:hover .story-description {
+      display: block;
     }
 
   </style>
