@@ -9,7 +9,7 @@ Story.business = 'customfield_10003';
 Story.points = 'customfield_10002';
 Story.NoPoints = '--';
 Story.devMode = true;
-Story.autoUpdate = true;
+Story.autoUpdate = false;
 
 Story.prototype.getFullStory = function () {
   return $.ajax({
@@ -39,12 +39,16 @@ Story.prototype.setMoreData = function (data) {
 Story.prototype.render = function( changed_field ){
   el = $("#story-" + this.data.id);
   el.find(".story-" + changed_field).html(this[changed_field]);
-  if (changed_field == "points") 
+  if (changed_field == "points") {
     var pts = this.points == "" ? Story.NoPoints : this.points;
+    $('#story-points-' + pts).addClass('has-stories');
+    if (el.parent().children().length == 3)
+      el.parent().removeClass('has-stories');
     if (this.isCurrent)
       $('#story-points-' + pts + ' > div:nth-child(2)').after(el);
     else
       $('#story-points-' + pts).append(el);
+  }
 
 };
 
