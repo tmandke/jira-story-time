@@ -55,7 +55,7 @@
       background: white;
     }
     .story:hover {
-      background: #f0f0f0;
+      /*background: #f0f0f0;*/
     }
     .story[draggable=true] {
       cursor:move;
@@ -65,7 +65,7 @@
       cursor:not-allowed;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
-      background: #f0f0f0;
+      border-top-style: solid;
     }
     .story-points,.story-business {
       background: rgba(0,0,0,0.2);
@@ -97,8 +97,58 @@
     .story:hover .story-description:empty {
       display: none;
     }
+    #story_board_epics {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    .current-stories:after {
+      content:'\25BC\25BC\25BC  Backlog \25BC\25BC\25BC';
+      display:block;
+      text-align: center;
+    }
+    .current-stories:empty:after {
+      display:none;
+    }
+    .epic {
+      padding: 2px 8px;
+      margin: 1px;
+      border-radius: 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: black;
+      white-space: nowrap;
+    }
+    .epic-color-1 {
+      background: #cff
+    }
+    .epic-color-2 {
+      background: #fcf
+    }
+    .epic-color-3 {
+      background: #ffc
+    }
+    .epic-color-4 {
+      background: #ccf
+    }
+    .epic-color-5 {
+      background: #ccf
+    }
+    .epic-color-6 {
+      background: #ccf
+    }
+    .epic-color-7 {
+      background: #ccf
+    }
+    .epic-color-8 {
+      background: #ccf
+    }
+    .epic-color-9 {
+      background: #ccf
+    }
 
   </style>
+  <div id="story_board_epics"></div>
   <div id="story_board">
   </div>
 </div>

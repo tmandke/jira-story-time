@@ -19,5 +19,18 @@ window.JiraStoryTime.Stories = {
       return new window.JiraStoryTime.Story(s)});
     window.JiraStoryTime.Stories.backlog_stories = backlog_stories;
     return backlog_stories;
+  },
+
+  epics: [''],
+  epicColor: function (epic) {
+    var color = $.inArray(epic, this.epics);
+    if (color < 0) {
+      color = this.epics.length;
+      this.epics.push(epic);
+      $('#story_board_epics').append(window.JiraStoryTime.Templates.boardEpic);
+      $($('#story_board_epics')[0].lastChild).html(epic);
+      $($('#story_board_epics')[0].lastChild).addClass('epic-color-' + color);
+    }
+    return color;
   }
 };

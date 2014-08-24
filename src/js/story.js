@@ -30,6 +30,7 @@ Story.prototype.setMoreData = function (data) {
       case Story.points: _this.points = (f.value || ""); break;
       case Story.business: _this.business = (f.value || ""); break;
       case Story.description: _this.description = f.html; break;
+      case Story.epic: _this.epicColor = window.JiraStoryTime.Stories.epicColor(f.text); break;
     }
   });
   if (Story.autoUpdate == true)
@@ -38,19 +39,22 @@ Story.prototype.setMoreData = function (data) {
 };
 
 Story.prototype.render = function( changed_field ){
-  el = $("#story-" + this.data.id);
+  var el = $("#story-" + this.data.id);
+  var col = el.parent().parent();
+
   el.find(".story-" + changed_field).html(this[changed_field]);
+
+  if (changed_field == "epicColor")
+    el.addClass('epic-color-' + this.epicColor);
+
   if (changed_field == "points") {
     var pts = this.points == "" ? Story.NoPoints : this.points;
     $('#story-points-' + pts).addClass('has-stories');
-    if (el.parent().children().length == 3)
-      el.parent().removeClass('has-stories');
-    if (this.isCurrent)
-      $('#story-points-' + pts + ' > div:nth-child(2)').after(el);
-    else
-      $('#story-points-' + pts).append(el);
-  }
+    $('#story-points-' + pts).find(this.isCurrent ? '.current-stories' : '.backlog-stories').append(el);
 
+    if (col.find('.backlog-stories').length == 0 && col.find('.current-stories')[0].length == 0)
+      col.removeClass('has-stories');
+  }
 };
 
 Story.prototype.setPoints = function(newPoints){
