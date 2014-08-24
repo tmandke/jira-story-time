@@ -30,10 +30,12 @@ window.JiraStoryTime.Templates.fetchAll( function () {
       });
 
       window.JiraStoryTime.DragController.setup();
-      $("#close_story_board").on("click", function () {
-        $('.overlay')[0].remove();
-        setStoryTime(false);
-        window.JiraStoryTime.Story.autoUpdate = false;
+      $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+          $('.overlay')[0].remove();
+          setStoryTime(false);
+          window.JiraStoryTime.Story.autoUpdate = false;
+        }   // esc
       });
     });
   };
