@@ -7,6 +7,7 @@ Story.description = 'description';
 Story.summary = 'summary';
 Story.business = 'customfield_10003';
 Story.points = 'customfield_10002';
+Story.epic = 'customfield_10007';
 Story.NoPoints = '--';
 Story.devMode = true;
 Story.autoUpdate = false;
