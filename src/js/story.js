@@ -27,7 +27,7 @@ Story.prototype.setMoreData = function (data) {
   data.fields.forEach(function(f){
     switch (f.id) {
       case Story.summary: _this.summary = f.value; break;
-      case Story.points: _this.points = (f.value || ""); break;
+      case Story.points: _this.setPoints(f.value || ""); break;
       case Story.business: _this.business = (f.value || ""); break;
       case Story.description: _this.description = f.html; break;
       case Story.epic: _this.epicColor = window.JiraStoryTime.Stories.epicColor(f.text); break;
@@ -36,7 +36,6 @@ Story.prototype.setMoreData = function (data) {
   if (Story.autoUpdate == true)
     setTimeout( function () {
       _this.getFullStory()} , 60000);
-  window.JiraStoryTime.Stories.updateEpics();
 };
 
 Story.prototype.render = function( changed_field ){
@@ -55,6 +54,8 @@ Story.prototype.render = function( changed_field ){
 
     if (col.find('.backlog-stories').children().length == 0 && col.find('.current-stories').children().length == 0)
       col.removeClass('has-stories');
+
+    $('#story_board').css('min-width', ($('.has-stories').length * 300) + 'px');
   }
 };
 
@@ -71,6 +72,7 @@ Story.prototype.setPoints = function(newPoints){
       console.log(response);
     });
   }
+  window.JiraStoryTime.Stories.updateEpics();
 };
 
 Story.prototype.initialize = function ( el ) {
@@ -95,7 +97,7 @@ Story.prototype.initialize = function ( el ) {
 
 Story.observer = function (changes) {
   changes.forEach(function(change){
-    console.log(change.object.data.key + ": " + change.name + " was " + change.type + " to " + change.object[change.name]);
+    // console.log(change.object.data.key + ": " + change.name + " was " + change.type + " to " + change.object[change.name]);
     change.object.render( change.name );
   });
 };
