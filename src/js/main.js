@@ -18,6 +18,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     $.when(window.JiraStoryTime.Stories.fetchStories()).done(function (a) {
 
       $(document.body).append(window.JiraStoryTime.Templates.board);
+      window.JiraStoryTime.Stories.addEpic('None');
       [0, 1, 2, 3, 5, 8, 13, 21, window.JiraStoryTime.Story.NoPoints].forEach(function(points){
         $("#story_board").append(window.JiraStoryTime.Templates.boardRow);
         $("#story_board")[0].lastChild.setAttribute('data-story-points', points);
@@ -35,6 +36,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
           $('.overlay')[0].remove();
           setStoryTime(false);
           window.JiraStoryTime.Story.autoUpdate = false;
+          window.JiraStoryTime.Stories.epics = []
         }   // esc
       });
     });

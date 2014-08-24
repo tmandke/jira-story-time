@@ -21,16 +21,32 @@ window.JiraStoryTime.Stories = {
     return backlog_stories;
   },
 
-  epics: [''],
+  epics: [],
   epicColor: function (epic) {
     var color = $.inArray(epic, this.epics);
     if (color < 0) {
-      color = this.epics.length;
-      this.epics.push(epic);
-      $('#story_board_epics').append(window.JiraStoryTime.Templates.boardEpic);
-      $($('#story_board_epics')[0].lastChild).html(epic);
-      $($('#story_board_epics')[0].lastChild).addClass('epic-color-' + color);
+      color = this.addEpic(epic);
     }
     return color;
+  },
+  addEpic: function (epic){
+    var color = this.epics.length;
+    this.epics.push(epic == 'None' ? '' : epic);
+    $('#story_board_epics').append(window.JiraStoryTime.Templates.boardEpic);
+    var children = $('#story_board_epics').children();
+    var dom = children[children.length-1];
+    $(dom).find('.epic-name').html(epic);
+    dom.setAttribute('id', 'epic-' + color);
+    $(dom).addClass('epic-color-' + color);
+    return color;
+  },
+  updateEpics: function(){
+    var epicPoints = {}
+    this.backlog_stories.forEach(function(s){
+      epicPoints[s.epicColor || 0] = (epicPoints[s.epicColor || 0] || 0) + parseInt(s.points || 0);
+    });
+    $.map(epicPoints, function(v, k){
+      $('#epic-' + k).find('.story-points').html(v);
+    });
   }
 };

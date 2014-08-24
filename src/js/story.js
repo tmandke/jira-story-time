@@ -10,7 +10,7 @@ Story.points = 'customfield_10002';
 Story.epic = 'customfield_10007';
 Story.NoPoints = '--';
 Story.devMode = true;
-Story.autoUpdate = false;
+Story.autoUpdate = true;
 
 Story.prototype.getFullStory = function () {
   return $.ajax({
@@ -36,6 +36,7 @@ Story.prototype.setMoreData = function (data) {
   if (Story.autoUpdate == true)
     setTimeout( function () {
       _this.getFullStory()} , 60000);
+  window.JiraStoryTime.Stories.updateEpics();
 };
 
 Story.prototype.render = function( changed_field ){
