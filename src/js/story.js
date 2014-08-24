@@ -52,7 +52,7 @@ Story.prototype.render = function( changed_field ){
     $('#story-points-' + pts).addClass('has-stories');
     $('#story-points-' + pts).find(this.isCurrent ? '.current-stories' : '.backlog-stories').append(el);
 
-    if (col.find('.backlog-stories').length == 0 && col.find('.current-stories')[0].length == 0)
+    if (col.find('.backlog-stories').children().length == 0 && col.find('.current-stories').children().length == 0)
       col.removeClass('has-stories');
   }
 };
