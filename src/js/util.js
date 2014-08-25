@@ -16,5 +16,23 @@ window.JiraStoryTime.Util = {
         }
     }
     return map;
+  },
+  xhrPool:[],
+  abortAllXHR: function() {
+    window.JiraStoryTime.Util.xhrPool.forEach(function(jqXHR) {
+        jqXHR.abort();
+    });
+    window.JiraStoryTime.Util.xhrPool.length = 0
   }
-}
+};
+$.ajaxSetup({
+    beforeSend: function(jqXHR) {
+        window.JiraStoryTime.Util.xhrPool.push(jqXHR);
+    },
+    complete: function(jqXHR) {
+        var index = window.JiraStoryTime.Util.xhrPool.indexOf(jqXHR);
+        if (index > -1) {
+            window.JiraStoryTime.Util.xhrPool.splice(index, 1);
+        }
+    }
+});

@@ -24,15 +24,15 @@ window.JiraStoryTime.Stories = {
 
   epics: [],
   epicColor: function (epic) {
-    var color = $.inArray(epic, this.epics);
+    var color = $.inArray(epic, window.JiraStoryTime.Stories.epics);
     if (color < 0) {
       color = this.addEpic(epic);
     }
     return color;
   },
   addEpic: function (epic){
-    var color = this.epics.length;
-    this.epics.push(epic == 'None' ? '' : epic);
+    var color = window.JiraStoryTime.Stories.epics.length;
+    window.JiraStoryTime.Stories.epics.push(epic == 'None' ? '' : epic);
     $('#story_board_epics').append(window.JiraStoryTime.Templates.boardEpic);
     var children = $('#story_board_epics').children();
     var dom = children[children.length-1];

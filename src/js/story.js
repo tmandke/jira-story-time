@@ -1,6 +1,7 @@
 window.JiraStoryTime = window.JiraStoryTime || {};
 var Story = function ( data ) {
   this.data = data;
+  this.linkedIssues = [];
 };
 Story.id = 'id';
 Story.description = 'description';
@@ -34,9 +35,6 @@ Story.prototype.setMoreData = function (data) {
     }
   });
   this.buildRelationShips();
-  if (Story.autoUpdate == true)
-    setTimeout( function () {
-      _this.getFullStory()} , 60000);
 };
 
 Story.prototype.render = function( changed_field ){
@@ -138,6 +136,11 @@ Story.prototype.initialize = function ( el ) {
   this.summary = this.data.summary;
   this.points = this.data.estimateStatistic.statFieldValue.value;
   this.getFullStory();
+  if (Story.autoUpdate == true)
+    this.myInterval = setInterval( function () { _this.getFullStory(); }, 10000 + Math.random() * 5000);
+};
+Story.prototype.close = function () {
+  clearInterval(this.myInterval);
 };
 
 Story.observer = function (changes) {
