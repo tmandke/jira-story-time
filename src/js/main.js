@@ -15,7 +15,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
     if( !isStoryTime() )
       setStoryTime(true);
 
-    $.when(window.JiraStoryTime.Stories.fetchStories()).done(function (a) {
+    $.when(window.JiraStoryTime.Stories.fetchStories()).done(function () {
 
       $(document.body).append(window.JiraStoryTime.Templates.board);
       window.JiraStoryTime.Stories.addEpic('None');
@@ -26,7 +26,7 @@ window.JiraStoryTime.Templates.fetchAll( function () {
         $($("#story_board")[0].lastChild).find('.story_board_row_points').html(points);
       });
       var undefinedCol = $($("#story_board")[0].lastChild);
-      window.JiraStoryTime.Stories.backlog_stories.forEach(function(s) {
+      $.map(window.JiraStoryTime.Stories.backlog_stories, function(s) {
         s.initialize(undefinedCol)
       });
 

@@ -14,11 +14,12 @@ window.JiraStoryTime.Stories = {
       return (sprint.state == "ACTIVE" ? sprint.issuesIds : null);
     });
 
-    var backlog_stories = $.map($.grep(response.issues, function(v) {
+    var backlog_stories = {};
+    $.map($.grep(response.issues, function(v) {
       return v.typeName === "Story"; }), function(s){
-      return new window.JiraStoryTime.Story(s)});
+      backlog_stories[s.key] = new window.JiraStoryTime.Story(s)});
+
     window.JiraStoryTime.Stories.backlog_stories = backlog_stories;
-    return backlog_stories;
   },
 
   epics: [],
@@ -42,7 +43,7 @@ window.JiraStoryTime.Stories = {
   },
   updateEpics: function(){
     var epicPoints = {}
-    this.backlog_stories.forEach(function(s){
+    $.map(this.backlog_stories, function(s){
       epicPoints[s.epicColor || 0] = (epicPoints[s.epicColor || 0] || 0) + parseInt(s.points || 0);
     });
     $.map(epicPoints, function(v, k){

@@ -33,6 +33,7 @@ Story.prototype.setMoreData = function (data) {
       case Story.epic: _this.epicColor = window.JiraStoryTime.Stories.epicColor(f.text); break;
     }
   });
+  this.buildRelationShips();
   if (Story.autoUpdate == true)
     setTimeout( function () {
       _this.getFullStory()} , 60000);
@@ -43,6 +44,16 @@ Story.prototype.render = function( changed_field ){
   var col = el.parent().parent();
 
   el.find(".story-" + changed_field).html(this[changed_field]);
+
+  if (changed_field == 'linkedStatus'){
+    el.attr('data-content', this.linkedStatus);
+    var action = (this.linkedStatus == undefined ? 'removeClass' : 'addClass');
+    el[action]('linked-story');
+    if (this.linkedStatus == 'Blocker')
+      el[action]('story-blocker');
+    else if (this.linkedStatus == 'Frees')
+      el[action]('story-frees');
+  }
 
   if (changed_field == "epicColor")
     el.addClass('epic-color-' + this.epicColor);
@@ -75,13 +86,47 @@ Story.prototype.setPoints = function(newPoints){
   window.JiraStoryTime.Stories.updateEpics();
 };
 
+Story.prototype.buildRelationShips = function (){
+  var _this = this;
+  this.linkedIssues = [];
+  this.moreData.issueLinks.issueLinkTypeEntries.forEach(function(typeEntry){
+    var issueType = typeEntry.relationship;
+    if (issueType == 'is blocked by')
+      issueType = 'Blocker';
+    else if (issueType == 'blocks')
+      issueType = 'Frees';
+
+    typeEntry.issueLinkEntries.forEach(function (issue){
+      _this.linkedIssues.push({
+        type: issueType, 
+        story: window.JiraStoryTime.Stories.backlog_stories[issue.title],
+        key: issue.title
+      });
+    });
+
+  });
+};
+
 Story.prototype.initialize = function ( el ) {
+  var _this = this;
   el.append(window.JiraStoryTime.Templates.boardStory);
   dom = el[0].lastChild;
   dom.setAttribute('data-story-id', this.data.id);
   dom.setAttribute('id', "story-" + this.data.id);
   this.isCurrent = ($.inArray(this.data.id, window.JiraStoryTime.Stories.current_stories) > -1);
   dom.setAttribute('draggable', !this.isCurrent);
+  
+  $(dom).hover(function(){
+    _this.linkedIssues.forEach(function(issue){
+      if (issue.story != undefined)
+        issue.story.linkedStatus = issue.type;
+    });
+  }, function(){
+    _this.linkedIssues.forEach(function(issue){
+      if (issue.story != undefined)
+        delete issue.story.linkedStatus;
+    });
+  });
 
   $(dom).on('pointsChanged', this, function(e, newPoints) {
     e.data.setPoints(newPoints);
