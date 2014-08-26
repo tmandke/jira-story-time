@@ -1,1 +1,3 @@
 **/.DS_Store
+src/js/*.js
+!src/js/jquery.min.js
