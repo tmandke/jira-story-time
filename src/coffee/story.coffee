@@ -8,7 +8,7 @@ window.JiraStoryTime.Story = class Story
   @points = "customfield_10002"
   @epic = "customfield_10007"
   @NoPoints = "--"
-  @devMode = false
+  @devMode = true
   @autoUpdate = true
 
   @observer = (changes) ->
@@ -29,7 +29,7 @@ window.JiraStoryTime.Story = class Story
     dom.setAttribute "data-story-id", @data.id
     dom.setAttribute "id", "story-" + @data.id
     @isCurrent = ($.inArray(@data.id, window.JiraStoryTime.Stories.current_stories) > -1)
-    dom.setAttribute "draggable", not @isCurrent
+    dom.setAttribute "draggable", window.JiraStoryTime.isForcedOrdered or not @isCurrent
     $(dom).click =>
       if @isOpen
         @closeCard(dom)

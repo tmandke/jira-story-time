@@ -16,17 +16,27 @@ window.JiraStoryTime.Templates.fetchAll ->
       $(document.body).append window.JiraStoryTime.Templates.board
       $(".overlay").focus()
       window.JiraStoryTime.Stories.addEpic "None"
-      possiblePoints.forEach (points) ->
-        $("#story_board").append window.JiraStoryTime.Templates.boardRow
-        $("#story_board")[0].lastChild.setAttribute "data-story-points", points
-        $("#story_board")[0].lastChild.setAttribute "id", "story-points-" + points
-        $($("#story_board")[0].lastChild).find(".story_board_row_points").html points
+      if window.JiraStoryTime.isForcedOrdered
+        $("#story_board").append window.JiraStoryTime.Templates.forcedOrderedBoard
 
-      undefinedCol = $($("#story_board")[0].lastChild)
-      $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
-        s.initialize undefinedCol
+        storystack = $(".story-stack")
+        $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
+          s.initialize storystack
+        window.JiraStoryTime.forcedOrderingController.setup()
 
-      window.JiraStoryTime.DragController.setup()
+      else
+        possiblePoints.forEach (points) ->
+          $("#story_board").append window.JiraStoryTime.Templates.boardRow
+          $("#story_board")[0].lastChild.setAttribute "data-story-points", points
+          $("#story_board")[0].lastChild.setAttribute "id", "story-points-" + points
+          $($("#story_board")[0].lastChild).find(".story_board_row_points").html points
+
+        undefinedCol = $($("#story_board")[0].lastChild)
+        $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
+          s.initialize undefinedCol
+
+        window.JiraStoryTime.DragController.setup()
+
       
       # esc
       $(".overlay").keyup (e) ->

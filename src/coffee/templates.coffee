@@ -6,6 +6,7 @@ window.JiraStoryTime.Templates = class Templates
     "boardRow"
     "boardStory"
     "boardEpic"
+    "forcedOrderedBoard"
   ]
     
   @fetchAll: (OnDone) ->

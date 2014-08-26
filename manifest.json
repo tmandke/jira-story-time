@@ -23,6 +23,7 @@
         "src/js/stories.js",
         "src/js/story.js",
         "src/js/dragController.js",
+        "src/js/forcedOrderingController.js",
         "src/js/main.js"
        ]
     }

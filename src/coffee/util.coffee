@@ -29,6 +29,7 @@ window.JiraStoryTime.Util = class Util
 
     @xhrPool.length = 0
 
+window.JiraStoryTime.isForcedOrdered = window.JiraStoryTime.Util.deparam(location.href.split("?")[1])["forced_ordered"] is "true"
 
 $.ajaxSetup
   beforeSend: (jqXHR) ->
