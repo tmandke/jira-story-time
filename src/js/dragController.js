@@ -5,7 +5,7 @@
   window.JiraStoryTime.DragController = {
     handleDragStart: function(e) {
       this.style.opacity = "0.4";
-      e.dataTransfer.setData("storyId", $(e.target).closest(".story")[0].getAttribute("id"));
+      return e.dataTransfer.setData("storyId", $(e.target).closest(".story")[0].getAttribute("id"));
     },
     handleDragOver: function(e) {
       if (e.preventDefault) {
@@ -15,13 +15,13 @@
     },
     handleDragEnter: function(e) {
       this.classList.add("over");
-      $(this).find(".story_board_row_drop_mask").show();
+      return $(this).find(".story_board_row_drop_mask").show();
     },
     handleDragLeave: function(e) {
       e.stopPropagation();
       e.preventDefault();
       $(this.parentElement).removeClass("over");
-      $(this).hide();
+      return $(this).hide();
     },
     handleDrop: function(e) {
       var newPoints;
@@ -34,22 +34,22 @@
       return false;
     },
     handleDragEnd: function(e) {
-      [].forEach.call(window.JiraStoryTime.DragController.cols, function(col) {
+      return [].forEach.call(window.JiraStoryTime.DragController.cols, function(col) {
         col.style.opacity = "1";
-        col.classList.remove("over");
+        return col.classList.remove("over");
       });
     },
     setup: function() {
       var _this;
       this.cols = document.querySelectorAll("#story_board .story_board_row");
       _this = this;
-      [].forEach.call(this.cols, function(col) {
+      return [].forEach.call(this.cols, function(col) {
         col.addEventListener("dragstart", _this.handleDragStart, false);
         col.addEventListener("dragenter", _this.handleDragEnter, false);
         col.addEventListener("dragover", _this.handleDragOver, false);
         $(col).find(".story_board_row_drop_mask")[0].addEventListener("dragleave", _this.handleDragLeave, false);
         $(col).find(".story_board_row_drop_mask")[0].addEventListener("drop", _this.handleDrop, false);
-        col.addEventListener("dragend", _this.handleDragEnd, false);
+        return col.addEventListener("dragend", _this.handleDragEnd, false);
       });
     }
   };

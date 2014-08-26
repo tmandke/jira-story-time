@@ -1,6 +1,6 @@
 window.JiraStoryTime = window.JiraStoryTime or {}
-window.JiraStoryTime.Util =
-  deparam: (query) ->
+window.JiraStoryTime.Util = class Util
+  @deparam: (query) ->
     pairs = undefined
     i = undefined
     keyValuePair = undefined
@@ -21,21 +21,19 @@ window.JiraStoryTime.Util =
         i += 1
     map
 
-  xhrPool: []
-  abortAllXHR: ->
-    window.JiraStoryTime.Util.xhrPool.forEach (jqXHR) ->
-      jqXHR.abort()
-      return
 
-    window.JiraStoryTime.Util.xhrPool.length = 0
-    return
+  @xhrPool: []
+  @abortAllXHR: =>
+    @xhrPool.forEach (jqXHR) ->
+      jqXHR.abort()
+
+    @xhrPool.length = 0
+
 
 $.ajaxSetup
   beforeSend: (jqXHR) ->
-    window.JiraStoryTime.Util.xhrPool.push jqXHR
-    return
+    Util.xhrPool.push jqXHR
 
   complete: (jqXHR) ->
-    index = window.JiraStoryTime.Util.xhrPool.indexOf(jqXHR)
-    window.JiraStoryTime.Util.xhrPool.splice index, 1  if index > -1
-    return
+    index = Util.xhrPool.indexOf(jqXHR)
+    Util.xhrPool.splice index, 1  if index > -1

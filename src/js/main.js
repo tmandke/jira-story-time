@@ -10,39 +10,41 @@
       params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1]);
       params["story_time"] = st;
       newUrl = location.href.split("?")[0] + "?" + $.param(params);
-      history.pushState(null, null, newUrl);
+      return history.pushState(null, null, newUrl);
     };
     renderStoryTime = function() {
+      var possiblePoints;
+      possiblePoints = [0, 1, 2, 3, 5, 8, 13, 21, window.JiraStoryTime.Story.NoPoints];
       if (!isStoryTime()) {
         setStoryTime(true);
       }
-      $.when(window.JiraStoryTime.Stories.fetchStories()).done(function() {
+      return $.when(window.JiraStoryTime.Stories.fetchStories()).done(function() {
         var undefinedCol;
         $(document.body).append(window.JiraStoryTime.Templates.board);
         $(".overlay").focus();
         window.JiraStoryTime.Stories.addEpic("None");
-        [0, 1, 2, 3, 5, 8, 13, 21, window.JiraStoryTime.Story.NoPoints].forEach(function(points) {
+        possiblePoints.forEach(function(points) {
           $("#story_board").append(window.JiraStoryTime.Templates.boardRow);
           $("#story_board")[0].lastChild.setAttribute("data-story-points", points);
           $("#story_board")[0].lastChild.setAttribute("id", "story-points-" + points);
-          $($("#story_board")[0].lastChild).find(".story_board_row_points").html(points);
+          return $($("#story_board")[0].lastChild).find(".story_board_row_points").html(points);
         });
         undefinedCol = $($("#story_board")[0].lastChild);
         $.map(window.JiraStoryTime.Stories.backlog_stories, function(s) {
-          s.initialize(undefinedCol);
+          return s.initialize(undefinedCol);
         });
         window.JiraStoryTime.DragController.setup();
-        $(".overlay").keyup(function(e) {
+        return $(".overlay").keyup(function(e) {
           if (e.keyCode === 27) {
             window.JiraStoryTime.Util.abortAllXHR();
             setStoryTime(false);
             $.map(window.JiraStoryTime.Stories.backlog_stories, function(s) {
-              s.close();
+              return s.close();
             });
             $(".overlay").off();
             $(".overlay").find("*").addBack().off();
             $(".overlay")[0].remove();
-            window.JiraStoryTime.Stories.epics = [];
+            return window.JiraStoryTime.Stories.epics = [];
           }
         });
       });
@@ -50,7 +52,7 @@
     $("#ghx-modes").append(window.JiraStoryTime.Templates.storytoggle);
     $("#story-toggle").on("click", renderStoryTime);
     if (isStoryTime()) {
-      renderStoryTime();
+      return renderStoryTime();
     }
   });
 

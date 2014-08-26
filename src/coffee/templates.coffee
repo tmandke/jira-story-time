@@ -1,24 +1,20 @@
 window.JiraStoryTime = window.JiraStoryTime or {}
-window.JiraStoryTime.Templates = fetchAll: (OnDone) ->
-  _this = this
-  counter = 0
-  tmpls = [
+window.JiraStoryTime.Templates = class Templates
+  @templates = [
     "board"
     "storytoggle"
     "boardRow"
     "boardStory"
     "boardEpic"
   ]
-  $.map tmpls, (file_name) ->
-    $.ajax(
-      url: chrome.extension.getURL("/src/templates/" + file_name + ".html")
-      context: document.body
-    ).done (response) ->
-      _this[file_name] = response
-      counter = counter + 1
-      OnDone()  if counter is tmpls.length
-      return
-
-    return
-
-  return
+    
+  @fetchAll: (OnDone) ->
+    counter = 0
+    @templates.forEach (file_name, i)=>
+      $.ajax(
+        url: chrome.extension.getURL("/src/templates/" + file_name + ".html")
+        context: document.body
+      ).done (response) =>
+        this[file_name] = response
+        counter = counter + 1
+        OnDone() if counter is @templates.length
