@@ -20,8 +20,16 @@ window.JiraStoryTime.Templates.fetchAll ->
         $("#story_board").append window.JiraStoryTime.Templates.forcedOrderedBoard
 
         storystack = $(".story-stack")
+        storystack2 = $("#drop-zone")
         $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
           s.initialize storystack
+
+        possiblePoints.forEach (p) ->
+          storystack.append(window.JiraStoryTime.Templates.storyPoint)
+          $(storystack.children()[storystack.children().length - 1]).html("\u25BC\u25BC\u25BC  " + p  + "  \u25BC\u25BC\u25BC")
+          $(storystack.children()[storystack.children().length - 1]).attr('id', 'story-point-' + p)
+          $(storystack.children()[storystack.children().length - 1]).attr('data-story-points', p)
+
         window.JiraStoryTime.forcedOrderingController.setup()
 
       else
