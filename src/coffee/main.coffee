@@ -31,6 +31,8 @@ window.JiraStoryTime.Templates.fetchAll ->
           $(storystack.children()[storystack.children().length - 1]).attr('data-story-points', p)
 
         window.JiraStoryTime.forcedOrderingController.setup()
+        window.onbeforeunload = ()  ->
+          "Data will be lost if you leave the page, are you sure?"
 
       else
         possiblePoints.forEach (points) ->
@@ -46,19 +48,19 @@ window.JiraStoryTime.Templates.fetchAll ->
         window.JiraStoryTime.DragController.setup()
 
       
-      # esc
-      $(".overlay").keyup (e) ->
-        if e.keyCode is 27
-          window.JiraStoryTime.Util.abortAllXHR()
-          setStoryTime false
-          $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
-            s.close()
+        # esc
+        $(".overlay").keyup (e) ->
+          if e.keyCode is 27
+            window.JiraStoryTime.Util.abortAllXHR()
+            setStoryTime false
+            $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
+              s.close()
 
-          $(".overlay").off()
-          $(".overlay").find("*").addBack().off()
-          $(".overlay")[0].remove()
-          window.JiraStoryTime.Stories.epics = []
-          
+            $(".overlay").off()
+            $(".overlay").find("*").addBack().off()
+            $(".overlay")[0].remove()
+            window.JiraStoryTime.Stories.epics = []
+
     
     
   $("#ghx-modes").append window.JiraStoryTime.Templates.storytoggle

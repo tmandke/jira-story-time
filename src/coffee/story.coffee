@@ -65,7 +65,7 @@ window.JiraStoryTime.Story = class Story
         when Story.summary
           @summary = f.value
         when Story.points
-          @setPoints f.value or ""
+          @points = f.value or ""
         when Story.business
           @business = (f.value or "")
         when Story.description
@@ -98,7 +98,9 @@ window.JiraStoryTime.Story = class Story
 
   setPoints: (newPoints) =>
     @points = (if newPoints is Story.NoPoints then "" else newPoints)
-    unless Story.devMode is true
+    if Story.devMode is true
+      console.log(this.key + ": Points would have been updated to " + newPoints)
+    else
       $.ajax(
         url: "/rest/greenhopper/1.0/xboard/issue/update-field.json"
         context: document.body
