@@ -16,40 +16,32 @@ window.JiraStoryTime.Story = class Story
       # console.log(change.object.data.key + ": " + change.name + " was " + change.type + " to " + change.object[change.name]);
       change.object.render change.name
 
+  toggelOpen: =>
+    @isOpen = not @isOpen
+    @linkedIssues.forEach (issue) =>
+      if issue.story?
+        if @isOpen
+          issue.story.linkedStatus = issue.type
+        else
+          delete issue.story.linkedStatus
+
   
   constructor: (data) ->
     @data = data
     @linkedIssues = []
     @isOpen = false
-      
-      
-  initialize: (el) =>
-    el.append window.JiraStoryTime.Templates.boardStory
-    dom = el[0].lastChild
-    dom.setAttribute "data-story-id", @data.id
-    dom.setAttribute "id", "story-" + @data.id
-    @isCurrent = ($.inArray(@data.id, window.JiraStoryTime.Stories.current_stories) > -1)
-    dom.setAttribute "draggable", window.JiraStoryTime.isForcedOrdered or not @isCurrent
-    $(dom).click =>
-      if @isOpen
-        @closeCard(dom)
-      else
-        @openCard(dom)
-      
-    $(dom).on "pointsChanged", this, (e, newPoints) ->
-      e.data.setPoints newPoints
-
-    Object.observe this, Story.observer
     @id = @data.id
+    @isCurrent = ($.inArray(@data.id, window.JiraStoryTime.Stories.current_stories) > -1)
+
+  initialize: =>
     @key = @data.key
     @summary = @data.summary
     @points = @data.estimateStatistic.statFieldValue.value
     @getFullStory()
     if Story.autoUpdate is true
       @myInterval = setInterval(@getFullStory, 10000 + Math.random() * 5000)
-    
-  
-    
+
+    window.JiraStoryTime.Stories.updateEpics()
     
   getFullStory: =>
     $.ajax(
@@ -66,6 +58,8 @@ window.JiraStoryTime.Story = class Story
           @summary = f.value
         when Story.points
           @points = f.value or ""
+          window.JiraStoryTime.Stories.updateEpics()
+
         when Story.business
           @business = (f.value or "")
         when Story.description
@@ -74,27 +68,6 @@ window.JiraStoryTime.Story = class Story
           @epicColor = window.JiraStoryTime.Stories.epicColor(f.text)
 
     @buildRelationShips()
-    
-    
-  render: (changed_field) =>
-    el = $("#story-" + @data.id)
-    col = el.parent().parent()
-    el.find(".story-" + changed_field).html this[changed_field]
-    if changed_field is "linkedStatus"
-      el.attr "data-content", @linkedStatus
-      action = ((if not @linkedStatus? then "removeClass" else "addClass"))
-      el[action] "linked-story"
-      if @linkedStatus is "Blocker"
-        el[action] "story-blocker"
-      else el[action] "story-frees"  if @linkedStatus is "Frees"
-    el.addClass "epic-color-" + @epicColor  if changed_field is "epicColor"
-    if changed_field is "points"
-      pts = (if @points is "" then Story.NoPoints else @points)
-      $("#story-points-" + pts).addClass "has-stories"
-      $("#story-points-" + pts).find((if @isCurrent then ".current-stories" else ".backlog-stories")).append el
-      col.removeClass "has-stories"  if col.find(".backlog-stories").children().length is 0 and col.find(".current-stories").children().length is 0
-      $("#story_board").css "min-width", ($(".has-stories").length * 300) + "px"
-
 
   setPoints: (newPoints) =>
     @points = (if newPoints is Story.NoPoints then "" else newPoints)
@@ -131,19 +104,3 @@ window.JiraStoryTime.Story = class Story
           
   close: =>
     clearInterval @myInterval
-    
-    
-  openCard: (dom)=>
-    @isOpen = true
-    $(dom).find('.story-description').show()
-    @linkedIssues.forEach (issue) =>
-      issue.story.linkedStatus = issue.type  if issue.story?
-      
-    
-  closeCard: (dom)=>
-    @isOpen = false
-    $(dom).find('.story-description').hide()
-    @linkedIssues.forEach (issue) =>
-      delete issue.story.linkedStatus  if issue.story?
-  
-

@@ -21,7 +21,6 @@ window.JiraStoryTime.Stories = class Stories
       if s.typeName is "Story"
         @backlog_stories[s.key] = new window.JiraStoryTime.Story(s)
 
-
   @epics: []
   @epicColor: (epic) =>
     color = $.inArray(epic, window.JiraStoryTime.Stories.epics)
@@ -39,6 +38,9 @@ window.JiraStoryTime.Stories = class Stories
     dom.setAttribute "id", "epic-" + color
     $(dom).addClass "epic-color-" + color
     color
+
+  @resetEpics: =>
+    @epics = []
 
 
   @updateEpics: =>
