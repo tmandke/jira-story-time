@@ -41,6 +41,7 @@ class window.JiraStoryTime.TopBarView
       $(".overlay").off()
       $(".overlay").find("*").addBack().off()
       $(".overlay")[0].remove()
+      @currentView = null
   
   openNewView: =>
     $(document.body).append window.JiraStoryTime.Templates['board.html']
@@ -73,7 +74,8 @@ class window.JiraStoryTime.TopBarView
 
   onEsc: (e) =>
     if e.keyCode is 27
-      @closeCurrentView()
+      if @confirmExitIfNessary()
+        @closeCurrentView()
 
   confirmExitIfNessary: =>
     if @isRegularBoardType == false
