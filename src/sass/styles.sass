@@ -161,30 +161,31 @@
 
 .show-me
   display: block
- 
-//  .story_board_row
-//    display: flex
-//    flex-direction: column
-//    justify-content: space-around
-//  
-//  .story-stack .story
-//    width: 500px
-//  
-//  #story_board
-//    min-height: 80%
-//  
-//  .story-stack .story
-//    .story-description
-//      display: block
-//    &:nth-of-type(n+2)
-//      display: none
-//  
-//  .story-points, .story-business
-//    display: none
-//  
-//  .story-point
-//    text-align: center
-//    font-size: 20px
-//    font-weight: bold
-//    background: black
-//    color: white
+
+
+.story_board_row.forced-ordering
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  
+  .story-stack .story
+    width: 500px
+  
+#story_board
+  min-height: 80%
+  
+  .story-stack .story
+    .story-description
+      display: block
+    &:nth-of-type(n+2)
+      display: none
+  
+  .story-points, .story-business
+    display: none
+  
+  .story-point
+    text-align: center
+    font-size: 20px
+    font-weight: bold
+    background: black
+    color: white

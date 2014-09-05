@@ -6,7 +6,7 @@ window.JiraStoryTime.Templates = class Templates
     "regularColumn.html"
     "storyCard.html"
     "epic.html"
-    "forcedOrderedBoard.html"
+    "forcedOrderingView.html"
     "pointCard.html"
     "styles.css"
   ]
