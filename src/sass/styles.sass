@@ -10,6 +10,11 @@
   color: black
   overflow-y: scroll
 
+#story_board_top
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
 #story_board
   display: flex
   flex-direction: row
@@ -161,24 +166,22 @@
 
 .show-me
   display: block
-
-
+  
+#story_board
+  min-height: 80%
+  
 .story_board_row.forced-ordering
   display: flex
   flex-direction: column
   justify-content: space-around
   
-  .story-stack .story
-    width: 500px
-  
-#story_board
-  min-height: 80%
-  
-  .story-stack .story
-    .story-description
-      display: block
-    &:nth-of-type(n+2)
-      display: none
+  .story-stack 
+    .story
+      width: 500px
+      .story-description
+        display: block
+      &:nth-of-type(n+2)
+        display: none
   
   .story-points, .story-business
     display: none

@@ -1,7 +1,7 @@
 window.JiraStoryTime ||= {}
 
 class window.JiraStoryTime.StoriesColView
-  constructor: (stories) ->
+  constructor: (stories, type) ->
     @setupColumns()
     @storyViews = {}
     $.map stories, (s) =>
@@ -9,7 +9,7 @@ class window.JiraStoryTime.StoriesColView
       s.initialize()
       Object.observe view, @pointsUpdateObserver
       @storyViews["story-" + s.id] = view
-
+    @type = type
     @dragSetup()
 
   setupColumns: =>
@@ -31,8 +31,8 @@ class window.JiraStoryTime.StoriesColView
 
   render: (change) =>
     view = change.object
-    if change.name is 'points'
-      pts = (if view.points is "" then window.JiraStoryTime.Story.NoPoints else view.points)
+    if change.name is @type
+      pts = (if view[@type] is "" then window.JiraStoryTime.Story.NoPoints else view[@type])
       $("#story-points-" + pts).addClass "has-stories"
       $("#story-points-" + pts).find((if view.story.isCurrent then ".current-stories" else ".backlog-stories")).append view.el
       view.el.parent().removeClass "has-stories"  if view.el.parent().find(".backlog-stories").children().length is 0 and view.el.parent().find(".current-stories").children().length is 0
