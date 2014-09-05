@@ -1,4 +1,19 @@
 .overlay tabindex="0" 
-  style scoped="scoped" 
-  #story_board_epics
+  style scoped="scoped"
+  #story_board_top
+    #stroy_board_points_type
+      label.typeSwitcher
+        input type="radio" id="pointsType-sp" name="pointsType" value="points"
+        | Story Points
+      label.typeSwitcher
+        input type="radio" id="pointsType-bp" name="pointsType" value="business"
+        | Business Points
+    #story_board_epics
+    #story_board_type
+      label.typeSwitcher
+        input type="radio" id="boardType-r" name="boardType" value="regular"
+        | Regular
+      label.typeSwitcher
+        input type="radio" id="boardType-fo" name="boardType" value="forced"
+        | Forced Ordering
   #story_board

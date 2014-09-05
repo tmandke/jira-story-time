@@ -1,10 +1,11 @@
 window.JiraStoryTime = window.JiraStoryTime or {}
-class window.JiraStoryTime.forcedOrderingView
-  constructor: (stories) ->
+class window.JiraStoryTime.ForcedOrderingView
+  constructor: (stories, type) ->
     possiblePoints = [1,2,3,5,8,13,21,window.JiraStoryTime.Story.NoPoints]
     $("#story_board").append window.JiraStoryTime.Templates['forcedOrderingView.html']
     storystack = $(".story-stack")
     storystack2 = $("#drop-zone")
+    @type = type
     $.map stories, (s) ->
       unless s.isCurrent
         view = new window.JiraStoryTime.StoryView(s, storystack)
