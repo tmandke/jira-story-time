@@ -1,3 +1,7 @@
 **/.DS_Store
-src/js/*.js
-!src/js/jquery.min.js
+.sass-cache
+extension/js/*.js
+extension/templates/*.html
+extension/templates/*.css
+!extension/js/jquery.min.js
+extension/manifest.json

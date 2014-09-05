@@ -9,41 +9,35 @@ window.JiraStoryTime.Templates.fetchAll ->
     history.pushState null, null, newUrl
     
   renderStoryTime = ->
-    possiblePoints = [0,1,2,3,5,8,13,21,window.JiraStoryTime.Story.NoPoints]
-    
+    window.JiraStoryTime.Stories.resetEpics()    
     setStoryTime true  unless isStoryTime()
     $.when(window.JiraStoryTime.Stories.fetchStories()).done ->
-      $(document.body).append window.JiraStoryTime.Templates.board
+      $(document.body).append window.JiraStoryTime.Templates['board.html']
       $(".overlay").focus()
+      $(".overlay").find('style').html(window.JiraStoryTime.Templates['styles.css'])
       window.JiraStoryTime.Stories.addEpic "None"
-      possiblePoints.forEach (points) ->
-        $("#story_board").append window.JiraStoryTime.Templates.boardRow
-        $("#story_board")[0].lastChild.setAttribute "data-story-points", points
-        $("#story_board")[0].lastChild.setAttribute "id", "story-points-" + points
-        $($("#story_board")[0].lastChild).find(".story_board_row_points").html points
+      if window.JiraStoryTime.isForcedOrdered
+        new window.JiraStoryTime.forcedOrderingView(window.JiraStoryTime.Stories.backlog_stories)
+        window.onbeforeunload = ()  ->
+          "Data will be lost if you leave the page, are you sure?"
 
-      undefinedCol = $($("#story_board")[0].lastChild)
-      $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
-        s.initialize undefinedCol
+      else
+        storiesView = new window.JiraStoryTime.StoriesColView(window.JiraStoryTime.Stories.backlog_stories)
 
-      window.JiraStoryTime.DragController.setup()
-      
-      # esc
-      $(".overlay").keyup (e) ->
-        if e.keyCode is 27
-          window.JiraStoryTime.Util.abortAllXHR()
-          setStoryTime false
-          $.map window.JiraStoryTime.Stories.backlog_stories, (s) ->
-            s.close()
+        # esc
+        $(".overlay").keyup (e) ->
+          if e.keyCode is 27
+            window.JiraStoryTime.Util.abortAllXHR()
+            setStoryTime false
+            storiesView.close
 
-          $(".overlay").off()
-          $(".overlay").find("*").addBack().off()
-          $(".overlay")[0].remove()
-          window.JiraStoryTime.Stories.epics = []
-          
+            $(".overlay").off()
+            $(".overlay").find("*").addBack().off()
+            $(".overlay")[0].remove()
+
     
     
-  $("#ghx-modes").append window.JiraStoryTime.Templates.storytoggle
+  $("#ghx-modes").append window.JiraStoryTime.Templates['storyTimeToggle.html']
 
   $("#story-toggle").on "click", renderStoryTime
   renderStoryTime()  if isStoryTime()

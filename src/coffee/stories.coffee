@@ -21,7 +21,6 @@ window.JiraStoryTime.Stories = class Stories
       if s.typeName is "Story"
         @backlog_stories[s.key] = new window.JiraStoryTime.Story(s)
 
-
   @epics: []
   @epicColor: (epic) =>
     color = $.inArray(epic, window.JiraStoryTime.Stories.epics)
@@ -32,13 +31,16 @@ window.JiraStoryTime.Stories = class Stories
   @addEpic: (epic) =>
     color = window.JiraStoryTime.Stories.epics.length
     window.JiraStoryTime.Stories.epics.push (if epic is "None" then "" else epic)
-    $("#story_board_epics").append window.JiraStoryTime.Templates.boardEpic
+    $("#story_board_epics").append window.JiraStoryTime.Templates['epic.html']
     children = $("#story_board_epics").children()
     dom = children[children.length - 1]
     $(dom).find(".epic-name").html epic
     dom.setAttribute "id", "epic-" + color
     $(dom).addClass "epic-color-" + color
     color
+
+  @resetEpics: =>
+    @epics = []
 
 
   @updateEpics: =>
