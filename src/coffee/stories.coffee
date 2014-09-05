@@ -31,7 +31,7 @@ window.JiraStoryTime.Stories = class Stories
   @addEpic: (epic) =>
     color = window.JiraStoryTime.Stories.epics.length
     window.JiraStoryTime.Stories.epics.push (if epic is "None" then "" else epic)
-    $("#story_board_epics").append window.JiraStoryTime.Templates.boardEpic
+    $("#story_board_epics").append window.JiraStoryTime.Templates['epic.html']
     children = $("#story_board_epics").children()
     dom = children[children.length - 1]
     $(dom).find(".epic-name").html epic

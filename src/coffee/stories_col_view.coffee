@@ -16,13 +16,13 @@ class window.JiraStoryTime.StoriesColView
     possiblePoints = [1,2,3,5,8,13,21,window.JiraStoryTime.Story.NoPoints]
     
     possiblePoints.forEach (points) ->
-      $("#story_board").append window.JiraStoryTime.Templates.boardRow
-      $("#story_board")[0].lastChild.setAttribute "data-story-points", points
-      $("#story_board")[0].lastChild.setAttribute "id", "story-points-" + points
-      $($("#story_board")[0].lastChild).find(".story_board_row_points").html points
+      $("#story_board").append window.JiraStoryTime.Templates['regularColumn.html']
+      $("#story_board").children().last().attr "data-story-points", points
+      $("#story_board").children().last().attr "id", "story-points-" + points
+      $("#story_board").children().last().find(".story_board_row_points").html points
 
     @cols = document.querySelectorAll("#story_board .story_board_row")
-    @undefinedCol = $($("#story_board")[0].lastChild)
+    @undefinedCol = $("#story_board").children().last()
 
   pointsUpdateObserver: (changes) =>
     changes.forEach (change) =>    
@@ -35,7 +35,7 @@ class window.JiraStoryTime.StoriesColView
       pts = (if view.points is "" then window.JiraStoryTime.Story.NoPoints else view.points)
       $("#story-points-" + pts).addClass "has-stories"
       $("#story-points-" + pts).find((if view.story.isCurrent then ".current-stories" else ".backlog-stories")).append view.el
-      view.el.parent.removeClass "has-stories"  if view.el.parent.find(".backlog-stories").children().length is 0 and view.el.parent.find(".current-stories").children().length is 0
+      view.el.parent().removeClass "has-stories"  if view.el.parent().find(".backlog-stories").children().length is 0 and view.el.parent().find(".current-stories").children().length is 0
       $("#story_board").css "min-width", ($(".has-stories").length * 300) + "px"
 
   close: =>

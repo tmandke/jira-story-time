@@ -14,11 +14,12 @@ window.JiraStoryTime.Templates.fetchAll ->
     
     setStoryTime true  unless isStoryTime()
     $.when(window.JiraStoryTime.Stories.fetchStories()).done ->
-      $(document.body).append window.JiraStoryTime.Templates.board
+      $(document.body).append window.JiraStoryTime.Templates['board.html']
       $(".overlay").focus()
+      $(".overlay").find('style').html(window.JiraStoryTime.Templates['styles.css'])
       window.JiraStoryTime.Stories.addEpic "None"
       if window.JiraStoryTime.isForcedOrdered
-        $("#story_board").append window.JiraStoryTime.Templates.forcedOrderedBoard
+        $("#story_board").append window.JiraStoryTime.Templates['forcedOrderedBoard.html']
 
         storystack = $(".story-stack")
         storystack2 = $("#drop-zone")
@@ -26,7 +27,7 @@ window.JiraStoryTime.Templates.fetchAll ->
           s.initialize storystack
 
         possiblePoints.forEach (p) ->
-          storystack.append(window.JiraStoryTime.Templates.storyPoint)
+          storystack.append(window.JiraStoryTime.Templates['pointCard.html'])
           $(storystack.children()[storystack.children().length - 1]).html("\u25BC\u25BC\u25BC  " + p  + "  \u25BC\u25BC\u25BC")
           $(storystack.children()[storystack.children().length - 1]).attr('id', 'story-point-' + p)
           $(storystack.children()[storystack.children().length - 1]).attr('data-story-points', p)
@@ -51,7 +52,7 @@ window.JiraStoryTime.Templates.fetchAll ->
 
     
     
-  $("#ghx-modes").append window.JiraStoryTime.Templates.storytoggle
+  $("#ghx-modes").append window.JiraStoryTime.Templates['storyTimeToggle.html']
 
   $("#story-toggle").on "click", renderStoryTime
   renderStoryTime()  if isStoryTime()

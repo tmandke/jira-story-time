@@ -3,7 +3,7 @@ window.JiraStoryTime ||= {}
 class window.JiraStoryTime.StoryView
   constructor: (story, parent) ->
     @story = story
-    parent.append window.JiraStoryTime.Templates.boardStory
+    parent.append window.JiraStoryTime.Templates['storyCard.html']
     @el = $(parent.children()[parent.children().length - 1])
     @el.attr "data-story-id", @story.id
     @el.attr "id", "story-" + @story.id
@@ -14,16 +14,12 @@ class window.JiraStoryTime.StoryView
     Object.observe @story, @observer
 
   observer: (changes) =>
-    console.log(changes)
     $.map changes, (change) =>    
       # console.log(change.object.data.key + ": " + change.name + " was " + change.type + " to " + change.object[change.name]);
-      console.log(change)
       @render change
       true
 
   render: (change) =>
-    if change.name is 'description'
-      console.log(change)
     @el.find(".story-" + change.name).html @story[change.name]
     
     if change.name is "linkedStatus"
@@ -46,10 +42,6 @@ class window.JiraStoryTime.StoryView
     @points = @story.points if change.name is "points"
     @buisness = @story.buisness if change.name is "buisness"
     true
-
-
-
-
 
   close: =>
     Object.unobserve @story, @observer
