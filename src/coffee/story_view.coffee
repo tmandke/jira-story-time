@@ -40,7 +40,7 @@ class window.JiraStoryTime.StoryView
       @el.find('.story-description')[if @story.isOpen then 'addClass' else 'removeClass']('show-me')
     
     @points = @story.points if change.name is "points"
-    @buisness = @story.buisness if change.name is "buisness"
+    @business = @story.business if change.name is "business"
     true
 
   close: =>

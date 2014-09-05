@@ -34,8 +34,9 @@ class window.JiraStoryTime.StoriesColView
     if change.name is @type
       pts = (if view[@type] is "" then window.JiraStoryTime.Story.NoPoints else view[@type])
       $("#story-points-" + pts).addClass "has-stories"
+      oldParent = view.el.parents(".story_board_row")
       $("#story-points-" + pts).find((if view.story.isCurrent then ".current-stories" else ".backlog-stories")).append view.el
-      view.el.parent().removeClass "has-stories"  if view.el.parent().find(".backlog-stories").children().length is 0 and view.el.parent().find(".current-stories").children().length is 0
+      oldParent.removeClass "has-stories"  if oldParent.find(".backlog-stories").children().length is 0 and oldParent.find(".current-stories").children().length is 0
       $("#story_board").css "min-width", ($(".has-stories").length * 300) + "px"
 
   close: =>

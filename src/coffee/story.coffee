@@ -61,7 +61,7 @@ window.JiraStoryTime.Story = class Story
           window.JiraStoryTime.Stories.updateEpics()
 
         when Story.business
-          @business = (f.value or "")
+          @business = (f.html or "")
         when Story.description
           @description = f.html
         when Story.epic
@@ -70,9 +70,10 @@ window.JiraStoryTime.Story = class Story
     @buildRelationShips()
 
   setPoints: (newPoints) =>
-    @points = (if newPoints is Story.NoPoints then "" else newPoints)
+    type = if $('#pointsType-sp').prop('checked') then 'points' else 'business'
+    @[type] = (if newPoints is Story.NoPoints then "" else newPoints)
     if Story.devMode is true
-      console.log(this.key + ": Points would have been updated to " + newPoints)
+      console.log(this.key + ": #{type} would have been updated to " + newPoints)
     else
       $.ajax(
         url: "/rest/greenhopper/1.0/xboard/issue/update-field.json"
@@ -81,7 +82,7 @@ window.JiraStoryTime.Story = class Story
         headers:
           "Content-Type": "application/json"
 
-        data: "{\"fieldId\": \"" + Story.points + "\", \"issueIdOrKey\": " + @id + ", \"newValue\": \"" + @points + "\"}"
+        data: "{\"fieldId\": \"" + Story[type] + "\", \"issueIdOrKey\": " + @id + ", \"newValue\": \"" + @[type] + "\"}"
       ).done (response) ->
         console.log response
         return
