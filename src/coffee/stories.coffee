@@ -45,8 +45,9 @@ window.JiraStoryTime.Stories = class Stories
 
   @updateEpics: =>
     epicPoints = {}
+    type = if $('#pointsType-sp').prop('checked') then 'points' else 'business'
     $.map @backlog_stories, (s) ->
-      epicPoints[s.epicColor or 0] = (epicPoints[s.epicColor or 0] or 0) + parseInt(s.points or 0)
+      epicPoints[s.epicColor or 0] = (epicPoints[s.epicColor or 0] or 0) + parseInt(s[type] or 0)
 
     $.map epicPoints, (v, k) ->
       $("#epic-" + k).find(".story-points").html v
