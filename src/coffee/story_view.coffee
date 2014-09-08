@@ -20,7 +20,10 @@ class window.JiraStoryTime.StoryView
       true
 
   render: (change) =>
-    @el.find(".story-" + change.name).html @story[change.name]
+    if change.name is 'points' or change.name is 'business'
+      @el.find(".story-" + change.name).html(if @story[change.name] is "" then "_" else @story[change.name])
+    else
+      @el.find(".story-" + change.name).html @story[change.name]
     
     if change.name is "linkedStatus"
       @el.attr "data-content", @story.linkedStatus
