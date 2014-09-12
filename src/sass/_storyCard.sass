@@ -31,11 +31,9 @@
     background-color: lighten($card-pink, 49%)
     border-color: $card-pink
 
-  // &[draggable=true]
-  //   cursor: move
-  // &[draggable=false]
-  //   user-select: none
-  //   cursor: not-allowed
+  &[draggable=false]
+    user-select: none
+    cursor: not-allowed
 
   .story-main
     @include flexbox()

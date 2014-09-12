@@ -9,7 +9,7 @@ class window.JiraStoryTime.TopBarView
   constructor: ->
     if @isStoryTime()
       @applyRadioChange()
-  
+
   applyRadioChange: =>
     @isStoryPointsType = @forceBool $('#pointsType-sp').prop('checked')
     @isRegularBoardType = @forceBool $('#boardType-r').prop('checked')
@@ -20,7 +20,7 @@ class window.JiraStoryTime.TopBarView
 
   boardTypeChange: =>
     @closeCurrentView()
-    window.JiraStoryTime.Stories.resetEpics()    
+    window.JiraStoryTime.Stories.resetEpics()
     @setStoryTime true  unless @isStoryTime()
     $.when(window.JiraStoryTime.Stories.fetchStories()).done =>
       @openNewView()
@@ -42,11 +42,11 @@ class window.JiraStoryTime.TopBarView
       $(".overlay").find("*").addBack().off()
       $(".overlay")[0].remove()
       @currentView = null
-  
+
   openNewView: =>
     $(document.body).append window.JiraStoryTime.Templates['board.html']
     $(".overlay").focus()
-    $(".overlay").append("<link href='#{chrome.extension.getURL("/templates/styles.css")}' media='all' rel='stylesheet' type='text/css'>")
+    $(".overlay").prepend("<link href='#{chrome.extension.getURL("/templates/styles.css")}' media='all' rel='stylesheet' type='text/css'>")
     window.JiraStoryTime.Stories.addEpic "None"
     $(".overlay").keyup(@onEsc)
     @setRadios()
@@ -64,13 +64,13 @@ class window.JiraStoryTime.TopBarView
 
   isStoryTime: ->
     window.JiraStoryTime.Util.deparam(location.href.split("?")[1])["story_time"] is "true"
-    
+
   setStoryTime: (st) ->
     params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1])
     params["story_time"] = st
     newUrl = location.href.split("?")[0] + "?" + $.param(params)
     history.pushState null, null, newUrl
-    
+
 
   onEsc: (e) =>
     if e.keyCode is 27
@@ -79,6 +79,6 @@ class window.JiraStoryTime.TopBarView
 
   confirmExitIfNessary: =>
     if @isRegularBoardType == false
-      confirm(@confirmString) 
+      confirm(@confirmString)
     else
       true

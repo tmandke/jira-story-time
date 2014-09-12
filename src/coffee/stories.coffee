@@ -1,8 +1,8 @@
 window.JiraStoryTime = window.JiraStoryTime or {}
-window.JiraStoryTime.Stories = class Stories
+class window.JiraStoryTime.Stories
   @current_stories = []
   @backlog_stories = {}
-  
+
   @fetchStories: =>
     params = window.JiraStoryTime.Util.deparam(location.href.split("?")[1])
     @rapidView = params["rapidView"]
@@ -10,13 +10,13 @@ window.JiraStoryTime.Stories = class Stories
       url: "/rest/greenhopper/1.0/xboard/plan/backlog/data.json?rapidViewId=" + @rapidView,
       context: document.body,
       success: @parseStories
-      
+
 
   @parseStories: (response) =>
     @backlog_stories = {}
     @current_stories = $.map response.sprints, (sprint) ->
       if sprint.state is "ACTIVE" then sprint.issuesIds else null
-    
+
     response.issues.forEach (s) =>
       if s.typeName is "Story"
         @backlog_stories[s.key] = new window.JiraStoryTime.Story(s)
@@ -25,7 +25,7 @@ window.JiraStoryTime.Stories = class Stories
   @epicColor: (epic) =>
     color = $.inArray(epic, window.JiraStoryTime.Stories.epics)
     color = @addEpic(epic)  if color < 0
-    if color is 0 then 0 else ((color % 3) + 1)
+    if color is 0 then 0 else ((color % 4) + 1)
 
 
   @addEpic: (epic) =>
