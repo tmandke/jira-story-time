@@ -9,7 +9,7 @@ class window.JiraStoryTime.StoryView
     @el.attr "id", "story-" + @story.id
     @el.attr "draggable", not @story.isCurrent
     @el.on 'click', =>
-      @story.toggelOpen
+      @story.toggelOpen()
 
     Object.observe @story, @observer
 

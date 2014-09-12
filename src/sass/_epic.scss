@@ -1,0 +1,39 @@
+.epic {
+  @include flexbox();
+  @include flex(row wrap);
+  justify-content: flex-start;
+  @include border-radius(3px);
+  color: white;
+  margin-right:10px;
+  font-weight: 400;
+
+  .epic-name {
+    padding: 4px 8px;
+  }
+
+  .points {
+    background-color: rgba(black, .1);
+    padding: 4px 7px;
+  }
+
+  &.epic-color-0 {
+    background-color: lighten($base-color, 60%)
+  }
+
+  &.epic-color-1 {
+    background-color: $card-blue;
+  }
+
+  &.epic-color-2 {
+    background-color: $card-green;
+  }
+
+  &.epic-color-3 {
+    background-color: $card-pink;
+  }
+ 
+  &.epic-color-4 {
+    background-color: $card-orange;
+  }
+
+}

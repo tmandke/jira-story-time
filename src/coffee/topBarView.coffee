@@ -46,7 +46,7 @@ class window.JiraStoryTime.TopBarView
   openNewView: =>
     $(document.body).append window.JiraStoryTime.Templates['board.html']
     $(".overlay").focus()
-    $(".overlay").find('style').html(window.JiraStoryTime.Templates['styles.css'])
+    $(".overlay").append("<link href='#{chrome.extension.getURL("/templates/styles.css")}' media='all' rel='stylesheet' type='text/css'>")
     window.JiraStoryTime.Stories.addEpic "None"
     $(".overlay").keyup(@onEsc)
     @setRadios()
