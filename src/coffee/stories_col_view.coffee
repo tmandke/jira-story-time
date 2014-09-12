@@ -14,7 +14,7 @@ class window.JiraStoryTime.StoriesColView
 
   setupColumns: =>
     possiblePoints = [1,2,3,5,8,13,21]
-    
+
     possiblePoints.forEach (points) ->
       $("#story_board").append window.JiraStoryTime.Templates['regularColumn.html']
       $("#story_board").children().last().attr "data-story-points", points
@@ -25,7 +25,7 @@ class window.JiraStoryTime.StoriesColView
     @undefinedCol = $("#story-points---")
 
   pointsUpdateObserver: (changes) =>
-    changes.forEach (change) =>    
+    changes.forEach (change) =>
       # console.log(change.object.data.key + ": " + change.name + " was " + change.type + " to " + change.object[change.name]);
       @render change
 
@@ -36,14 +36,14 @@ class window.JiraStoryTime.StoriesColView
       $("#story-points-" + pts).addClass "has-stories"
       oldParent = view.el.parents(".story_board_row")
       view.el[if view.story.isCurrent then "insertBefore" else "insertAfter"]("#story-points-#{pts} .backlog")
-      oldParent.removeClass "has-stories"  if oldParent.find(".backlog-stories").children().length is 0 and oldParent.find(".current-stories").children().length is 0
+      oldParent.removeClass "has-stories"  if oldParent.children().length is 3
       # $("#story_board").css "min-width", ($(".has-stories").length * 300) + "px"
 
   close: =>
     $.map @storyViews, (sv) ->
       Object.unobserve sv, @pointsUpdateObserver
       sv.close
-  
+
   handleDragStart: (e) ->
     @style.opacity = "0.4" # this / e.target is the source node.
     e.dataTransfer.setData "storyId", $(e.target).closest(".story")[0].getAttribute("id")
@@ -54,27 +54,27 @@ class window.JiraStoryTime.StoriesColView
     false
 
 
-  handleDragEnter: (e) ->    
+  handleDragEnter: (e) ->
     # this / e.target is the current hover target.
     @classList.add "over"
-    $(this).find(".story_board_row_drop_mask").show()
+    $(this).find(".story_board_row_drop_mask").addClass "show-me"
 
 
   handleDragLeave: (e) ->
     e.stopPropagation()
     e.preventDefault()
     $(@parentElement).removeClass "over"
-    $(this).hide()
+    $(this).removeClass "show-me"
 
 
   handleDrop: (e) =>
     # this / e.target is current target element.
     e.stopPropagation()  if e.stopPropagation # stops the browser from redirecting.
-    
+
     newPoints = e.target.parentElement.getAttribute("data-story-points")
     @storyViews[e.dataTransfer.getData("storyId")].story.setPoints newPoints
-    $(e.target).hide()
-    
+    $(e.target).closest(".story_board_row_drop_mask").removeClass "show-me"
+
     # See the section on the DataTransfer object.
     false
 

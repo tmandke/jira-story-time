@@ -1,11 +1,23 @@
-.epic {
+#story_board_epics {
   @include flexbox();
   @include flex(row wrap);
   justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: rgba(black, .05);
+  padding: 10px;
+  @include fontsize(1.4);
+}
+
+.epic {
+  @include flexbox();
+  @include flex(row wrap);
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   @include border-radius(3px);
   color: white;
-  margin-right:10px;
+  margin:5px;
   font-weight: 400;
+  white-space: nowrap;
 
   .epic-name {
     padding: 4px 8px;
