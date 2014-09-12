@@ -35,3 +35,24 @@
     margin: -2px;
   }
 }
+#story-points--- {
+  position: absolute;
+  top: 90%;
+  display: block;
+  background-color: white;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  @include box-shadow(0px, -5px, 15px, rgba(black, .05));
+  &:hover {
+    top: auto;
+    bottom: 0px;
+  }
+  .story {
+    vertical-align: top;
+    display: inline-block;
+    max-width: 250px;
+    margin: 5px;
+  }
+}

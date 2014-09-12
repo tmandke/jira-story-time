@@ -12,6 +12,7 @@ html
 .overlay
   font-family: $font-stack
   @include clearfix()
+  @include flexbox()
   @include flex(column)
   background-color: lighten($base-color, 65%)
   @include fontsize(1.6)
@@ -36,10 +37,7 @@ html
   @include flex(row no-wrap)
   overflow-x: auto
   justify-content: left
-  height: 80%
-  width: 100%
-
-
+  height: 85%
 .story_board_row_points
   text-align: center
 
