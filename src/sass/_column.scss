@@ -36,6 +36,11 @@
     margin: -2px;
   }
 }
+
+#story-unassigned-placeholder {
+  height: 10%;
+}
+
 #story-points--- {
   position: absolute;
   top: 90%;
@@ -51,6 +56,7 @@
   &:hover {
     top: auto;
     bottom: 0px;
+    max-height: 70%;
   }
   .story {
     vertical-align: top;

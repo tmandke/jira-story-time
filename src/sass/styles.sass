@@ -14,11 +14,11 @@ html
   @include clearfix()
   @include flexbox()
   @include flex(column)
+  flex-direction: column
   background-color: lighten($base-color, 65%)
   @include fontsize(1.6)
   font-weight: 400
   color: $base-color
-  display: block
   z-index: 2
   position: fixed
   height: 100%
@@ -26,18 +26,19 @@ html
   top: 0px
   left: 0px
   color: black
-
 #story_board_top
   display: flex
   flex-direction: row
   justify-content: space-between
 
 #story_board
+  flex-shrink: 20000
+  overflow: hidden
   @include flexbox()
   @include flex(row no-wrap)
   overflow-x: auto
   justify-content: left
-  height: 85%
+
 .story_board_row_points
   text-align: center
 
