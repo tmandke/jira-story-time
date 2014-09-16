@@ -3,7 +3,6 @@
   @include flex(row wrap);
   justify-content: flex-start;
   flex-wrap: wrap;
-  background-color: rgba(black, .05);
   padding: 10px;
   @include fontsize(1.4);
 }
@@ -32,20 +31,9 @@
     background-color: lighten($base-color, 60%)
   }
 
-  &.epic-color-1 {
-    background-color: $card-blue;
+  @for $i from 1 through 11 {
+    &.epic-color-#{$i} {
+      background-color: nth($colors, $i);
+    }
   }
-
-  &.epic-color-2 {
-    background-color: $card-green;
-  }
-
-  &.epic-color-3 {
-    background-color: $card-pink;
-  }
- 
-  &.epic-color-4 {
-    background-color: $card-orange;
-  }
-
 }

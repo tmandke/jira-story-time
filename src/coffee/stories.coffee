@@ -25,7 +25,7 @@ class window.JiraStoryTime.Stories
   @epicColor: (epic) =>
     color = $.inArray(epic, window.JiraStoryTime.Stories.epics)
     color = @addEpic(epic)  if color < 0
-    if color is 0 then 0 else ((color % 4) + 1)
+    ((color % 11) + 1)
 
 
   @addEpic: (epic) =>

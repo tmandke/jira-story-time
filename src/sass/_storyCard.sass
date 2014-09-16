@@ -15,21 +15,10 @@
     background-color: lighten($base-color, 75%)
     border-color: lighten($base-color, 60%)
 
-  &.epic-color-1
-    background-color: lighten($card-blue, 45%)
-    border-color: $card-blue
-
-  &.epic-color-2
-    background-color: lighten($card-green, 50%)
-    border-color: $card-green
-
-  &.epic-color-3
-    background-color: lighten($card-orange, 54%)
-    border-color: $card-orange
-
-  &.epic-color-4
-    background-color: lighten($card-pink, 49%)
-    border-color: $card-pink
+  @for $i from 1 through 11
+    &.epic-color-#{$i}
+      background-color: lighten(nth($colors, $i), 45%)
+      border-color: nth($colors, $i)
 
   &[draggable=false]
     user-select: none
@@ -39,26 +28,29 @@
 
   .story-main
     @include flexbox()
-    flex-flow: row
+    flex-direction: row
     justify-content: space-between
-    padding: 5px 10px
+    align-items: flex-start
 
-    .story-key
-      @include fontsize(1.4)
-      color: #999
-      font-weight: 700
-      margin: 0
-      text-transform: uppercase
+    .story-small
+      padding: 10px
 
-    .story-summary
-      font-weight: 400
-      line-height: 1.4em
+      .story-key
+        @include fontsize(1.4)
+        color: #999
+        font-weight: 700
+        margin: 0
+        text-transform: uppercase
+
+      .story-summary
+        font-weight: 400
+        line-height: 1.4em
 
   .story-points-bar
     @include fontsize(2.1)
     font-weight: 300
     color: lighten($base-color, 60%)
-    padding: 10px 0px
+    padding: 5px 6px 0 0
     text-align: right
     line-height: 27px
     min-width: 18px

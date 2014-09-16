@@ -1,9 +1,18 @@
 $base-color: #333;
 $header-container: #0f2842;
-$card-green: #39b54a;
-$card-blue: #29abe2;
-$card-orange: #e37000;
-$card-pink: #ed1e79;
+$color-1: #F96F80; // pink
+$color-2: #39b54a; // green
+$color-3: #E37000; // orange
+$color-4: #AA92CD; // purple
+$color-5: #29abe2; // blue
+$color-6: complement($color-1);
+$color-7: complement($color-2);
+$color-8: complement($color-3);
+$color-9: complement($color-4);
+$color-10: complement($color-5);
+$color-11: #87A37E;
+$colors: $color-1, $color-2, $color-3, $color-4, $color-5, $color-6, $color-7, $color-8, $color-9, $color-10, $color-11;
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
