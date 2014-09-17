@@ -12,6 +12,17 @@ $color-9: complement($color-4);
 $color-10: complement($color-5);
 $color-11: #87A37E;
 $colors: $color-1, $color-2, $color-3, $color-4, $color-5, $color-6, $color-7, $color-8, $color-9, $color-10, $color-11;
+$colors2: lighten($color-1, 28%),
+  lighten($color-2, 50%),
+  lighten($color-3, 54%),
+  lighten($color-4, 28%),
+  lighten($color-5, 45%),
+  lighten($color-6, 28%),
+  lighten($color-7, 28%),
+  lighten($color-8, 28%),
+  lighten($color-9, 28%),
+  lighten($color-10, 28%),
+  lighten($color-11, 28%);
 
 ::-webkit-scrollbar {
   width: 4px;

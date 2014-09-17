@@ -17,7 +17,7 @@
 
   @for $i from 1 through 11
     &.epic-color-#{$i}
-      background-color: lighten(nth($colors, $i), 45%)
+      background-color: nth($colors2, $i)
       border-color: nth($colors, $i)
 
   &[draggable=false]
