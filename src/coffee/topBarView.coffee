@@ -46,6 +46,7 @@ class window.JiraStoryTime.TopBarView
   openNewView: =>
     $(document.body).append window.JiraStoryTime.Templates['board.html']
     $(".overlay").focus()
+    $("#story-board-banner").html("Storytime: #{$("#ghx-board-name").html()}")
     $(".overlay").prepend("<link href='#{chrome.extension.getURL("/templates/styles.css")}' media='all' rel='stylesheet' type='text/css'>")
     window.JiraStoryTime.Stories.addEpic "None"
     $(".overlay").keyup(@onEsc)
