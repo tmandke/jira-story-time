@@ -38,6 +38,9 @@ class window.JiraStoryTime.StoriesColView
       view.el[if view.story.isCurrent then "insertBefore" else "insertAfter"]("#story-points-#{pts} .backlog")
       oldParent.removeClass "has-stories"  if oldParent.children().length is 3
       # $("#story_board").css "min-width", ($(".has-stories").length * 300) + "px"
+      @sortStoties($("#story-points-#{pts}"))
+    else if change.name is "epicColor"
+      @sortStoties(change.object.el.parent())
 
   close: =>
     $.map @storyViews, (sv) ->
@@ -95,3 +98,21 @@ class window.JiraStoryTime.StoriesColView
       $(col).find(".story_board_row_drop_mask")[0].addEventListener "dragleave", @handleDragLeave, false
       $(col).find(".story_board_row_drop_mask")[0].addEventListener "drop", @handleDrop, false
       col.addEventListener "dragend", @handleDragEnd, false
+
+  sortStoties: (el) =>
+    listitems = el.children('.story').get()
+
+    listitems.sort((a, b) =>
+      storyA = @storyViews[$(a).attr('id')].story
+      storyB = @storyViews[$(b).attr('id')].story
+      diff = storyA.epicColor - storyB.epicColor
+      if diff is 0 then storyA.key.localeCompare(storyB.key) else diff
+    )
+
+    $.each(listitems, (index, item) =>
+      if(item.getAttribute('draggable') is "true")
+        el.append(item)
+      else
+        $(item).insertBefore(el.find('.backlog'))
+    )
+

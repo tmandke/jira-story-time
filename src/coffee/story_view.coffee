@@ -45,6 +45,7 @@ class window.JiraStoryTime.StoryView
 
     @points = @story.points if change.name is "points"
     @business = @story.business if change.name is "business"
+    @epicColor = @story.epicColor if change.name is "epicColor"
     true
 
   close: =>
