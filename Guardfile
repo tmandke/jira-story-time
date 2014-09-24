@@ -25,7 +25,7 @@ manifest = {
     {
       run_at:   "document_end",
       html:     [ "templates/*.html", "templates/*.css" ],
-      matches:  [ "https://jira2.workday.com/secure/RapidBoard.jspa*" ],
+      matches:  [ "https://*/secure/RapidBoard.jspa*" ],
       js: ["js/templates.js"]
     }
   ],
