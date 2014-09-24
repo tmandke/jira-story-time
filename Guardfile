@@ -32,14 +32,40 @@ manifest = {
   web_accessible_resources: [ "templates/*.html", "templates/*.css" ]
 }
 
+class Reloader
+  attr_accessor :should_reload
+  def initialize
+    @should_reload = false
+    @thread = Thread.new(self) { |reloader|
+      loop do
+        sleep 5
+        reloader.reload! if reloader.should_reload
+      end
+    }
+  end
+  
+  def reload
+    @should_reload = true
+  end
+  
+  def reload!
+    system "osascript -e '#{RELOAD_SCRIPT}'"
+    @should_reload = false
+  end
+end
+
+RELOADER ||= Reloader.new
+
+
 guard 'shell' do
   watch(%r{^extension/.+\.js}) do |m|
     manifest[:content_scripts][0][:js] += Dir["extension/js/*.js"].map{|f| f.gsub('extension/', '')}
     manifest[:content_scripts][0][:js].uniq!
     File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
   end
+  
   watch(%r{^extension/.+\.(html|js|css|png|gif|jpg)}) do |m|
-    system "osascript -e '#{RELOAD_SCRIPT}'"
+    RELOADER.reload
   end
 end
 
@@ -50,3 +76,4 @@ end
 guard 'sass', input: 'src/sass', output: 'extension/templates'
 
 guard 'coffeescript', input: 'src/coffee', output: 'extension/js', bare: true
+
