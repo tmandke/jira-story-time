@@ -8,3 +8,5 @@ extension/manifest.json
 
 # Compiles Coffeescripts
 src/js
+*.crx
+*.pem
