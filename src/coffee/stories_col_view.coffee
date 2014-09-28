@@ -36,7 +36,7 @@ class window.JiraStoryTime.StoriesColView
       $("#story-points-" + pts).addClass "has-stories"
       oldParent = view.el.parents(".story_board_row")
       view.el[if view.story.isCurrent then "insertBefore" else "insertAfter"]("#story-points-#{pts} .backlog")
-      oldParent.removeClass "has-stories"  if oldParent.children().length is 3
+      oldParent.removeClass "has-stories"  if oldParent.children('.story').length is 0
       # $("#story_board").css "min-width", ($(".has-stories").length * 300) + "px"
       @sortStoties($("#story-points-#{pts}"))
     else if change.name is "epicColor"
@@ -74,7 +74,7 @@ class window.JiraStoryTime.StoriesColView
     # this / e.target is current target element.
     e.stopPropagation()  if e.stopPropagation # stops the browser from redirecting.
 
-    newPoints = e.target.parentElement.getAttribute("data-story-points")
+    newPoints = $(e.target).parents(".story_board_row")[0].getAttribute("data-story-points")
     @storyViews[e.dataTransfer.getData("storyId")].story.setPoints newPoints
     $(e.target).closest(".story_board_row_drop_mask").removeClass "show-me"
 
