@@ -5,3 +5,8 @@ extension/templates/*.html
 extension/templates/*.css
 !extension/js/jquery.min.js
 extension/manifest.json
+
+# Compiles Coffeescripts
+src/js
+*.crx
+*.pem

@@ -8,7 +8,7 @@ window.JiraStoryTime.Story = class Story
   @points = "customfield_10002"
   @epic = "customfield_10007"
   @NoPoints = "--"
-  @devMode = true
+  @devMode = false
   @autoUpdate = true
 
   @observer = (changes) ->
