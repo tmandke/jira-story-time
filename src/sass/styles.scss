@@ -50,6 +50,7 @@ html {
 
 #story_board {
   flex-shrink: 20000;
+  flex-grow: 20000;
   overflow: hidden;
   @include flexbox;
   @include flex(row no-wrap);
