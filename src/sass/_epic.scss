@@ -3,8 +3,8 @@
   @include flex(row wrap);
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 10px;
   @include fontsize(1.4);
+  flex-grow: 1000000;
 }
 
 .epic {

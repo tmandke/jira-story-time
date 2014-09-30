@@ -43,6 +43,9 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  & > div {
+    padding: 10px;
+  }
 }
 
 #story_board {
@@ -56,12 +59,6 @@ html {
 
 .story_board_row_points {
   text-align: center;
-}
-
-#story_board_epics {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 
 .show-me {
@@ -92,5 +89,39 @@ html {
     font-weight: bold;
     background: black;
     color: white;
+  }
+}
+
+
+
+label {
+  position:relative;
+  cursor:pointer;
+
+  input[type="radio"] {
+    display:none;
+  }
+  input[type="radio"] + span {
+      display:inline-block;
+  }
+  span {
+    margin:5px 0;
+    font-weight: 400;
+    padding: 4px 8px;
+    @include border-radius(3px);
+  }
+  input[type="radio"] + span {
+    background-color: rgba(white, .3);
+    color: rgba(0,0,0,0.5);
+  }
+  input[type="radio"]:checked + span {
+    background: white;
+    color: $base-color;
+  }
+  input[type="radio"][disabled] + span {
+    cursor: default;
+    color: transparent;
+    background-color: rgba(white, .3);
+    text-shadow: 0 0 1px rgba(0,0,0,0.5);
   }
 }

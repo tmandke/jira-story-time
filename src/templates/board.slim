@@ -5,17 +5,21 @@
     #stroy_board_points_type
       label.typeSwitcher
         input type="radio" id="pointsType-sp" name="pointsType" value="points"
-        | Story Points
+        span
+          | Story Points
       label.typeSwitcher
         input type="radio" id="pointsType-bp" name="pointsType" value="business"
-        | Business Points
+        span
+          | Business Points
     #story_board_type
       label.typeSwitcher
         input type="radio" id="boardType-r" name="boardType" value="regular"
-        | Regular
+        span
+          | Column View
       label.typeSwitcher
-        input type="radio" id="boardType-fo" name="boardType" value="forced"
-        | Forced Ordering
+        input type="radio" id="boardType-fo" name="boardType" value="forced" disabled="true"
+        span
+          | Forced Ordering (Comming Soon)
   #story_board
   #story-unassigned-placeholder
   #story-points---.story_board_row[data-story-points='--']
