@@ -5,6 +5,7 @@
   min-width: 100px;
   margin: 0 5px;
   flex-grow: 1;
+  overflow-x: hidden;
   overflow-y: auto;
   display: flex;
   &.has-stories {
@@ -12,6 +13,10 @@
   }
   &.over {
     background-color: rgba(white, .6);
+    .story_board_row_points {
+      z-index: 98;
+      background-color: rgba(255,255,255,0.6);
+    }
   }
   .backlog {
     @include fontsize(1.6);
@@ -29,16 +34,27 @@
   }
   .story_board_row_drop_mask {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     z-index: 99;
     display: none;
-    margin: -2px;
   }
   .stories {
     position: relative;
     width: 100%;
     overflow: auto;
+  }
+  .story_board_row_points {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 5em;
+    line-height: 0.79em;
+    margin-right: -0.05em;
+    color: lighten($base-color, 30%);
+    overflow: hidden;
   }
 }
 

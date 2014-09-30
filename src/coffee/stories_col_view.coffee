@@ -19,7 +19,7 @@ class window.JiraStoryTime.StoriesColView
       $("#story_board").append window.JiraStoryTime.Templates['regularColumn.html']
       $("#story_board").children().last().attr "data-story-points", points
       $("#story_board").children().last().attr "id", "story-points-" + points
-      # $("#story_board").children().last().find(".story_board_row_points").html points
+      $("#story_board").children().last().find(".story_board_row_points").html points
 
     @cols = document.querySelectorAll(".story_board_row")
     @undefinedCol = $("#story-points---")
