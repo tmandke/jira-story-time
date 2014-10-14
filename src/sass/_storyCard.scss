@@ -3,7 +3,7 @@
   min-width: 150px;
   // max-width: 350px
   transition: all 0.1s ease-out;
-  border-left: 2px solid;
+  border-left: 4px solid;
   &:hover {
     @include box-shadow(0px, 2px, 3px, rgba(black, 0.15));
     margin-top: -3px;
@@ -61,7 +61,7 @@
     line-height: 1.4em;
     padding: 12px;
     background-color: rgba(white, 0.5);
-    margin-left: -2px;
+    margin-left: -4px;
     display: none;
   }
 }
