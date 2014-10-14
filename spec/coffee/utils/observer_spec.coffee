@@ -1,20 +1,46 @@
 describe 'Observer', ->
   describe '#observe', ->
-    it 'setsUp an observer for all attributes of given object', ->
+    it 'should setup object observer and add object to observedObject list', ->
       obj = new window.JiraStoryTime.Utils.Observer
-      obj.attr1 = 1
-      obj.attr2 = 2
-      spyOn(obj, 'onObservedChange').and.callFake (change)->
-        expect(change.object).toBe obj
-        expect(change.oldValue).toBe 1
-        expect(change.type).toBe 'update'
-
+      obj2 = {test: 1}
+      spyOn(Object, 'observe')
       obj.observe(obj)
+      obj.observe(obj2)
+      expect(Object.observe).toHaveBeenCalledWith(obj, obj.observer)
+      expect(Object.observe).toHaveBeenCalledWith(obj2, obj.observer)
+      expect(obj.observedObjects.length).toBe 2
+      expect(obj.observedObjects[0]).toBe obj
+      expect(obj.observedObjects[1]).toBe obj2
 
-      obj.attr1 = 33
+  describe '#observer', ->
+    it 'should call all observed', ->
+      obj = new window.JiraStoryTime.Utils.Observer
+      spyOn(obj, 'onObservedChange')
+      changeEvent1 = {
+        object: obj
+        myChange: 123
+      }
+      changeEvent2 = {
+        object: {qwe:1}
+        myChange: 123
+      }
+      changes = [changeEvent1, changeEvent2]
+      obj.observer(changes)
+      expect(obj.onObservedChange).toHaveBeenCalledWith(changeEvent1, 0, changes)
+      expect(obj.onObservedChange).toHaveBeenCalledWith(changeEvent2, 1, changes)
 
-      Object.deliverChangeRecords obj.observer
+  describe '#onObservedChange', ->
+    it 'throws unimplimented', ->
+      obj = new window.JiraStoryTime.Utils.Observer
+      expect(obj.onObservedChange).toThrow("onObservedChange has not been implemented")
 
-      expect(obj.onObservedChange).toHaveBeenCalled()
+  describe '#unobserveAll', ->
+    it 'unobserves all objects', ->
+      obj = new window.JiraStoryTime.Utils.Observer
+      obj2 = {test: 1}
+      obj.observedObjects = [obj, obj2]
+      spyOn(Object, 'unobserve')
+      obj.unobserveAll()
+      expect(Object.unobserve).toHaveBeenCalledWith(obj, obj.observer)
+      expect(Object.unobserve).toHaveBeenCalledWith(obj2, obj.observer)
 
-      obj.unobserveAll
