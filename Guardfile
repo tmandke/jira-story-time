@@ -59,7 +59,7 @@ RELOADER ||= Reloader.new
 
 guard 'shell' do
   watch(%r{^extension/.+\.js}) do |m|
-    manifest[:content_scripts][0][:js] += Dir["extension/js/*.js"].map{|f| f.gsub('extension/', '')}
+    manifest[:content_scripts][0][:js] += Dir["extension/js/**/*.js"].map{|f| f.gsub('extension/', '')}
     manifest[:content_scripts][0][:js].uniq!
     File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
   end
@@ -76,4 +76,7 @@ end
 guard 'sass', input: 'src/sass', output: 'extension/templates'
 
 guard 'coffeescript', input: 'src/coffee', output: 'extension/js', bare: true
+group :spec do
+  guard 'coffeescript', input: 'spec/coffee', output: 'spec/javascripts', bare: true
+end
 

@@ -10,3 +10,6 @@ task :package do
     :verbose => true
   )  
 end
+
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'

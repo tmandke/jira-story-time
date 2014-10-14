@@ -1,3 +1,8 @@
+window.JiraStoryTime =
+  Models: {}
+  Views: {}
+  Utils: {}
+
 window.JiraStoryTime.Templates.fetchAll ->
   renderStoryTime = ->
     mainView.applyRadioChange()
