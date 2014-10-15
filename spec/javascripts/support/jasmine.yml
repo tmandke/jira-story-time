@@ -11,6 +11,11 @@
 #   - dist/**/*.js
 #
 src_files:
+  - extension/js/jquer*.js
+  - extension/js/templates.js
+  - extension/js/main.js
+  - extension/js/utils/*.js
+  - extension/js/models/*.js
   - extension/js/**/*.js
 
 # stylesheets

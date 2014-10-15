@@ -17,6 +17,14 @@ describe 'Params', ->
           param.validateValue('1111')
         ).toThrow()
 
+    describe '#geterName', ->
+      it 'returns getTest', ->
+        expect(param.getterName()).toBe 'gettest'
+
+    describe '#seterName', ->
+      it 'returns setTest', ->
+        expect(param.setterName()).toBe 'settest'
+
     describe '#getParam', ->
       it 'returns urls params value', ->
         spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue "test?JST_test=123"

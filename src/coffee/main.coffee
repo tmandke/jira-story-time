@@ -1,7 +1,7 @@
-window.JiraStoryTime =
-  Models: {}
-  Views: {}
-  Utils: {}
+window.JiraStoryTime.Models = {}
+window.JiraStoryTime.Views  = {}
+window.JiraStoryTime.Utils  = {}
+
 
 window.JiraStoryTime.Templates.fetchAll ->
   renderStoryTime = ->

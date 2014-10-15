@@ -2,6 +2,12 @@ class window.JiraStoryTime.Utils.Params
   @GenralParam: class GenralParam
     constructor: (@paramName, @type, @default, @possibleValues) ->
 
+    getterName: =>
+      "get#{@paramName}"
+
+    setterName: =>
+      "set#{@paramName}"
+
     getParam: =>
       params = window.JiraStoryTime.Utils.Params.getCurrentParams()
       try
