@@ -26,7 +26,7 @@ manifest = {
       run_at:   "document_end",
       html:     [ "templates/*.html", "templates/*.css" ],
       matches:  [ "https://*/secure/RapidBoard.jspa*", "http://*/secure/RapidBoard.jspa*" ],
-      js: ["js/templates.js"]
+      js: ['js/jquery.min.js', "js/templates.js", 'js/main.js']
     }
   ],
   web_accessible_resources: [ "templates/*.html", "templates/*.css" ]
@@ -59,7 +59,9 @@ RELOADER ||= Reloader.new
 
 guard 'shell' do
   watch(%r{^extension/.+\.js}) do |m|
-    manifest[:content_scripts][0][:js] += Dir["extension/js/**/*.js"].map{|f| f.gsub('extension/', '')}
+    manifest[:content_scripts][0][:js] += Dir['extension/js/utils/*.js'].map{|f| f.gsub('extension/', '')}
+    manifest[:content_scripts][0][:js] += Dir['extension/js/models/*.js'].map{|f| f.gsub('extension/', '')}
+    manifest[:content_scripts][0][:js] += Dir['extension/js/**/*.js'].map{|f| f.gsub('extension/', '')}
     manifest[:content_scripts][0][:js].uniq!
     File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
   end
