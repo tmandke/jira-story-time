@@ -6,6 +6,7 @@ extension/templates/*.css
 !extension/js/jquery.min.js
 extension/manifest.json
 spec/javascripts/**/*.js
+!spec/javascripts/helpers/mock-ajax.js
 .idea
 
 # Compiles Coffeescripts
