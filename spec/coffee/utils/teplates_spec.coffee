@@ -2,8 +2,6 @@ describe 'Templates', ->
   describe '.get', ->
     beforeEach ->
       jasmine.Ajax.install()
-      spyOn(JiraStoryTime.Utils.Templates, 'templateUrl').and.callFake (fileName) ->
-        "/extension/templates/#{fileName}"
 
     afterEach ->
       jasmine.Ajax.uninstall()
