@@ -1,4 +1,4 @@
-class window.JiraStoryTime.Models.ApplicationState extends window.JiraStoryTime.Utils.Observer
+class window.JiraStoryTime.Models.ApplicationState
   devMode: false
 
   constructor: ->
