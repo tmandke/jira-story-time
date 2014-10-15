@@ -44,7 +44,7 @@ class window.JiraStoryTime.TopBarView
       @currentView = null
 
   openNewView: =>
-    $(document.body).append window.JiraStoryTime.Templates['board.html']
+    $(document.body).append window.JiraStoryTime.Utils.Templates.get('board.html')
     $(".overlay").focus()
     $("#story-board-banner").html("Storytime: #{$("#ghx-board-name").html()}")
     $(".overlay").prepend("<link href='#{chrome.extension.getURL("/templates/styles.css")}' media='all' rel='stylesheet' type='text/css'>")

@@ -33,7 +33,7 @@ class window.JiraStoryTime.Stories
   @addEpic: (epic) =>
     actualEpic = if epic is "None" then "" else epic
     window.JiraStoryTime.Stories.epics.push (actualEpic)
-    $("#story_board_epics").append window.JiraStoryTime.Templates['epic.html']
+    $("#story_board_epics").append window.JiraStoryTime.Utils.Templates.get('epic.html')
     children = $("#story_board_epics").children()
     dom = children[children.length - 1]
     $(dom).find(".epic-name").html epic

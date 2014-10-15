@@ -26,7 +26,7 @@ manifest = {
       run_at:   "document_end",
       html:     [ "templates/*.html", "templates/*.css" ],
       matches:  [ "https://*/secure/RapidBoard.jspa*", "http://*/secure/RapidBoard.jspa*" ],
-      js: ['js/jquery.min.js', "js/templates.js", 'js/main.js']
+      js: %w(js/jquery.min.js js/init.js)
     }
   ],
   web_accessible_resources: [ "templates/*.html", "templates/*.css" ]

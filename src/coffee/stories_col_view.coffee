@@ -16,7 +16,7 @@ class window.JiraStoryTime.StoriesColView
     possiblePoints = [1,2,3,5,8,13,21]
 
     possiblePoints.forEach (points) ->
-      $("#story_board").append window.JiraStoryTime.Templates['regularColumn.html']
+      $("#story_board").append window.JiraStoryTime.Utils.Templates.get('regularColumn.html')
       $("#story_board").children().last().attr "data-story-points", points
       $("#story_board").children().last().attr "id", "story-points-" + points
       $("#story_board").children().last().find(".story_board_row_points").html points

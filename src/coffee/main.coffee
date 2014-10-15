@@ -1,13 +1,8 @@
-window.JiraStoryTime.Models = {}
-window.JiraStoryTime.Views  = {}
-window.JiraStoryTime.Utils  = {}
+mainView = null
+renderStoryTime = ->
+  mainView ||= new window.JiraStoryTime.TopBarView()
+  mainView.applyRadioChange()
 
+$("#ghx-modes").append window.JiraStoryTime.Utils.Templates.get('storyTimeToggle.html')
 
-window.JiraStoryTime.Templates.fetchAll ->
-  renderStoryTime = ->
-    mainView.applyRadioChange()
-    
-  $("#ghx-modes").append window.JiraStoryTime.Templates['storyTimeToggle.html']
-
-  $("#story-toggle").on "click", renderStoryTime
-  mainView = new window.JiraStoryTime.TopBarView()
+$("#story-toggle").on "click", renderStoryTime

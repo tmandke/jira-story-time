@@ -3,7 +3,7 @@ window.JiraStoryTime ||= {}
 class window.JiraStoryTime.StoryView
   constructor: (story, parent) ->
     @story = story
-    parent.append window.JiraStoryTime.Templates['storyCard.html']
+    parent.append window.JiraStoryTime.Utils.Templates.get('storyCard.html')
     @el = $(parent.children()[parent.children().length - 1])
     @el.attr "data-story-id", @story.id
     @el.attr "id", "story-" + @story.id
