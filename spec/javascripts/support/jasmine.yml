@@ -15,6 +15,7 @@ src_files:
   - extension/js/init.js
   - extension/js/utils/*.js
   - extension/js/models/*.js
+  - extension/js/views/*.js
   - extension/js/**/*.js
 
 # stylesheets
