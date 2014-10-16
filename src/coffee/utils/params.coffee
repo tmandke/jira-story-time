@@ -47,9 +47,10 @@ class window.JiraStoryTime.Utils.Params
     new GenralParam(paramName, type, defaultVal, possibleValues)
 
   @getCurrentParams: ->
-    window.JiraStoryTime.Util.deparam(@url().split("?")[1])
+    window.JiraStoryTime.Utils.Params.deparam(@url().split("?")[1])
 
   @deparam: (query) ->
+    query ||= ""
     pairs = undefined
     i = undefined
     keyValuePair = undefined
