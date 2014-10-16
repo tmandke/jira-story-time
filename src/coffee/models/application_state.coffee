@@ -3,11 +3,18 @@ class window.JiraStoryTime.Models.ApplicationState
 
   constructor: ->
     [
-      JiraStoryTime.Utils.Params.boolParam('AutoUpdate', true),
-      JiraStoryTime.Utils.Params.boolParam('ServerSync', true),
-      JiraStoryTime.Utils.Params.boolParam('StoryTimeActive', false),
-      JiraStoryTime.Utils.Params.radioParam('PointsType', 'StroyPoints', ['StroyPoints', 'BusinessValue']),
-      JiraStoryTime.Utils.Params.radioParam('View', 'Regular', ['Regular', 'Forced'])
+      JiraStoryTime.Utils.Params.boolParam('autoUpdate', true),
+      JiraStoryTime.Utils.Params.boolParam('serverSync', true),
+      JiraStoryTime.Utils.Params.boolParam('storyTimeActive', false),
+      JiraStoryTime.Utils.Params.radioParam('pointsType', 'StroyPoints', ['StroyPoints', 'BusinessValue']),
+      JiraStoryTime.Utils.Params.radioParam('view', 'Regular', ['Regular', 'Forced'])
     ].forEach (param) =>
-      @[param.getterName()] = param.getParam
-      @[param.setterName()] = param.setParam
+      Object.defineProperty(@, param.paramName,
+        get: param.getParam
+        set: (val) ->
+          Object.getNotifier(this).notify
+            type: 'update',
+            name: param.paramName,
+            oldValue: param.getParam
+          param.setParam val
+      )

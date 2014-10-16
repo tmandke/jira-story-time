@@ -2,9 +2,6 @@ describe 'ApplicationState', ->
   describe '.constructor', ->
     it 'creates getters and setters for all queryParams', ->
       state = new JiraStoryTime.Models.ApplicationState()
-      ['AutoUpdate', 'ServerSync', 'StoryTimeActive', 'PointsType', 'View'
+      ['autoUpdate', 'serverSync', 'storyTimeActive', 'pointsType', 'view'
       ].forEach (param) ->
-        expect(state["get#{param}"]).toBeDefined()
-        expect(state["set#{param}"]).toBeDefined()
-
-
+        expect(state[param]).toBeDefined("Param '#{param}' is not defined")
