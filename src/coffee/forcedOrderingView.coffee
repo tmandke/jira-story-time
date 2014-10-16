@@ -1,4 +1,3 @@
-window.JiraStoryTime = window.JiraStoryTime or {}
 class window.JiraStoryTime.ForcedOrderingView
   constructor: (stories, type) ->
     possiblePoints = [1,2,3,5,8,13,21,window.JiraStoryTime.Story.NoPoints]

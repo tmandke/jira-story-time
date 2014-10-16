@@ -1,5 +1,3 @@
-window.JiraStoryTime ||= {}
-
 class window.JiraStoryTime.StoriesColView
   constructor: (stories, type) ->
     @setupColumns()

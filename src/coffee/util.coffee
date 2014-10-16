@@ -1,4 +1,3 @@
-window.JiraStoryTime = window.JiraStoryTime or {}
 window.JiraStoryTime.Util = class Util
   @deparam: (query) ->
     pairs = undefined

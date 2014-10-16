@@ -1,5 +1,3 @@
-window.JiraStoryTime ||= {}
-
 class window.JiraStoryTime.StoryView
   constructor: (story, parent) ->
     @story = story

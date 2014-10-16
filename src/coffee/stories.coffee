@@ -1,4 +1,3 @@
-window.JiraStoryTime = window.JiraStoryTime or {}
 class window.JiraStoryTime.Stories
   @current_stories = []
   @backlog_stories = {}

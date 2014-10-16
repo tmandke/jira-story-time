@@ -1,5 +1,3 @@
-window.JiraStoryTime ||= {}
-
 class window.JiraStoryTime.TopBarView
   confirmString: "Data will be lost if you leave the page, are you sure?"
   isStoryPointsType: null

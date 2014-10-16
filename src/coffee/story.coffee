@@ -1,5 +1,3 @@
-window.JiraStoryTime = window.JiraStoryTime or {}
-
 window.JiraStoryTime.Story = class Story
   @id = "id"
   @description = "description"
