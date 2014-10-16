@@ -43,4 +43,5 @@ describe 'Observer', ->
       obj.unobserveAll()
       expect(Object.unobserve).toHaveBeenCalledWith(obj, obj.observer)
       expect(Object.unobserve).toHaveBeenCalledWith(obj2, obj.observer)
+      expect(obj.observedObjects.length).toBe 0
 

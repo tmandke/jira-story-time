@@ -1,7 +1,6 @@
 class window.JiraStoryTime.Utils.Observer
-  observedObjects: []
-
   observe: (objToObserve) =>
+    @observedObjects ||= []
     @observedObjects.push objToObserve
     Object.observe(objToObserve, @observer)
 
@@ -13,5 +12,7 @@ class window.JiraStoryTime.Utils.Observer
     throw "onObservedChange has not been implemented"
 
   unobserveAll: =>
+    @observedObjects ||= []
     @observedObjects.forEach (obj) =>
       Object.unobserve obj, @observer
+    @observedObjects = []
