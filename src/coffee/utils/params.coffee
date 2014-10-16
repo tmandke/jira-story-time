@@ -2,33 +2,29 @@ class window.JiraStoryTime.Utils.Params
   @GenralParam: class GenralParam
     constructor: (@paramName, @type, @default, @possibleValues) ->
 
-    getterName: =>
-      "get#{@paramName}"
-
-    setterName: =>
-      "set#{@paramName}"
-
     getParam: =>
       params = window.JiraStoryTime.Utils.Params.getCurrentParams()
-      try
-        @validateValue(@parseValue(params["JST_#{@paramName}"]) || @default)
+      val = try
+        @parseValue(params["JST_#{@paramName}"])
       catch err
         console.log(err)
         @default
 
+      if @isValueValid val then val else @default
+
     parseValue: (val) =>
       val
 
-    validateValue: (val) =>
-      if @possibleValues.indexOf(val) is -1
-        throw("Invalid Value '#{val}' for param #{@paramName}")
-      val
+    isValueValid: (val) =>
+      @possibleValues.indexOf(val) > -1
 
     setParam: (val) =>
-      @validateValue(val)
-      params = window.JiraStoryTime.Utils.Params.getCurrentParams()
-      params["JST_#{@paramName}"] = val
-      window.JiraStoryTime.Utils.Params.setParams(params)
+      if @isValueValid(val)
+        params = window.JiraStoryTime.Utils.Params.getCurrentParams()
+        params["JST_#{@paramName}"] = val
+        window.JiraStoryTime.Utils.Params.setParams(params)
+      else
+        throw("Invalid Value '#{val}' for param #{@paramName}")
 
   @BoolParam: class BoolParam extends GenralParam
     constructor: (@paramName, @default) ->

@@ -8,22 +8,12 @@ describe 'Params', ->
       it 'returns value passed in', ->
         expect(param.parseValue('123')).toBe '123'
 
-    describe '#validateValue', ->
+    describe '#isValueValid', ->
       it 'returns the same value if it is valid', ->
-        expect(param.validateValue('1')).toBe '1'
+        expect(param.isValueValid('1')).toBe true
 
       it 'throws exception if value is not possible', ->
-        expect(->
-          param.validateValue('1111')
-        ).toThrow()
-
-    describe '#geterName', ->
-      it 'returns getTest', ->
-        expect(param.getterName()).toBe 'gettest'
-
-    describe '#seterName', ->
-      it 'returns setTest', ->
-        expect(param.setterName()).toBe 'settest'
+        expect(param.isValueValid('1111')).toBe false
 
     describe '#getParam', ->
       it 'returns urls params value', ->
