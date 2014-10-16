@@ -12,9 +12,15 @@ class window.JiraStoryTime.Models.ApplicationState
       Object.defineProperty(@, param.paramName,
         get: param.getParam
         set: (val) ->
-          Object.getNotifier(this).notify
-            type: 'update',
-            name: param.paramName,
-            oldValue: param.getParam
-          param.setParam val
+          if param.isValueValid val
+            oldVal = param.getParam()
+            unless val is oldVal
+              Object.getNotifier(this).notify
+                type: 'update',
+                name: param.paramName,
+                oldValue: oldVal
+              param.setParam val
+          else
+            # using setParam since I dont want to rewite the throw message
+            param.setParam val
       )
