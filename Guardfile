@@ -81,6 +81,10 @@ guard 'sass', input: 'src/sass', output: 'extension/templates'
 
 guard 'coffeescript', input: 'src/coffee', output: 'extension/js', bare: true
 group :spec do
+  guard 'shell' do
+    watch( %r{spec/coffee/fixtures/(.+).slim} ) { |m| `slimrb -p #{m[0]} spec/javascripts/fixtures/#{m[1]}.html` }
+  end
+
   guard 'coffeescript', input: 'spec/coffee', output: 'spec/javascripts', bare: true
 end
 
