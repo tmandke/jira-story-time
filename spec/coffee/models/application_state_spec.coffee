@@ -38,7 +38,7 @@ describe 'ApplicationState', ->
         Object.deliverChangeRecords observer.observer
         expect(observedChanges).toEqual([])
 
-      it 'no event to be generated if the same value is set', ->
-        state.autoUpdate = true
+      it 'no event to be if the same value is set', ->
+        state.autoUpdate = false
         Object.deliverChangeRecords observer.observer
         expect(observedChanges).toEqual([])

@@ -1,4 +1,6 @@
 describe 'Params', ->
+  beforeEach resetQueryParams
+
   describe 'GenralParam', ->
     param = null
     beforeEach ->
@@ -17,15 +19,15 @@ describe 'Params', ->
 
     describe '#getParam', ->
       it 'returns urls params value', ->
-        spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue "test?JST_test=123"
+        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test: '123'
         expect(param.getParam()).toBe '123'
 
       it 'returns default if non possible value picked', ->
-        spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue "test?JST_test=111"
+        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test: '111'
         expect(param.getParam()).toBe '1'
 
       it 'returns default if param does not exist', ->
-        spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue "test?JST_test2=123"
+        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test2: '123'
         expect(param.getParam()).toBe '1'
 
     describe '#setParam', ->
@@ -36,7 +38,7 @@ describe 'Params', ->
 
       it 'should set url to', ->
         spyOn(window.JiraStoryTime.Utils.Params, 'setParams')
-        spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue "test?JST_test=1"
+        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test: '1'
         param.setParam('123')
         expect(window.JiraStoryTime.Utils.Params.setParams).toHaveBeenCalledWith(JST_test:'123')
 
@@ -80,13 +82,6 @@ describe 'Params', ->
       expect(param.type).toBe 'string'
       expect(param.default).toBe '123'
       expect(param.possibleValues).toEqual ['123']
-
-  describe '.getCurrentParams', ->
-    it 'return a hash of params', ->
-      spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue "test?test=1&test2=true"
-      params = JiraStoryTime.Utils.Params.getCurrentParams()
-      expect(params.test).toBe '1'
-      expect(params.test2).toBe 'true'
 
   describe '.deparam', ->
     it 'return a hash of params', ->
