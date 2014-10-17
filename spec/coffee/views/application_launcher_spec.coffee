@@ -46,5 +46,13 @@ describe 'ApplicationLauncher', ->
     Object.deliverChangeRecords launcher.observer
     expect(dummyJiraPage).toContainElement('.overlay')
     expect(dummyJiraPage.find('.overlay')).toBeFocused()
-    expect(dummyJiraPage.find('#story-board-banner')).toContainText('Storytime: Test Board')
+    expect(dummyJiraPage.find('#story-board-banner')).toContainText('Storytime: Test Board (Story Points)')
     expect(dummyJiraPage).toContainElement('.overlay link[type="text/css"]')
+
+  it 'points type update should chaneg the banner', ->
+    dummyJiraPage.find('#ghx-modes').find('#story-toggle').click()
+    Object.deliverChangeRecords launcher.observer
+    expect(dummyJiraPage.find('#story-board-banner')).toContainText('Storytime: Test Board (Story Points)')
+    appState.pointsType = "Business Value"
+    Object.deliverChangeRecords launcher.observer
+    expect(dummyJiraPage.find('#story-board-banner')).toContainText('Storytime: Test Board (Business Value)')

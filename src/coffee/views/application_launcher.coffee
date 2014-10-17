@@ -8,6 +8,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
 
     @observe @applicationState
     @baseElem.find("#story-toggle").on "click", @renderStoryTime
+    @launch() if @applicationState.storyTimeActive is true
 
   renderStoryTime: =>
     @applicationState.storyTimeActive = true
@@ -18,17 +19,27 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
   onObservedChange: (change) =>
     if change.name is 'storyTimeActive'
       if @applicationState.storyTimeActive is true
-        @baseElem.append window.JiraStoryTime.Utils.Templates.get('board.html')
-        @overlay().focus()
-        @baseElem.find("#story-board-banner").html("Storytime: #{$.trim(@baseElem.find("#ghx-board-name").html())}")
-        cssUrl = JiraStoryTime.Utils.Templates.templateUrl 'styles.css'
-        @overlay().prepend("<link href='#{cssUrl}' media='all' rel='stylesheet' type='text/css'>")
-        @overlay().keyup(@onKeyup)
+        @launch()
       else
         window.JiraStoryTime.Util.abortAllXHR()
         @overlay().off()
         @overlay().find("*").addBack().off()
         @overlay()[0].remove()
+    else if change.name is 'pointsType'
+      @updateBannerTitle()
+
+  updateBannerTitle: () =>
+    @baseElem.find("#story-board-banner-title").html(
+      "Storytime: #{$.trim(@baseElem.find("#ghx-board-name").html())} " +
+      "(#{@applicationState.pointsType})")
+
+  launch: =>
+    @baseElem.append window.JiraStoryTime.Utils.Templates.get('board.html')
+    @overlay().focus()
+    @updateBannerTitle()
+    cssUrl = JiraStoryTime.Utils.Templates.templateUrl 'styles.css'
+    @overlay().prepend("<link href='#{cssUrl}' media='all' rel='stylesheet' type='text/css'>")
+    @overlay().keyup(@onKeyup)
 
   onKeyup: (e) =>
     if e.keyCode is 27 #Esc

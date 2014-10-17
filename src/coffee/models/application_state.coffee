@@ -6,7 +6,7 @@ class window.JiraStoryTime.Models.ApplicationState
       JiraStoryTime.Utils.Params.boolParam('storyTimeActive', 'Story Time', false),
       JiraStoryTime.Utils.Params.boolParam('autoUpdate', 'Auto Update', true),
       JiraStoryTime.Utils.Params.boolParam('serverSync', 'Server Sync', true),
-      JiraStoryTime.Utils.Params.radioParam('pointsType', 'Points Type', 'Stroy Points', ['Stroy Points', 'Business Value']),
+      JiraStoryTime.Utils.Params.radioParam('pointsType', 'Points Type', 'Story Points', ['Story Points', 'Business Value']),
       JiraStoryTime.Utils.Params.radioParam('view', 'Process View', 'Regular', ['Regular', 'Forced'])
     ]
     @queryParams.forEach (param) =>
