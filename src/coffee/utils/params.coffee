@@ -1,6 +1,6 @@
 class window.JiraStoryTime.Utils.Params
   @GenralParam: class GenralParam
-    constructor: (@paramName, @type, @default, @possibleValues) ->
+    constructor: (@paramName, @humanName, @type, @default, @possibleValues) ->
 
     getParam: =>
       params = window.JiraStoryTime.Utils.Params.getCurrentParams()
@@ -27,20 +27,20 @@ class window.JiraStoryTime.Utils.Params
         throw("Invalid Value '#{val}' for param #{@paramName}")
 
   @BoolParam: class BoolParam extends GenralParam
-    constructor: (@paramName, @default) ->
-      super @paramName, 'bool', @default, [true, false]
+    constructor: (@paramName, @humanName, @default) ->
+      super @paramName, @humanName, 'bool', @default, [true, false]
 
     parseValue: (val) =>
       $.parseJSON(val)
 
-  @boolParam: (paramName, defaultVal) ->
-    new BoolParam paramName, defaultVal
+  @boolParam: (paramName, humanName, defaultVal) ->
+    new BoolParam paramName, humanName, defaultVal
 
-  @radioParam: (paramName, defaultVal, possibleValues) ->
-    @genralParam paramName, 'radio', defaultVal, possibleValues
+  @radioParam: (paramName, humanName, defaultVal, possibleValues) ->
+    @genralParam paramName, humanName, 'radio', defaultVal, possibleValues
 
-  @genralParam: (paramName, type, defaultVal, possibleValues) ->
-    new GenralParam(paramName, type, defaultVal, possibleValues)
+  @genralParam: (paramName, humanName, type, defaultVal, possibleValues) ->
+    new GenralParam(paramName, humanName, type, defaultVal, possibleValues)
 
   @getCurrentParams: ->
     window.JiraStoryTime.Utils.Params.deparam(@url().split("?")[1])
@@ -63,7 +63,7 @@ class window.JiraStoryTime.Utils.Params
         keyValuePair = pairs[i].split("=")
         key = decodeURIComponent(keyValuePair[0])
         value = (if (keyValuePair.length > 1) then decodeURIComponent(keyValuePair[1]) else `undefined`)
-        map[key] = value
+        map[key] = value.replace("+"," ")
         i += 1
     map
 

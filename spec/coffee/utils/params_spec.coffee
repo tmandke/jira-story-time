@@ -4,7 +4,7 @@ describe 'Params', ->
   describe 'GenralParam', ->
     param = null
     beforeEach ->
-      param = new JiraStoryTime.Utils.Params.GenralParam 'test', 'string', '1', ['1', '123']
+      param = new JiraStoryTime.Utils.Params.GenralParam 'test', 'Test', 'string', '1', ['1', '123']
 
     describe '#parseValue ', ->
       it 'returns value passed in', ->
@@ -45,7 +45,7 @@ describe 'Params', ->
   describe 'BoolParam', ->
     param = null
     beforeEach ->
-      param = new JiraStoryTime.Utils.Params.BoolParam 'test', true
+      param = new JiraStoryTime.Utils.Params.BoolParam 'test', 'Test', true
 
     describe '#parseValue ', ->
       it 'returns a parsed value', ->
@@ -59,7 +59,7 @@ describe 'Params', ->
 
   describe '.boolParam', ->
     it 'return a boolParam object or type radio', ->
-      param = JiraStoryTime.Utils.Params.boolParam('test', true)
+      param = JiraStoryTime.Utils.Params.boolParam('test', 'Test', true)
       expect(param.paramName).toBe 'test'
       expect(param.type).toBe 'bool'
       expect(param.default).toBe true
@@ -69,7 +69,7 @@ describe 'Params', ->
 
   describe '.radioParam', ->
     it 'return a GenralParam object or type radio', ->
-      param = JiraStoryTime.Utils.Params.radioParam('test', '123', ['123'])
+      param = JiraStoryTime.Utils.Params.radioParam('test', 'Test', '123', ['123'])
       expect(param.paramName).toBe 'test'
       expect(param.type).toBe 'radio'
       expect(param.default).toBe '123'
@@ -77,7 +77,7 @@ describe 'Params', ->
 
   describe '.genralParam', ->
     it 'return a GenralParam object', ->
-      param = JiraStoryTime.Utils.Params.genralParam('test', 'string', '123', ['123'])
+      param = JiraStoryTime.Utils.Params.genralParam('test', 'Test', 'string', '123', ['123'])
       expect(param.paramName).toBe 'test'
       expect(param.type).toBe 'string'
       expect(param.default).toBe '123'
