@@ -2,13 +2,14 @@ class window.JiraStoryTime.Models.ApplicationState
   devMode: false
 
   constructor: ->
-    [
-      JiraStoryTime.Utils.Params.boolParam('autoUpdate', true),
-      JiraStoryTime.Utils.Params.boolParam('serverSync', true),
-      JiraStoryTime.Utils.Params.boolParam('storyTimeActive', false),
-      JiraStoryTime.Utils.Params.radioParam('pointsType', 'StroyPoints', ['StroyPoints', 'BusinessValue']),
-      JiraStoryTime.Utils.Params.radioParam('view', 'Regular', ['Regular', 'Forced'])
-    ].forEach (param) =>
+    @queryParams = [
+      JiraStoryTime.Utils.Params.boolParam('storyTimeActive', 'Story Time', false),
+      JiraStoryTime.Utils.Params.boolParam('autoUpdate', 'Auto Update', true),
+      JiraStoryTime.Utils.Params.boolParam('serverSync', 'Server Sync', true),
+      JiraStoryTime.Utils.Params.radioParam('pointsType', 'Points Type', 'Stroy Points', ['Stroy Points', 'Business Value']),
+      JiraStoryTime.Utils.Params.radioParam('view', 'Process View', 'Regular', ['Regular', 'Forced'])
+    ]
+    @queryParams.forEach (param) =>
       Object.defineProperty(@, param.paramName,
         get: param.getParam
         set: (val) ->

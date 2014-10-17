@@ -25,7 +25,7 @@ describe 'ApplicationState', ->
         state.autoUpdate = false
         state.serverSync = false
         state.storyTimeActive = true
-        state.pointsType = 'BusinessValue'
+        state.pointsType = 'Business Value'
         state.view = 'Forced'
         Object.deliverChangeRecords observer.observer
 
