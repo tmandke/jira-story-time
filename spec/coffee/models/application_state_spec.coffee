@@ -1,7 +1,10 @@
 describe 'ApplicationState', ->
   describe '.constructor', ->
-    state = new JiraStoryTime.Models.ApplicationState()
+    state = null
     params = ['autoUpdate', 'serverSync', 'storyTimeActive', 'pointsType', 'view']
+    beforeEach ->
+      state = new JiraStoryTime.Models.ApplicationState()
+
     it 'creates getters and setters for all queryParams', ->
       params.forEach (param) ->
         expect(state[param]).toBeDefined("Param '#{param}' is not defined")
@@ -39,6 +42,6 @@ describe 'ApplicationState', ->
         expect(observedChanges).toEqual([])
 
       it 'no event to be if the same value is set', ->
-        state.autoUpdate = false
+        state.autoUpdate = true
         Object.deliverChangeRecords observer.observer
         expect(observedChanges).toEqual([])

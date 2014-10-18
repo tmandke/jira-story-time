@@ -1,6 +1,4 @@
 describe 'Params', ->
-  beforeEach resetQueryParams
-
   describe 'GenralParam', ->
     param = null
     beforeEach ->
@@ -19,15 +17,15 @@ describe 'Params', ->
 
     describe '#getParam', ->
       it 'returns urls params value', ->
-        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test: '123'
+        JiraStoryTime.Utils.Params.getCurrentParams.and.returnValue JST_test: '123'
         expect(param.getParam()).toBe '123'
 
       it 'returns default if non possible value picked', ->
-        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test: '111'
+        JiraStoryTime.Utils.Params.getCurrentParams.and.returnValue JST_test: '111'
         expect(param.getParam()).toBe '1'
 
       it 'returns default if param does not exist', ->
-        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test2: '123'
+        JiraStoryTime.Utils.Params.getCurrentParams.and.returnValue JST_test2: '123'
         expect(param.getParam()).toBe '1'
 
     describe '#setParam', ->
@@ -37,8 +35,7 @@ describe 'Params', ->
         ).toThrow()
 
       it 'should set url to', ->
-        spyOn(window.JiraStoryTime.Utils.Params, 'setParams')
-        spyOn(JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue JST_test: '1'
+        JiraStoryTime.Utils.Params.getCurrentParams.and.returnValue JST_test: '1'
         param.setParam('123')
         expect(window.JiraStoryTime.Utils.Params.setParams).toHaveBeenCalledWith(JST_test:'123')
 
@@ -85,6 +82,16 @@ describe 'Params', ->
 
   describe '.deparam', ->
     it 'return a hash of params', ->
-      params = JiraStoryTime.Utils.Params.deparam("test=1&test2=true")
+      params = JiraStoryTime.Utils.Params.deparam("?test=1&test2=true&test3")
       expect(params.test).toBe '1'
       expect(params.test2).toBe 'true'
+      expect(params.test3).toBeUndefined()
+
+  describe '.getCurrentParams', ->
+    it 'returns an good hash', ->
+      spyOn(JiraStoryTime.Utils.Params, 'url').and.returnValue 'localhost:8888?test=1+12&test2=true&test3'
+      JiraStoryTime.Utils.Params.getCurrentParams.and.callThrough()
+      params = JiraStoryTime.Utils.Params.getCurrentParams()
+      expect(params.test).toBe '1 12'
+      expect(params.test2).toBe 'true'
+      expect(params.test3).toBeUndefined()

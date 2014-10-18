@@ -8,6 +8,7 @@ extension/manifest.json
 spec/javascripts/**/*.js
 !spec/javascripts/helpers/mock-ajax.js
 !spec/javascripts/helpers/jasmine-jquery.js
+!spec/javascripts/helpers/blanket_jasmine.js
 .idea
 
 # Compiles Coffeescripts

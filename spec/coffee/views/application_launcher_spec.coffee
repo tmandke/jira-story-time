@@ -3,7 +3,6 @@ describe 'ApplicationLauncher', ->
   launcher = null
   appState = null
   beforeEach ->
-    resetQueryParams()
     loadFixtures('dummy_jira_page.html')
     dummyJiraPage = $('#dummy-jira-page')
     appState = new JiraStoryTime.Models.ApplicationState

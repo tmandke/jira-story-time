@@ -1,9 +1,5 @@
-stubQueryParams = []
-window.resetQueryParams = ->
+beforeEach ->
   stubQueryParams = []
-
-window.JiraStoryTime.Utils.Params.getCurrentParams = ->
-  stubQueryParams
-
-window.JiraStoryTime.Utils.Params.setParams = (params) ->
-  stubQueryParams = params
+  spyOn(window.JiraStoryTime.Utils.Params, 'getCurrentParams').and.returnValue stubQueryParams
+  spyOn(window.JiraStoryTime.Utils.Params, 'setParams').and.callFake (params) ->
+    stubQueryParams = params
