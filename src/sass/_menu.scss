@@ -1,0 +1,110 @@
+#JST-menu {
+  @include fontsize(2);
+  background-color: lighten($header-container, 20%);
+  padding: 5px 15px;
+  border-radius: 10px;
+  margin: 5px 0;
+  position: relative;
+  #JST-menu-list {
+    display: none;
+    list-style-type: none;
+    @include fontsize(1);
+    float: right;
+    z-index: 50;
+    top: 100%;
+    right: 0;
+    position: absolute;
+    padding: 5px 15px;
+    border-top: 5px solid $header-container;
+    border-radius: 10px;
+    background-color: lighten($header-container, 20%);
+    white-space: nowrap;
+    li + li {
+      border-top: 1px solid;
+      border-color: $base-color;
+    }
+    li {
+      cursor: default;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      .menu-item-title {
+        @include fontsize(2);
+      }
+    }
+    li.radio-menu-item {
+      input {
+        display: none;
+      }
+      label {
+        display: block;
+        padding: 4px 5px;
+        @include fontsize(1.5);
+        margin-left: 30px;
+      }
+      label:before {
+        @include fontsize(.8);
+        content: '✓';
+        background-color: white;
+        color: white;
+        top: 0;
+        right:100%;
+        border: 3px solid $base-color;
+        border-radius: 10px;
+        padding: 2px 5px;
+        margin: 5px;
+        position: absolute;
+      }
+      input:checked + label:before {
+        color: $base-color;
+      }
+    }
+    li.bool-menu-item {
+      @include flexbox();
+      justify-content: space-between;
+      align-items: center;
+      .onoffswitch {
+        @include clearfix();
+        position: relative;
+        width: 4rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        overflow: hidden;
+        margin-left: 15px;
+      }
+
+      .onoffswitch-checkbox {
+        display: none;
+      }
+      .onoffswitch-active {
+        width: 1.4rem;
+        display: inline-block;
+        background-color: blue;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .onoffswitch-inactive {
+        width: 1.4rem;
+        display: inline-block;
+        background-color: black;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+
+      .onoffswitch-label {
+        left: -2rem;
+      }
+      .onoffswitch-checkbox:checked + .onoffswitch-label {
+        left: 0;
+      }
+    }
+  }
+  &:hover #JST-menu-list {
+    display: block;
+  }
+}

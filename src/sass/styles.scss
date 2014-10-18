@@ -5,6 +5,7 @@
 @import "_storyCard";
 @import "_column";
 @import "_epic";
+@import "_menu";
 
 $font-stack: "Roboto Condensed", sans-serif;
 
@@ -37,6 +38,9 @@ html {
   padding: 15px;
   background-color: $header-container;
   font-weight: 300;
+  @include flexbox();
+  justify-content: space-between;
+  align-items: center;
 }
 
 #story_board_top {
