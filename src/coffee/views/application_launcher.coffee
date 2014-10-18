@@ -40,6 +40,8 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     cssUrl = JiraStoryTime.Utils.Templates.templateUrl 'styles.css'
     @overlay().prepend("<link href='#{cssUrl}' media='all' rel='stylesheet' type='text/css'>")
     @overlay().keyup(@onKeyup)
+    @menuView = new JiraStoryTime.Views.ApplicationMenu(@applicationState)
+    @overlay().find("#story-board-banner").append @menuView.el
 
   onKeyup: (e) =>
     if e.keyCode is 27 #Esc

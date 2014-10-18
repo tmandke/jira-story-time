@@ -6,23 +6,19 @@ describe 'ApplicationLauncher', ->
     loadFixtures('dummy_jira_page.html')
     dummyJiraPage = $('#dummy-jira-page')
     appState = new JiraStoryTime.Models.ApplicationState
+    spyOn(JiraStoryTime.Views, 'ApplicationMenu').and.returnValue(
+      el: $('<div id="JST-menu-test-elm"></div>')
+    )
 
   describe 'with storyTime active', ->
     beforeEach ->
       appState.storyTimeActive = true
-      appState.view = 'Forced'
+      spyOn(JiraStoryTime.Views.ApplicationLauncher.prototype, 'launch')
       launcher = new JiraStoryTime.Views.ApplicationLauncher(dummyJiraPage, appState)
 
     it 'auto adds overlay', ->
       expect(dummyJiraPage.find('#ghx-modes').find('#story-toggle')[0]).toBeInDOM()
-      expect(dummyJiraPage).toContainElement('.overlay')
-
-    it 'should ask for confirmation when closing if view = "Forced"', ->
-      spyOn(window, 'confirm').and.returnValue(true)
-      e = $.Event('keyup')
-      e.keyCode = 27
-      dummyJiraPage.find('.overlay').trigger(e)
-      expect(window.confirm).toHaveBeenCalled()
+      expect(JiraStoryTime.Views.ApplicationLauncher.prototype.launch).toHaveBeenCalled()
 
   describe 'with storyTime inactive', ->
     beforeEach ->
@@ -75,3 +71,18 @@ describe 'ApplicationLauncher', ->
       appState.pointsType = "Business Value"
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage.find('#story-board-banner')).toContainText('Storytime: Test Board (Business Value)')
+
+    it 'should ask for confirmation when closing if view = "Forced"', ->
+      appState.storyTimeActive = true
+      appState.view = 'Forced'
+      Object.deliverChangeRecords launcher.observer
+      spyOn(window, 'confirm').and.returnValue(true)
+      e = $.Event('keyup')
+      e.keyCode = 27
+      dummyJiraPage.find('.overlay').trigger(e)
+      expect(window.confirm).toHaveBeenCalled()
+
+    it 'has a menu element added', ->
+      appState.storyTimeActive = true
+      Object.deliverChangeRecords launcher.observer
+      expect(dummyJiraPage).toContainElement('#JST-menu-test-elm')
