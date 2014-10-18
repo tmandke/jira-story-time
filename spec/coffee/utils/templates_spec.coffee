@@ -19,3 +19,14 @@ describe 'Templates', ->
       expect(JiraStoryTime.Utils.Templates.get('test.html')).toBe('<p>awesome test string</p>')
       expect(JiraStoryTime.Utils.Templates.get('test.html')).toBe('<p>awesome test string</p>')
       expect(jasmine.Ajax.requests.count()).toBe 1
+  describe '.templateUrl', ->
+    beforeEach ->
+      JiraStoryTime.Utils.Templates.templateUrl.and.callThrough()
+      chrome.extension =
+        getURL: (fileName) ->
+          "/extension#{fileName}"
+    afterEach ->
+      delete chrome.extension
+
+    it 'returns proper url', ->
+      expect(JiraStoryTime.Utils.Templates.templateUrl('test.html')).toBe '/extension/templates/test.html'

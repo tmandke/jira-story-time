@@ -95,3 +95,22 @@ describe 'Params', ->
       expect(params.test).toBe '1 12'
       expect(params.test2).toBe 'true'
       expect(params.test3).toBeUndefined()
+
+  describe '.url', ->
+    it 'returns location.href', ->
+      expect(JiraStoryTime.Utils.Params.url()).toBe(location.href)
+
+  describe '.setParams', ->
+    url = null
+    beforeEach ->
+      url = location.href
+    afterEach ->
+      history.pushState null, null, url
+
+    it 'should set query params', ->
+      JiraStoryTime.Utils.Params.setParams.and.callThrough()
+      JiraStoryTime.Utils.Params.setParams(
+        test1: '1 12'
+        test2: true
+      )
+      expect(location.href.split("?")[1]).toBe('test1=1+12&test2=true')

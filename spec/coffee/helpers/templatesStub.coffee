@@ -1,3 +1,3 @@
 beforeEach ->
-  window.JiraStoryTime.Utils.Templates.templateUrl = (fileName) ->
+  spyOn(JiraStoryTime.Utils.Templates, 'templateUrl').and.callFake (fileName) ->
     "/extension/templates/#{fileName}"
