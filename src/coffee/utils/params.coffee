@@ -7,7 +7,6 @@ class window.JiraStoryTime.Utils.Params
       val = try
         @parseValue(params["JST_#{@paramName}"])
       catch err
-        console.log(err)
         @default
 
       if @isValueValid val then val else @default
