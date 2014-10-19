@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'fileutils'
 RELOAD_SCRIPT = <<SCRIPT
 tell application "Google Chrome" to tell the active tab of its first window
   activate
@@ -83,6 +84,11 @@ guard 'coffeescript', input: 'src/coffee', output: 'extension/js', bare: true
 group :spec do
   guard 'shell' do
     watch( %r{spec/coffee/fixtures/(.+).slim} ) { |m| `slimrb -p #{m[0]} spec/javascripts/fixtures/#{m[1]}.html` }
+    watch( %r{spec/coffee/fixtures/json/(.+).json} ) { |m|
+      file_name = "spec/javascripts/fixtures/json/#{m[1]}.json"
+      FileUtils.mkdir_p(File.dirname file_name)
+      `cp -p #{m[0]} #{file_name}`
+    }
   end
 
   guard 'coffeescript', input: 'spec/coffee', output: 'spec/javascripts', bare: true

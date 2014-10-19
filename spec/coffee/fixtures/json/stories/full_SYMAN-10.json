@@ -1,0 +1,394 @@
+{
+  "key": "SYMAN-10",
+  "id": 10009,
+  "editable": true,
+  "canCreateComment": true,
+  "isSubtask": false,
+  "fields": [
+    {
+      "id": "issuekey",
+      "label": "issue.key",
+      "editable": false,
+      "renderer": "text",
+      "text": "SYMAN-10"
+    },
+    {
+      "id": "summary",
+      "label": "Summary",
+      "editable": true,
+      "type": "textarea",
+      "renderer": "text",
+      "text": "g"
+    },
+    {
+      "id": "description",
+      "label": "Description",
+      "editable": true,
+      "type": "textarea",
+      "renderer": "html",
+      "html": "SYMAN-10 test desc"
+    },
+    {
+      "id": "customfield_10003",
+      "label": "Business Value",
+      "editable": false,
+      "type": "number",
+      "renderer": "html",
+      "category": "details",
+      "text": "3",
+      "value": 3.0
+    },
+    {
+      "id": "status",
+      "label": "Status",
+      "editable": false,
+      "renderer": "status",
+      "text": "To Do",
+      "statusEntry": {
+        "id": "10000",
+        "name": "To Do",
+        "description": "",
+        "iconUrl": "http://localhost:8080/images/icons/subtask.gif",
+        "statusCategory": {
+          "id": "1",
+          "key": "undefined",
+          "colorName": "medium-gray"
+        }
+      }
+    },
+    {
+      "id": "components",
+      "label": "Component/s",
+      "editable": false,
+      "renderer": "text"
+    },
+    {
+      "id": "labels",
+      "label": "Labels",
+      "editable": false,
+      "renderer": "text"
+    },
+    {
+      "id": "versions",
+      "label": "Affects Version/s",
+      "editable": false,
+      "renderer": "text"
+    },
+    {
+      "id": "fixVersions",
+      "label": "Fix Version/s",
+      "editable": false,
+      "renderer": "text"
+    },
+    {
+      "id": "issuelinks",
+      "label": "Linked Issues",
+      "editable": false,
+      "type": "text",
+      "renderer": "html",
+      "category": "links",
+      "html": ""
+    },
+    {
+      "id": "reporter",
+      "label": "Reporter",
+      "editable": false,
+      "renderer": "html",
+      "html": "tejas mandke"
+    },
+    {
+      "id": "assignee",
+      "label": "Assignee",
+      "editable": false,
+      "renderer": "html",
+      "html": "tejas mandke"
+    },
+    {
+      "id": "created",
+      "label": "Created",
+      "editable": false,
+      "renderer": "date",
+      "html": "13/Oct/14 11:22 AM",
+      "text": "2014-10-13T11:22:26-0400"
+    },
+    {
+      "id": "updated",
+      "label": "Updated",
+      "editable": false,
+      "renderer": "date",
+      "html": "13/Oct/14 11:49 AM",
+      "text": "2014-10-13T11:49:20-0400"
+    },
+    {
+      "id": "customfield_10007",
+      "label": "Epic",
+      "editable": false,
+      "renderer": "epiclink",
+      "epicKey": "SYMAN-31",
+      "epicColor": "ghx-label-4",
+      "text": "Epic 2",
+      "canRemoveEpic": true
+    },
+    {
+      "id": "customfield_10002",
+      "label": "Story Points",
+      "editable": false,
+      "type": "number",
+      "renderer": "text",
+      "text": "8",
+      "value": 8.0
+    }
+  ],
+  "comments": [
+
+  ],
+  "totalComments": 0,
+  "operations": {
+    "issueKey": "SYMAN-10",
+    "sections": [
+      {
+        "groupId": "issueaction-edit-issue",
+        "operations": [
+          {
+            "id": "editIssue",
+            "label": "Edit",
+            "title": "Edit this issue",
+            "styleClass": "issueaction-edit-issue",
+            "url": "/secure/EditIssue!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "assign-issue",
+            "label": "Assign",
+            "title": "Assign this issue to someone",
+            "styleClass": "issueaction-assign-issue",
+            "url": "/secure/AssignIssue!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "greenhopper-rapidboard-operation",
+            "label": "Agile Board",
+            "title": "View this issue on an Agile board",
+            "styleClass": "issueaction-greenhopper-rapidboard-operation js-rapidboard-operation-issue",
+            "url": "/secure/GHGoToBoard.jspa?issueId=10009"
+          },
+          {
+            "id": "greenhopper-rank-top-operation",
+            "label": "Rank to Top",
+            "title": "",
+            "styleClass": "issueaction-greenhopper-rank-top-operation",
+            "url": "/secure/RankTop.jspa?issueId=10009"
+          },
+          {
+            "id": "greenhopper-rank-bottom-operation",
+            "label": "Rank to Bottom",
+            "title": "",
+            "styleClass": "issueaction-greenhopper-rank-bottom-operation",
+            "url": "/secure/RankBottom.jspa?issueId=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "log-work",
+            "label": "Log Work",
+            "title": "Log work against this issue",
+            "styleClass": "issueaction-log-work",
+            "url": "/secure/CreateWorklog!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "attach-file",
+            "label": "Attach Files",
+            "title": "Attach one or more files to this issue",
+            "styleClass": "issueaction-attach-file",
+            "url": "/secure/AttachFile!default.jspa?id=10009"
+          },
+          {
+            "id": "attach-screenshot-html5",
+            "label": "Attach screenshot",
+            "title": "",
+            "styleClass": "issueaction-attach-screenshot-html5",
+            "url": "/secure/ShowAttachScreenshotFormAction!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "view-voters",
+            "label": "Voters",
+            "title": "View voters for this issue",
+            "styleClass": "issueaction-view-voters",
+            "url": "/secure/ViewVoters!default.jspa?id=10009"
+          },
+          {
+            "id": "toggle-watch-issue",
+            "label": "Stop Watching",
+            "title": "Stop watching this issue",
+            "styleClass": "issueaction-unwatch-issue",
+            "url": "/secure/VoteOrWatchIssue.jspa?atl_token=B3LY-P23M-STMI-52C4|010e4c9077c8683504301f0b5e2f829fb2f1d3c6|lin&id=10009&watch=unwatch"
+          },
+          {
+            "id": "manage-watchers",
+            "label": "Watchers",
+            "title": "Manage the watchers of this issue",
+            "styleClass": "issueaction-manage-watchers",
+            "url": "/secure/ManageWatchers!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "create-subtask",
+            "label": "Create Sub-Task",
+            "title": "Create sub-task for this issue",
+            "styleClass": "issueaction-create-subtask",
+            "url": "/secure/CreateSubTaskIssue!default.jspa?parentIssueId=10009"
+          },
+          {
+            "id": "issue-to-subtask",
+            "label": "Convert to Sub-Task",
+            "title": "Convert this issue to sub-task",
+            "styleClass": "issueaction-issue-to-subtask",
+            "url": "/secure/ConvertIssue.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "move-issue",
+            "label": "Move",
+            "title": "Move this issue to another project or issue type.",
+            "styleClass": "issueaction-move-issue",
+            "url": "/secure/MoveIssue!default.jspa?id=10009"
+          },
+          {
+            "id": "link-issue",
+            "label": "Link",
+            "title": "Link this issue to another issue or item",
+            "styleClass": "issueaction-link-issue",
+            "url": "/secure/LinkJiraIssue!default.jspa?id=10009"
+          },
+          {
+            "id": "clone-issue",
+            "label": "Clone",
+            "title": "Clone this issue",
+            "styleClass": "issueaction-clone-issue",
+            "url": "/secure/CloneIssueDetails!default.jspa?id=10009"
+          },
+          {
+            "id": "edit-labels",
+            "label": "Labels",
+            "title": "Edit this issue's labels",
+            "styleClass": "issueaction-edit-labels",
+            "url": "/secure/EditLabels!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-operations",
+        "operations": [
+          {
+            "id": "delete-issue",
+            "label": "Delete",
+            "title": "Delete this issue",
+            "styleClass": "issueaction-delete-issue",
+            "url": "/secure/DeleteIssue!default.jspa?id=10009"
+          }
+        ]
+      },
+      {
+        "groupId": "opsbar-transitions",
+        "operations": [
+          {
+            "id": "action_id_11",
+            "label": "To Do",
+            "title": "",
+            "styleClass": "issueaction-workflow-transition",
+            "url": "/secure/WorkflowUIDispatcher.jspa?id=10009&action=11&atl_token="
+          },
+          {
+            "id": "action_id_21",
+            "label": "In Progress",
+            "title": "",
+            "styleClass": "issueaction-workflow-transition",
+            "url": "/secure/WorkflowUIDispatcher.jspa?id=10009&action=21&atl_token="
+          },
+          {
+            "id": "action_id_31",
+            "label": "Done",
+            "title": "",
+            "styleClass": "issueaction-workflow-transition",
+            "url": "/secure/WorkflowUIDispatcher.jspa?id=10009&action=31&atl_token="
+          }
+        ]
+      }
+    ]
+  },
+  "avatarUrl": "http://www.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
+  "priorityUrl": "http://localhost:8080/images/icons/priorities/major.png",
+  "priorityName": "Major",
+  "typeName": "Story",
+  "typeId": "10001",
+  "typeUrl": "http://localhost:8080/images/icons/ico_story.png",
+  "projectName": "SYMAN",
+  "projectAvatarUrl": "http://localhost:8080/secure/projectavatar?pid=10000&avatarId=10011",
+  "isAssigned": true,
+  "attachments": {
+    "issueId": 10009,
+    "totalCount": 0,
+    "fileAttachments": [
+
+    ],
+    "imageAttachments": [
+
+    ]
+  },
+  "subtasks": [
+
+  ],
+  "totalSubtaskCount": 0,
+  "primaryStatisticFieldId": "customfield_10002",
+  "sprint": {
+    "id": 1,
+    "name": "Sprint 1",
+    "state": "ACTIVE",
+    "linkedPagesCount": 0
+  },
+  "issueLinks": {
+    "linkingEnabled": true,
+    "defaultLinkIcon": "/images/icons/generic_link_16.png",
+    "canLink": true,
+    "hasIssueLinks": false,
+    "issueLinkTypeEntries": [
+
+    ]
+  },
+  "tabs": {
+    "thirdPartyTabs": [
+
+    ]
+  },
+  "color": "#cc0000",
+  "flagged": false
+}

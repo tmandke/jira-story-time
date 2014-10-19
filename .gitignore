@@ -6,6 +6,7 @@ extension/templates/*.css
 !extension/js/jquery.min.js
 extension/manifest.json
 spec/javascripts/**/*.js
+spec/javascripts/fixtures/json/**/*.json
 !spec/javascripts/helpers/mock-ajax.js
 !spec/javascripts/helpers/jasmine-jquery.js
 !spec/javascripts/helpers/blanket_jasmine.js
