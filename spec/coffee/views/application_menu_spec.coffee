@@ -1,4 +1,4 @@
-describe 'ApplicationMenu', ->
+describe 'Views.ApplicationMenu', ->
   describe '.constructor', ->
     appState = null
     menuEl = null

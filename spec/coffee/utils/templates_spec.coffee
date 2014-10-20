@@ -1,4 +1,4 @@
-describe 'Templates', ->
+describe 'Utils.Templates', ->
   describe '.get', ->
     beforeEach ->
       jasmine.Ajax.install()

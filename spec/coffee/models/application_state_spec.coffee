@@ -1,4 +1,4 @@
-describe 'ApplicationState', ->
+describe 'Models.ApplicationState', ->
   describe '.constructor', ->
     state = null
     params = ['autoUpdate', 'serverSync', 'storyTimeActive', 'pointsType', 'view']

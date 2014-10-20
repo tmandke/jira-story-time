@@ -1,4 +1,4 @@
-describe 'Params', ->
+describe 'Utils.Params', ->
   describe 'GenralParam', ->
     param = null
     beforeEach ->

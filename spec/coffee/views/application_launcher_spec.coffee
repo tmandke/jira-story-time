@@ -1,4 +1,4 @@
-describe 'ApplicationLauncher', ->
+describe 'Views.ApplicationLauncher', ->
   dummyJiraPage = null
   launcher = null
   appState = null

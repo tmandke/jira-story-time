@@ -1,4 +1,4 @@
-describe 'Observer', ->
+describe 'Utils.Observer', ->
   describe '#observe', ->
     it 'should setup object observer and add object to observedObject list', ->
       obj = new window.JiraStoryTime.Utils.Observer
