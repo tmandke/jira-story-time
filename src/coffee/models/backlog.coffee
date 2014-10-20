@@ -55,3 +55,6 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
     clearInterval @autoUpdateInterval
     delete @autoUpdateInterval
     @unobserveAll()
+    $.map @stories, (story, id) =>
+      story.deconstruct()
+      delete @stories[id]

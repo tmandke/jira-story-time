@@ -76,9 +76,10 @@ describe 'Models.Backlog', ->
       expect(Object.keys(backlog.stories)).toEqual(ids)
 
   describe '#deconstruct', ->
-    it 'clears autoupdate interval and calls unboserve all', ->
+    it 'clears autoupdate interval, deconstructs all stories and calls unboserve all', ->
       expect(backlog.autoUpdateInterval).toBeDefined()
       spyOn(backlog, 'unobserveAll').and.callThrough()
       backlog.deconstruct()
       expect(backlog.unobserveAll).toHaveBeenCalled()
       expect(backlog.autoUpdateInterval).toBeUndefined()
+      expect(Object.keys backlog.stories).toEqual([])
