@@ -32,3 +32,4 @@ class JiraStoryTime.Views.ApplicationMenu
           appState[param.paramName] = radioParam.find("input[name=JST-#{param.paramName}]:checked").val()
         )
 
+  deconstruct: () =>

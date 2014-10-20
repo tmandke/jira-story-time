@@ -21,10 +21,14 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
       if @applicationState.storyTimeActive is true
         @launch()
       else
+        @backlog.deconstruct()
+        @menuView.deconstruct()
+        delete @backlog
         window.JiraStoryTime.Util.abortAllXHR()
         @overlay().off()
         @overlay().find("*").addBack().off()
         @overlay()[0].remove()
+
     else if change.name is 'pointsType'
       @updateBannerTitle()
 
@@ -40,8 +44,16 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     cssUrl = JiraStoryTime.Utils.Templates.templateUrl 'styles.css'
     @overlay().prepend("<link href='#{cssUrl}' media='all' rel='stylesheet' type='text/css'>")
     @overlay().keyup(@onKeyup)
+    @_launchMenu()
+    @_createBacklog()
+
+  _launchMenu: =>
     @menuView = new JiraStoryTime.Views.ApplicationMenu(@applicationState)
     @overlay().find("#story-board-banner").append @menuView.el
+
+  _createBacklog: =>
+    rapidView = JiraStoryTime.Utils.Params.getCurrentParams().rapidview
+    @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
 
   onKeyup: (e) =>
     if e.keyCode is 27 #Esc

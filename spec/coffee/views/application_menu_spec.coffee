@@ -32,3 +32,7 @@ describe 'Views.ApplicationMenu', ->
           cleanVal = newVal.replace new RegExp(' ','g') , ""
           menuEl.find(".radio-menu-item label[for=JST-#{param.paramName}-#{cleanVal}]").click()
           expect(param.getParam()).toBe newVal
+
+  describe '#deconstruct', ->
+    it 'has method to deconstruct', ->
+      expect(JiraStoryTime.Views.ApplicationMenu.prototype.deconstruct).toBeDefined()

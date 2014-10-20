@@ -8,6 +8,11 @@ describe 'Views.ApplicationLauncher', ->
     appState = new JiraStoryTime.Models.ApplicationState
     spyOn(JiraStoryTime.Views, 'ApplicationMenu').and.returnValue(
       el: $('<div id="JST-menu-test-elm"></div>')
+      deconstruct: jasmine.createSpy('menu.deconstruct')
+    )
+
+    spyOn(JiraStoryTime.Models, 'Backlog').and.returnValue(
+      deconstruct: jasmine.createSpy('backlog.deconstruct')
     )
 
   describe 'with storyTime active', ->
@@ -43,7 +48,9 @@ describe 'Views.ApplicationLauncher', ->
       dummyJiraPage.find('.overlay').trigger(e)
       expect(appState.storyTimeActive).toBe false
 
-    it 'pressing esc keyboard makes overlay go away esc should not do anything', ->
+    it 'pressing esc keyboard makes overlay go away and all launched objects are deconstructed', ->
+      expect(JiraStoryTime.Views.ApplicationMenu().deconstruct).not.toHaveBeenCalled()
+      expect(JiraStoryTime.Models.Backlog().deconstruct).not.toHaveBeenCalled()
       appState.storyTimeActive = true
       Object.deliverChangeRecords launcher.observer
       e = $.Event('keyup')
@@ -52,9 +59,8 @@ describe 'Views.ApplicationLauncher', ->
       expect(appState.storyTimeActive).toBe false
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).not.toContainElement('.overlay')
-      spyOn(launcher, 'confirmExitIfNessary')
-      dummyJiraPage.find('.overlay').trigger(e)
-      expect(launcher.confirmExitIfNessary).not.toHaveBeenCalled()
+      expect(JiraStoryTime.Views.ApplicationMenu().deconstruct).toHaveBeenCalled()
+      expect(JiraStoryTime.Models.Backlog().deconstruct).toHaveBeenCalled()
 
     it '"#story-toggle" click should add overlay, banner and stylesheet', ->
       dummyJiraPage.find('#ghx-modes').find('#story-toggle').click()
@@ -86,3 +92,9 @@ describe 'Views.ApplicationLauncher', ->
       appState.storyTimeActive = true
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).toContainElement('#JST-menu-test-elm')
+
+    it 'backlog is created', ->
+      JiraStoryTime.Utils.Params.setParams(rapidview: 1)
+      appState.storyTimeActive = true
+      Object.deliverChangeRecords launcher.observer
+      expect(launcher.backlog).toBeDefined()
