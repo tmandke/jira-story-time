@@ -35,8 +35,7 @@
       "type": "number",
       "renderer": "html",
       "category": "details",
-      "text": "3",
-      "value": 3.0
+      "html": "3"
     },
     {
       "id": "status",

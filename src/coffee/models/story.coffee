@@ -55,13 +55,20 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         when @constructor._fieldIds.summary
           @summary = f.text
         when @constructor._fieldIds.points
-          @points = f.value or ""
+          @points = @_parsePoints f[f.renderer]
         when @constructor._fieldIds.business
-          @business = f.value or ""
+          @business = @_parsePoints f[f.renderer]
         when @constructor._fieldIds.description
           @description = f.html
         when @constructor._fieldIds.epic
           @epic = f.text
+
+  _parsePoints: (html) ->
+    try
+      ret = parseInt html
+      if ret then ret else undefined
+    catch
+      undefined
 
   deconstruct: =>
     clearInterval @autoUpdateInterval
