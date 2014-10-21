@@ -46,6 +46,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @overlay().keyup(@onKeyup)
     @_launchMenu()
     @_createBacklog()
+    @_createBoard()
 
   _launchMenu: =>
     @menuView = new JiraStoryTime.Views.ApplicationMenu(@applicationState)
@@ -54,6 +55,10 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
   _createBacklog: =>
     rapidView = JiraStoryTime.Utils.Params.getCurrentParams().rapidView
     @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
+
+  _createBoard: =>
+    @board = new JiraStoryTime.Views.RegualrStoryTime(@applicationState, @backlog)
+    @board.el.insertBefore(@overlay().find('#story-unassigned-placeholder'))
 
   onKeyup: (e) =>
     if e.keyCode is 27 #Esc
