@@ -2,7 +2,10 @@ class window.JiraStoryTime.Utils.Observer
   observe: (objToObserve) =>
     @observedObjects ||= []
     @observedObjects.push objToObserve
-    Object.observe(objToObserve, @observer)
+    @baseObject(objToObserve).observe(objToObserve, @observer)
+
+  baseObject: (obj) ->
+    if obj instanceof Array then Array else Object
 
   observer: (changes) =>
     changes.forEach @onObservedChange
@@ -11,8 +14,14 @@ class window.JiraStoryTime.Utils.Observer
   onObservedChange: (change)=>
     throw "onObservedChange has not been implemented"
 
+  unobserve: (obj)=>
+    @observedObjects ||= []
+    if idx = @observedObjects.indexOf(obj) > -1
+      Object.unobserve obj, @observer
+      @observedObjects.splice idx, 1
+
   unobserveAll: =>
     @observedObjects ||= []
     @observedObjects.forEach (obj) =>
-      Object.unobserve obj, @observer
+      @baseObject(obj).unobserve obj, @observer
     @observedObjects = []

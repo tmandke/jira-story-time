@@ -3,14 +3,19 @@ describe 'Utils.Observer', ->
     it 'should setup object observer and add object to observedObject list', ->
       obj = new window.JiraStoryTime.Utils.Observer
       obj2 = {test: 1}
+      obj3 = ['a']
       spyOn(Object, 'observe')
+      spyOn(Array, 'observe')
       obj.observe(obj)
       obj.observe(obj2)
+      obj.observe(obj3)
       expect(Object.observe).toHaveBeenCalledWith(obj, obj.observer)
       expect(Object.observe).toHaveBeenCalledWith(obj2, obj.observer)
-      expect(obj.observedObjects.length).toBe 2
+      expect(Array.observe).toHaveBeenCalledWith(obj3, obj.observer)
+      expect(obj.observedObjects.length).toBe 3
       expect(obj.observedObjects[0]).toBe obj
       expect(obj.observedObjects[1]).toBe obj2
+      expect(obj.observedObjects[2]).toBe obj3
 
   describe '#observer', ->
     it 'should call all observed', ->
@@ -38,10 +43,13 @@ describe 'Utils.Observer', ->
     it 'unobserves all objects', ->
       obj = new window.JiraStoryTime.Utils.Observer
       obj2 = {test: 1}
-      obj.observedObjects = [obj, obj2]
+      obj3 = ['a']
+      obj.observedObjects = [obj, obj2, obj3]
       spyOn(Object, 'unobserve')
+      spyOn(Array, 'unobserve')
       obj.unobserveAll()
       expect(Object.unobserve).toHaveBeenCalledWith(obj, obj.observer)
       expect(Object.unobserve).toHaveBeenCalledWith(obj2, obj.observer)
+      expect(Array.unobserve).toHaveBeenCalledWith(obj3, obj.observer)
       expect(obj.observedObjects.length).toBe 0
 
