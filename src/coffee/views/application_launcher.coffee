@@ -52,7 +52,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @overlay().find("#story-board-banner").append @menuView.el
 
   _createBacklog: =>
-    rapidView = JiraStoryTime.Utils.Params.getCurrentParams().rapidview
+    rapidView = JiraStoryTime.Utils.Params.getCurrentParams().rapidView
     @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
 
   onKeyup: (e) =>
