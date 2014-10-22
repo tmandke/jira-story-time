@@ -80,3 +80,5 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     $.map @dropZones, (zone, val) =>
       zone.deconstruct()
       delete @dropZones[val]
+
+    @el.remove()
