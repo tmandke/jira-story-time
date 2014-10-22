@@ -13,7 +13,7 @@ class JiraStoryTime.Views.Story extends JiraStoryTime.Utils.Observer
       @render(change)
 
   _present_points: (points) ->
-    if points is "" then "_" else points
+    if points then points else "_"
 
   render: (change) =>
     ['points', 'business'].forEach (field) =>
