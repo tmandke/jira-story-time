@@ -12,13 +12,13 @@ class JiraStoryTime.Views.Story extends JiraStoryTime.Utils.Observer
     if change.object is @story
       @render(change)
 
-  _present_points: (points) ->
+  _presentPoints: (points) ->
     if points then points else "_"
 
   render: (change) =>
     ['points', 'business'].forEach (field) =>
       if !change? or change.name == field
-        @el.find(".story-#{field}").html(@_present_points(@story[field]))
+        @el.find(".story-#{field}").html(@_presentPoints(@story[field]))
 
     ['key', 'summary', 'description'].forEach (field) =>
       if !change? or change.name == field
@@ -28,7 +28,8 @@ class JiraStoryTime.Views.Story extends JiraStoryTime.Utils.Observer
       @el.attr "draggable", not @story.isCurrent
 
     if !change? or change.name is "epicColor"
-      @el.removeClass "epic-color-*"
+      @el.removeClass (idx, css) ->
+        (css.match(/(^|\s)epic-color-\S+/g) || []).join(' ')
       @el.addClass "epic-color-" + @story.epicColor
 
     if !change? or change.name is "isOpen"
