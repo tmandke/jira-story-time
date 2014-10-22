@@ -11,6 +11,7 @@ describe 'Models.Backlog', ->
     backlog   = new JiraStoryTime.Models.Backlog 1, appState
 
   afterEach ->
+    backlog.deconstruct()
     jasmine.Ajax.uninstall()
 
   describe '.constructor', ->
