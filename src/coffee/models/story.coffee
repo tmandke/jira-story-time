@@ -80,14 +80,11 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
       ).done (response) ->
         console.log response
     else
-      console.log(this.key + ": #{prop} would have been updated to " + points)
+      console.log("#{@key}: #{prop} would have been updated to #{points}")
 
-  _parsePoints: (html) ->
-    try
-      ret = parseInt html
+  _parsePoints: (text) ->
+      ret = parseInt text
       if ret then ret else undefined
-    catch
-      undefined
 
   deconstruct: =>
     clearInterval @autoUpdateInterval

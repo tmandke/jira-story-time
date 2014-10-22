@@ -92,6 +92,40 @@ describe 'Models.Story', ->
       expect(story.description).toBe 'SYMAN-10 test desc'
       expect(story.epic).toBe 'Epic 2'
 
+  describe '#setProperty', ->
+    describe 'server sync is enabled', ->
+      it 'sends an update field request and updates property', ->
+        story.setProperty('points', 21)
+        request = jasmine.Ajax.requests.mostRecent()
+        expect(request.url).toContain "update-field.json"
+        expect(request.method).toBe 'PUT'
+        expect(request.data()).toEqual(
+          fieldId: story.constructor._fieldIds.points
+          issueIdOrKey: story.id
+          newValue: 21
+        )
+        spyOn console, 'log'
+        request.response({status: 200, responseText: '{"test":123}'})
+        expect(console.log).toHaveBeenCalledWith({test:123})
+
+    describe 'server sync is disabled', ->
+      it 'sends an update field request and updates property', ->
+        story.serverSync = false
+        spyOn console, 'log'
+        story.setProperty('points', 21)
+        request = jasmine.Ajax.requests.mostRecent()
+        expect(request.url).not.toContain "update-field.json"
+        expect(console.log).toHaveBeenCalledWith("#{story.key}: points would have been updated to 21")
+
+  describe '#_parsePoints', ->
+    it 'a numeric string returns the number', ->
+      expect(story._parsePoints('3')).toBe 3
+
+    it 'a non numeric string returns undefined', ->
+      expect(story._parsePoints('aaa')).toBe undefined
+
+    it 'a undefined returns undefined', ->
+      expect(story._parsePoints(undefined)).toBe undefined
 
   describe '#deconstruct', ->
     it 'clears autoupdate interval and calls unboserve all', ->
@@ -100,4 +134,3 @@ describe 'Models.Story', ->
       story.deconstruct()
       expect(story.unobserveAll).toHaveBeenCalled()
       expect(story.autoUpdateInterval).toBeUndefined()
-
