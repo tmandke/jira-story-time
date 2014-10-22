@@ -34,15 +34,15 @@ describe 'Models.Backlog', ->
     it 'deletes autoUpdateInterval when autoUpdateInterval is set to false', ->
       expect(backlog.autoUpdateInterval).toBeDefined()
       appState.autoUpdate = false
-      backlog.updateState()
+      Object.deliverChangeRecords backlog.observer
       expect(backlog.autoUpdateInterval).toBeUndefined()
 
     it 'creates autoUpdateInterval when autoUpdateInterval is set to to', ->
       appState.autoUpdate = false
-      backlog.updateState()
+      Object.deliverChangeRecords backlog.observer
       expect(backlog.autoUpdateInterval).toBeUndefined()
       appState.autoUpdate = true
-      backlog.updateState()
+      Object.deliverChangeRecords backlog.observer
       expect(backlog.autoUpdateInterval).toBeDefined()
 
   describe '#updateBacklog', ->
