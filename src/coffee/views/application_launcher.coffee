@@ -21,6 +21,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
       if @applicationState.storyTimeActive is true
         @launch()
       else
+        @board.deconstruct()
         @backlog.deconstruct()
         @menuView.deconstruct()
         delete @backlog

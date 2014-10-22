@@ -11,6 +11,11 @@ describe 'Views.ApplicationLauncher', ->
       deconstruct: jasmine.createSpy('menu.deconstruct')
     )
 
+    spyOn(JiraStoryTime.Views, 'RegualrStoryTime').and.returnValue(
+      el: $('<div id="JST-regular-st-test-elm"></div>')
+      deconstruct: jasmine.createSpy('regularST.deconstruct')
+    )
+
     spyOn(JiraStoryTime.Models, 'Backlog').and.returnValue(
       deconstruct: jasmine.createSpy('backlog.deconstruct')
     )
@@ -59,6 +64,7 @@ describe 'Views.ApplicationLauncher', ->
       expect(appState.storyTimeActive).toBe false
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).not.toContainElement('.overlay')
+      expect(JiraStoryTime.Views.RegualrStoryTime().deconstruct).toHaveBeenCalled()
       expect(JiraStoryTime.Views.ApplicationMenu().deconstruct).toHaveBeenCalled()
       expect(JiraStoryTime.Models.Backlog().deconstruct).toHaveBeenCalled()
 
@@ -92,6 +98,11 @@ describe 'Views.ApplicationLauncher', ->
       appState.storyTimeActive = true
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).toContainElement('#JST-menu-test-elm')
+
+    it 'has a reqular story time element added', ->
+      appState.storyTimeActive = true
+      Object.deliverChangeRecords launcher.observer
+      expect(dummyJiraPage).toContainElement('#JST-regular-st-test-elm')
 
     it 'backlog is created', ->
       JiraStoryTime.Utils.Params.setParams(rapidview: 1)
