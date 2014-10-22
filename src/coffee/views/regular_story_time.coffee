@@ -68,7 +68,7 @@ class JiraStoryTime.Views.RegualrStoryTime extends JiraStoryTime.Utils.Observer
     @storyViewToDropZoneList[storyView.story.id] = storyViews
 
   dropHandler: (event, newValue, storyId) =>
-    @storyViews[storyId].story[@valueProperty] = newValue
+    @storyViews[storyId].story.setProperty @valueProperty, newValue
 
   deconstruct: () =>
     @unobserveAll()

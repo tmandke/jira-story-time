@@ -63,6 +63,25 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         when @constructor._fieldIds.epic
           @epic = f.text
 
+  setProperty: (prop, points) =>
+    @[prop] = points
+    if @serverSync
+      data =
+        fieldId: @constructor._fieldIds[prop]
+        issueIdOrKey: @id
+        newValue: points
+      $.ajax(
+        url: "/rest/greenhopper/1.0/xboard/issue/update-field.json"
+        context: document.body
+        type: "PUT"
+        headers:
+          "Content-Type": "application/json"
+        data: JSON.stringify data
+      ).done (response) ->
+        console.log response
+    else
+      console.log(this.key + ": #{prop} would have been updated to " + points)
+
   _parsePoints: (html) ->
     try
       ret = parseInt html
