@@ -39,6 +39,17 @@ describe 'Utils.Observer', ->
       obj = new window.JiraStoryTime.Utils.Observer
       expect(obj.onObservedChange).toThrow("onObservedChange has not been implemented")
 
+  describe '#unobserve', ->
+    it 'unobserves obj2', ->
+      obj = new window.JiraStoryTime.Utils.Observer
+      obj2 = {test: 1}
+      obj3 = ['a']
+      obj.observedObjects = [obj, obj2, obj3]
+      spyOn(Object, 'unobserve')
+      obj.unobserve(obj2)
+      expect(Object.unobserve).toHaveBeenCalledWith(obj2, obj.observer)
+      expect(obj.observedObjects.length).toBe 2
+
   describe '#unobserveAll', ->
     it 'unobserves all objects', ->
       obj = new window.JiraStoryTime.Utils.Observer
@@ -52,4 +63,3 @@ describe 'Utils.Observer', ->
       expect(Object.unobserve).toHaveBeenCalledWith(obj2, obj.observer)
       expect(Array.unobserve).toHaveBeenCalledWith(obj3, obj.observer)
       expect(obj.observedObjects.length).toBe 0
-
