@@ -11,6 +11,7 @@ spec/javascripts/fixtures/**/*.html
 !spec/javascripts/helpers/mock-ajax.js
 !spec/javascripts/helpers/jasmine-jquery.js
 !spec/javascripts/helpers/blanket_jasmine.js
+!spec/javascripts/helpers/jasmine-custom-message.js
 .idea
 
 # Compiles Coffeescripts
