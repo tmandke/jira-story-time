@@ -1,4 +1,4 @@
-class JiraStoryTime.Views.RegualrStoryTime extends JiraStoryTime.Utils.Observer
+class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
   storyViewToDropZoneList: {}
   storyViews: {}
   dropZones: {}

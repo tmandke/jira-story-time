@@ -58,7 +58,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
 
   _createBoard: =>
-    @board = new JiraStoryTime.Views.RegualrStoryTime(@applicationState, @backlog)
+    @board = new JiraStoryTime.Views.RegularStoryTime(@applicationState, @backlog)
     @board.el.insertBefore(@overlay().find('#story-unassigned-placeholder'))
 
   onKeyup: (e) =>

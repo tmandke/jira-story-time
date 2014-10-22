@@ -11,7 +11,7 @@ describe 'Views.ApplicationLauncher', ->
       deconstruct: jasmine.createSpy('menu.deconstruct')
     )
 
-    spyOn(JiraStoryTime.Views, 'RegualrStoryTime').and.returnValue(
+    spyOn(JiraStoryTime.Views, 'RegularStoryTime').and.returnValue(
       el: $('<div id="JST-regular-st-test-elm"></div>')
       deconstruct: jasmine.createSpy('regularST.deconstruct')
     )
@@ -64,7 +64,7 @@ describe 'Views.ApplicationLauncher', ->
       expect(appState.storyTimeActive).toBe false
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).not.toContainElement('.overlay')
-      expect(JiraStoryTime.Views.RegualrStoryTime().deconstruct).toHaveBeenCalled()
+      expect(JiraStoryTime.Views.RegularStoryTime().deconstruct).toHaveBeenCalled()
       expect(JiraStoryTime.Views.ApplicationMenu().deconstruct).toHaveBeenCalled()
       expect(JiraStoryTime.Models.Backlog().deconstruct).toHaveBeenCalled()
 
