@@ -70,6 +70,10 @@ html {
   display: block !important;
 }
 
+.hide-me {
+  display: none !important;
+}
+
 .story_board_row.forced-ordering {
   display: flex;
   flex-direction: column;

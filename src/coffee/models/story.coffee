@@ -10,6 +10,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
 
   isCurrent: false
   isOpen: false
+  visible: true
 
   constructor: (@basicData, @rapidView, @applicationState) ->
     super()

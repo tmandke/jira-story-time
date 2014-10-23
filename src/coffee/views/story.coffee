@@ -35,6 +35,9 @@ class JiraStoryTime.Views.Story extends JiraStoryTime.Utils.Observer
     if !change? or change.name is "isOpen"
       @el.find('.story-description')[if @story.isOpen then 'addClass' else 'removeClass']('show-me')
 
+    if !change? or change.name is "visible"
+      @el[if @story.visible then 'removeClass' else 'addClass']('hide-me')
+
     true
 
   deconstruct: () =>

@@ -32,7 +32,7 @@
     padding-left: 3px;
     display: none;
   }
-  .story~.backlog {
+  .story:not([class*='hide-me']) ~ .backlog {
     display: block;
   }
   .story_board_row_drop_mask {
