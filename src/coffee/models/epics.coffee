@@ -22,7 +22,7 @@ class JiraStoryTime.Models.Epics extends JiraStoryTime.Utils.Observer
   setEpicColorAndVisibility: (story) =>
     epicName = if !story.epic or story.epic is "" then "None" else story.epic
     unless @epics[epicName]?
-      @epics[epicName] = new JiraStoryTime.Models.Epic epicName, Object.keys(@epics).length, @backlog.stories
+      @epics[epicName] = new JiraStoryTime.Models.Epic epicName, Object.keys(@epics).length + 1, @backlog.stories
     story.epicColor = @epics[epicName].color
     story.visible = @epics[epicName].visible
     story.epicObj = @epics[epicName]

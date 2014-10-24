@@ -8,6 +8,13 @@ class JiraStoryTime.Views.Epic extends JiraStoryTime.Utils.Observer
     @el.find('label').attr('for', "epic-#{@epic.color}")
     @el.find('.epic-name').html(@epic.name)
     @el.find('input[type=checkbox]').on 'change', @epic.toggleVisibility
+    @updatePoints()
+
+  onObservedChange: (change) =>
+    @updatePoints()
+
+  updatePoints: () =>
+    @el.find('.story-points').html("#{@epic.points} / #{@epic.business}")
 
   deconstruct: () =>
     @unobserveAll()
