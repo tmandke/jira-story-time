@@ -20,6 +20,15 @@ describe 'Views.ApplicationLauncher', ->
       deconstruct: jasmine.createSpy('backlog.deconstruct')
     )
 
+    spyOn(JiraStoryTime.Models, 'Epics').and.returnValue(
+      deconstruct: jasmine.createSpy('model.epics.deconstruct')
+    )
+
+    spyOn(JiraStoryTime.Views, 'Epics').and.returnValue(
+      el: $('<div id="JST-epics-test-elm"></div>')
+      deconstruct: jasmine.createSpy('views.epics.deconstruct')
+    )
+
   describe 'with storyTime active', ->
     beforeEach ->
       appState.storyTimeActive = true
@@ -103,6 +112,11 @@ describe 'Views.ApplicationLauncher', ->
       appState.storyTimeActive = true
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).toContainElement('#JST-regular-st-test-elm')
+
+    it 'has a epics element added', ->
+      appState.storyTimeActive = true
+      Object.deliverChangeRecords launcher.observer
+      expect(dummyJiraPage).toContainElement('#JST-epics-test-elm')
 
     it 'backlog is created', ->
       JiraStoryTime.Utils.Params.setParams(rapidview: 1)
