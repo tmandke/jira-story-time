@@ -7,14 +7,17 @@ class JiraStoryTime.Models.Epic extends JiraStoryTime.Utils.Observer
       @observe s
     @recomputePoints()
 
+  deconstruct: =>
+    @unobserveAll()
+
   onObservedChange: (change) =>
-    if change.object is @appStories
+    if change.object is @allStories
       if change.type is 'add'
-        @observe @appStories[change.name]
-      else if change.type is 'remove'
+        @observe @allStories[change.name]
+      else if change.type is 'delete'
         @unobserve change.oldValue
       @recomputePoints()
-    else if change.name is 'points' or change.name is 'business' or change.epicObj is 'business'
+    else if change.name is 'points' or change.name is 'business' or change.name is 'epicObj'
       @recomputePoints()
 
   recomputePoints: () =>
