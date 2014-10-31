@@ -13,7 +13,7 @@ class JiraStoryTime.Models.Epics extends JiraStoryTime.Utils.Observer
       if change.type is 'add'
         @observe change.object[change.name]
         @setEpicColorAndVisibility(change.object[change.name])
-      else if change.type is 'remove'
+      else if change.type is 'delete'
         @unobserve change.object[change.name]
 
     else if change.name is 'epic'
@@ -29,3 +29,5 @@ class JiraStoryTime.Models.Epics extends JiraStoryTime.Utils.Observer
 
   deconstruct: () =>
     @unobserveAll()
+    $.map @epics, (epic) ->
+      epic.deconstruct()
