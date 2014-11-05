@@ -1,6 +1,6 @@
-class JiraStoryTime.Models.Epic extends JiraStoryTime.Utils.Observer
+class JiraStoryTime.Models.Subset extends JiraStoryTime.Utils.Observer
   visible: true
-  constructor: (@name, @color, @allStories) ->
+  constructor: (@subsetVar, @name, @color, @allStories) ->
     super()
     @observe @allStories
     $.map @allStories, (s) =>
@@ -17,14 +17,16 @@ class JiraStoryTime.Models.Epic extends JiraStoryTime.Utils.Observer
       else if change.type is 'delete'
         @unobserve change.oldValue
       @recomputePoints()
-    else if change.name is 'points' or change.name is 'business' or change.name is 'epicObj'
+    else if change.name is 'points' or change.name is 'business' or change.name is "subset_#{@subsetVar}"
+      if change.object["subset_#{@subsetVar}"] is @
+        change.object["visible_#{@subsetVar}"] = @visible
       @recomputePoints()
 
   recomputePoints: () =>
     points    = 0
     business  = 0
     $.map @allStories, (story) =>
-      if story.epicObj is @
+      if story["subset_#{@subsetVar}"] is @
         points   += story.points || 0
         business += story.business || 0
       true
@@ -35,6 +37,6 @@ class JiraStoryTime.Models.Epic extends JiraStoryTime.Utils.Observer
   toggleVisibility: () =>
     @visible = !@visible
     $.map @allStories, (story) =>
-      if story.epicObj is @
-        story.visible = @visible
+      if story["subset_#{@subsetVar}"] is @
+        story["visible_#{@subsetVar}"] = @visible
       true

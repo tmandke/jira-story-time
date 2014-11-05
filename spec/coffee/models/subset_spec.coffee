@@ -1,15 +1,15 @@
-describe 'Models.Epic', ->
+describe 'Models.Subset', ->
   storyId     = null
   epic        = null
   stories     = null
   generateStory = (obj, points, business) ->
     storyId+=1
     {
-      id:         storyId
-      points:     points
-      business:   business
-      epicObj:    obj
-      visible:    true
+      id:           storyId
+      points:       points
+      business:     business
+      subset_epic:  obj
+      visible_epic: true
     }
 
   beforeEach ->
@@ -19,7 +19,7 @@ describe 'Models.Epic', ->
     stories = {}
     stories['1'] = generateStory(undefined, 1, 2)
 
-    epic = new JiraStoryTime.Models.Epic 'test', 1, stories
+    epic = new JiraStoryTime.Models.Subset 'epic', 'test', 1, stories
     stories['2'] = generateStory(epic, undefined, 5)
     stories['3'] = generateStory(epic, 3)
     stories['4'] = generateStory(epic, 5, 2)
@@ -46,7 +46,7 @@ describe 'Models.Epic', ->
         Object.deliverChangeRecords epic.observer
         expect(epic.business).toBe 30
         expect(epic.points).toBe 10
-        stories['1'].epicObj   = epic
+        stories['1'].subset_epic = epic
         Object.deliverChangeRecords epic.observer
         expect(epic.business).toBe 32
         expect(epic.points).toBe 18
@@ -54,17 +54,17 @@ describe 'Models.Epic', ->
   describe "#toggleVisibility", ->
       it "switch all stories but 1 to not visible", ->
         epic.toggleVisibility()
-        expect(stories['1'].visible).toBe true
-        expect(stories['2'].visible).toBe false
-        expect(stories['3'].visible).toBe false
-        expect(stories['4'].visible).toBe false
-        expect(stories['5'].visible).toBe false
+        expect(stories['1'].visible_epic).toBe true
+        expect(stories['2'].visible_epic).toBe false
+        expect(stories['3'].visible_epic).toBe false
+        expect(stories['4'].visible_epic).toBe false
+        expect(stories['5'].visible_epic).toBe false
 
       it "all stories become visible when toggeled again", ->
         epic.toggleVisibility()
         epic.toggleVisibility()
-        expect(stories['1'].visible).toBe true
-        expect(stories['2'].visible).toBe true
-        expect(stories['3'].visible).toBe true
-        expect(stories['4'].visible).toBe true
-        expect(stories['5'].visible).toBe true
+        expect(stories['1'].visible_epic).toBe true
+        expect(stories['2'].visible_epic).toBe true
+        expect(stories['3'].visible_epic).toBe true
+        expect(stories['4'].visible_epic).toBe true
+        expect(stories['5'].visible_epic).toBe true

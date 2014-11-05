@@ -11,6 +11,8 @@ describe 'Views.RegularStoryTime', ->
       points:     points
       color:      color
       business:   business
+      isVisible:  ->
+        true
     }
 
   testDZList = (val, args...) ->

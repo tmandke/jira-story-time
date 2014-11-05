@@ -10,7 +10,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
 
   isCurrent: false
   isOpen: false
-  visible: true
+  visible_default: true
 
   constructor: (@basicData, @rapidView, @applicationState) ->
     super()
@@ -82,6 +82,14 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         console.log response
     else
       console.log("#{@key}: #{prop} would have been updated to #{points}")
+
+  isVisible: () =>
+    vis = true
+    Object.keys(@).forEach (k) =>
+      if /^visible_/.test(k)
+        vis = vis && @[k]
+      true
+    vis
 
   _parsePoints: (text) ->
       ret = parseInt text

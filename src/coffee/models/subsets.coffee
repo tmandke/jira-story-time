@@ -1,8 +1,8 @@
-class JiraStoryTime.Models.Epics extends JiraStoryTime.Utils.Observer
+class JiraStoryTime.Models.Subsets extends JiraStoryTime.Utils.Observer
 
-  constructor: (@backlog) ->
+  constructor: (@backlog, @subsetVar) ->
     super()
-    @epics = {}
+    @subsets = {}
     @observe @backlog.stories
     $.map @backlog.stories, (s)=>
       @observe s
@@ -16,18 +16,16 @@ class JiraStoryTime.Models.Epics extends JiraStoryTime.Utils.Observer
       else if change.type is 'delete'
         @unobserve change.object[change.name]
 
-    else if change.name is 'epic'
+    else if change.name is @subsetVar
       @setEpicColorAndVisibility(change.object)
 
   setEpicColorAndVisibility: (story) =>
-    epicName = if !story.epic or story.epic is "" then "None" else story.epic
-    unless @epics[epicName]?
-      @epics[epicName] = new JiraStoryTime.Models.Epic epicName, Object.keys(@epics).length + 1, @backlog.stories
-    story.epicColor = @epics[epicName].color
-    story.visible = @epics[epicName].visible
-    story.epicObj = @epics[epicName]
+    subsetName = if !story[@subsetVar] or story[@subsetVar] is "" then "None" else story[@subsetVar]
+    unless @subsets[subsetName]?
+      @subsets[subsetName] = new JiraStoryTime.Models.Subset @subsetVar, subsetName, Object.keys(@subsets).length + 1, @backlog.stories
+    story["subset_#{@subsetVar}"] = @subsets[subsetName]
 
   deconstruct: () =>
     @unobserveAll()
-    $.map @epics, (epic) ->
-      epic.deconstruct()
+    $.map @subsets, (subset) ->
+      subset.deconstruct()

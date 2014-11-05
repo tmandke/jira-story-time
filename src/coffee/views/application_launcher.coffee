@@ -61,7 +61,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
 
   _createEpics: =>
-    @epics = new JiraStoryTime.Models.Epics(@backlog)
+    @epics = new JiraStoryTime.Models.Subsets(@backlog, 'epic')
     @epicsView = new JiraStoryTime.Views.Epics(@epics)
     @epicsView.el.insertBefore(@overlay().find('#story-unassigned-placeholder'))
 

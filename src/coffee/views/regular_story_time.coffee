@@ -25,7 +25,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
       else if change.type is 'delete'
         @removeStoryView @storyViews[change.name]
         @storyViews[change.name].deconstruct()
-    else if @storyViews[change.object.id]? and (change.name is @valueProperty or change.name is 'isCurrent' or change.name is 'epicColor')
+    else if @storyViews[change.object.id]? and (change.name is @valueProperty or change.name is 'isCurrent' or change.name is 'subset_epic')
       @placeStoryView(@storyViews[change.object.id])
 
   setValueProperty: () =>

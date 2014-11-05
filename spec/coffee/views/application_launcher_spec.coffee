@@ -20,7 +20,7 @@ describe 'Views.ApplicationLauncher', ->
       deconstruct: jasmine.createSpy('backlog.deconstruct')
     )
 
-    spyOn(JiraStoryTime.Models, 'Epics').and.returnValue(
+    spyOn(JiraStoryTime.Models, 'Subsets').and.returnValue(
       deconstruct: jasmine.createSpy('model.epics.deconstruct')
     )
 

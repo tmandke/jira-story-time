@@ -1,4 +1,4 @@
-describe 'Models.Epics', ->
+describe 'Models.Subsets', ->
   storyId     = null
   epics       = null
   backlog     = null
@@ -23,7 +23,7 @@ describe 'Models.Epics', ->
     backlog =
       stories: stories
 
-    epics = new JiraStoryTime.Models.Epics backlog
+    epics = new JiraStoryTime.Models.Subsets backlog, 'epic'
     stories['3'] = generateStory("aaa", 3)
     stories['4'] = generateStory("abc", 5, 2)
     stories['5'] = generateStory("aaa", 2, 2)
@@ -35,16 +35,16 @@ describe 'Models.Epics', ->
   describe ".constructor", ->
     describe "observes stories hash", ->
       it "creates 3 epics", ->
-        expect(Object.keys(epics.epics).length).toBe 3
+        expect(Object.keys(epics.subsets).length).toBe 3
 
       it "deletiton of a story should not delete its epic", ->
         delete stories['1']
         Object.deliverChangeRecords epics.observer
-        expect(Object.keys(epics.epics).length).toBe 3
+        expect(Object.keys(epics.subsets).length).toBe 3
 
     describe "observes each story", ->
       it "change in epic results in color change", ->
-        expect(stories['1'].epicColor).toBe 1
+        expect(stories['1'].subset_epic.color).toBe 1
         stories['1'].epic = "abc"
         Object.deliverChangeRecords epics.observer
-        expect(stories['1'].epicColor).toBe 2
+        expect(stories['1'].subset_epic.color).toBe 2

@@ -3,12 +3,12 @@ class JiraStoryTime.Views.Epics extends JiraStoryTime.Utils.Observer
     super()
     @el = $(JiraStoryTime.Utils.Templates.get('epics.html'))
     @epicViews = []
-    @observe @epics.epics
-    $.map @epics.epics, @addEpicView
+    @observe @epics.subsets
+    $.map @epics.subsets, @addEpicView
 
   onObservedChange: (change) =>
     if change.type is 'add'
-      @addEpicView(@epics.epics[change.name])
+      @addEpicView(@epics.subsets[change.name])
 
   addEpicView: (epic) =>
     epicView = new JiraStoryTime.Views.Epic(epic)
