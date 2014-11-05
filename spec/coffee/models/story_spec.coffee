@@ -117,6 +117,18 @@ describe 'Models.Story', ->
         expect(request.url).not.toContain "update-field.json"
         expect(console.log).toHaveBeenCalledWith("#{story.key}: points would have been updated to 21")
 
+  describe '#isVisible', ->
+    it 'returns true by default', ->
+      expect(story.isVisible()).toBe true
+
+    it 'returns false if one visible_var is false', ->
+      story.visible_epic = false
+      expect(story.isVisible()).toBe false
+
+    it 'returns true if all visible_vars are true', ->
+      story.visible_epic = true
+      expect(story.isVisible()).toBe true
+
   describe '#_parsePoints', ->
     it 'a numeric string returns the number', ->
       expect(story._parsePoints('3')).toBe 3
