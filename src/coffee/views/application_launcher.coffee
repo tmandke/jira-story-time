@@ -24,6 +24,8 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
         @board.deconstruct()
         @epicsView.deconstruct()
         @epics.deconstruct()
+        @versionsView.deconstruct()
+        @versions.deconstruct()
         @backlog.deconstruct()
         @menuView.deconstruct()
         delete @backlog
@@ -49,6 +51,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @overlay().keyup(@onKeyup)
     @_launchMenu()
     @_createBacklog()
+    @_createVersions()
     @_createEpics()
     @_createBoard()
 
@@ -60,10 +63,15 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     rapidView = JiraStoryTime.Utils.Params.getCurrentParams().rapidView
     @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
 
+  _createVersions: =>
+    @versions = new JiraStoryTime.Models.Subsets(@backlog, 'version')
+    @versionsView = new JiraStoryTime.Views.Epics(@versions)
+    @overlay().find("#story-board-selecters").append(@versionsView.el)
+
   _createEpics: =>
     @epics = new JiraStoryTime.Models.Subsets(@backlog, 'epic')
     @epicsView = new JiraStoryTime.Views.Epics(@epics)
-    @epicsView.el.insertBefore(@overlay().find('#story-unassigned-placeholder'))
+    @overlay().find("#story-board-selecters").append(@epicsView.el)
 
   _createBoard: =>
     @board = new JiraStoryTime.Views.RegularStoryTime(@applicationState, @backlog)

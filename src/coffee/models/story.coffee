@@ -7,6 +7,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     business: "customfield_10003"
     points: "customfield_10002"
     epic: "customfield_10007"
+    version: "fixVersions"
 
   isCurrent: false
   isOpen: false
@@ -63,6 +64,8 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
           @description = f.html
         when @constructor._fieldIds.epic
           @epic = f.text
+        when @constructor._fieldIds.version
+          @version = f.text
 
   setProperty: (prop, points) =>
     @[prop] = points
