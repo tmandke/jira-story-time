@@ -24,7 +24,7 @@ describe 'Views.ApplicationLauncher', ->
       deconstruct: jasmine.createSpy('model.epics.deconstruct')
     )
 
-    spyOn(JiraStoryTime.Views, 'Epics').and.returnValue(
+    spyOn(JiraStoryTime.Views, 'Subsets').and.returnValue(
       el: $('<div id="JST-epics-test-elm"></div>')
       deconstruct: jasmine.createSpy('views.epics.deconstruct')
     )

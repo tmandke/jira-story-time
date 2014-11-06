@@ -22,10 +22,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
         @launch()
       else
         @board.deconstruct()
-        @epicsView.deconstruct()
-        @epics.deconstruct()
-        @versionsView.deconstruct()
-        @versions.deconstruct()
+        @subsetsView.deconstruct()
         @backlog.deconstruct()
         @menuView.deconstruct()
         delete @backlog
@@ -51,8 +48,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @overlay().keyup(@onKeyup)
     @_launchMenu()
     @_createBacklog()
-    @_createVersions()
-    @_createEpics()
+    @_createSubsets()
     @_createBoard()
 
   _launchMenu: =>
@@ -63,15 +59,9 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     rapidView = JiraStoryTime.Utils.Params.getCurrentParams().rapidView
     @backlog = new JiraStoryTime.Models.Backlog(rapidView, @applicationState)
 
-  _createVersions: =>
-    @versions = new JiraStoryTime.Models.Subsets(@backlog, 'version')
-    @versionsView = new JiraStoryTime.Views.Epics(@versions)
-    @overlay().find("#story-board-selecters").append(@versionsView.el)
-
-  _createEpics: =>
-    @epics = new JiraStoryTime.Models.Subsets(@backlog, 'epic')
-    @epicsView = new JiraStoryTime.Views.Epics(@epics)
-    @overlay().find("#story-board-selecters").append(@epicsView.el)
+  _createSubsets: =>
+    @subsetsView = new JiraStoryTime.Views.Subsets(@applicationState, @backlog)
+    @overlay().find("#story-board-selecters").append(@subsetsView.el)
 
   _createBoard: =>
     @board = new JiraStoryTime.Views.RegularStoryTime(@applicationState, @backlog)

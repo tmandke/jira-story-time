@@ -77,8 +77,7 @@ describe 'Views.Story', ->
     it 'updates epic-color', ->
       expect(storyView.el).toHaveClass("epic-color-undefined")
       expect(storyView.el).not.toHaveClass("epic-color-1")
-      story.subset_epic =
-        color: 1
+      story.color = 1
       Object.deliverChangeRecords storyView.observer
       expect(storyView.el).not.toHaveClass("epic-color-undefined")
       expect(storyView.el).toHaveClass("epic-color-1")

@@ -9,7 +9,7 @@ describe 'Models.Subset', ->
       points:       points
       business:     business
       subset_epic:  obj
-      visible_epic: true
+      visible:      true
     }
 
   beforeEach ->
@@ -54,17 +54,17 @@ describe 'Models.Subset', ->
   describe "#toggleVisibility", ->
       it "switch all stories but 1 to not visible", ->
         epic.toggleVisibility()
-        expect(stories['1'].visible_epic).toBe true
-        expect(stories['2'].visible_epic).toBe false
-        expect(stories['3'].visible_epic).toBe false
-        expect(stories['4'].visible_epic).toBe false
-        expect(stories['5'].visible_epic).toBe false
+        expect(stories['1'].visible).toBe true
+        expect(stories['2'].visible).toBe false
+        expect(stories['3'].visible).toBe false
+        expect(stories['4'].visible).toBe false
+        expect(stories['5'].visible).toBe false
 
       it "all stories become visible when toggeled again", ->
         epic.toggleVisibility()
         epic.toggleVisibility()
-        expect(stories['1'].visible_epic).toBe true
-        expect(stories['2'].visible_epic).toBe true
-        expect(stories['3'].visible_epic).toBe true
-        expect(stories['4'].visible_epic).toBe true
-        expect(stories['5'].visible_epic).toBe true
+        expect(stories['1'].visible).toBe true
+        expect(stories['2'].visible).toBe true
+        expect(stories['3'].visible).toBe true
+        expect(stories['4'].visible).toBe true
+        expect(stories['5'].visible).toBe true

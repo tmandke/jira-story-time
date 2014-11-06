@@ -89,7 +89,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
   isVisible: () =>
     vis = true
     Object.keys(@).forEach (k) =>
-      if /^visible_/.test(k)
+      if /^visible/.test(k)
         vis = vis && @[k]
       true
     vis
