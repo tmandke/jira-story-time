@@ -91,6 +91,15 @@ describe 'Views.Story', ->
       Object.deliverChangeRecords storyView.observer
       expect(storyView.el.find('.story-description')).not.toHaveClass("show-me")
 
+    it 'toggles visibility on and off', ->
+      expect(storyView.el).not.toHaveClass("hide-me")
+      story.visible = false
+      Object.deliverChangeRecords storyView.observer
+      expect(storyView.el).toHaveClass("hide-me")
+      story.visible = true
+      Object.deliverChangeRecords storyView.observer
+      expect(storyView.el).not.toHaveClass("hide-me")
+
   describe '#deconstruct', ->
     it 'calls unobserves all', ->
       spyOn(storyView, 'unobserveAll').and.callThrough()
