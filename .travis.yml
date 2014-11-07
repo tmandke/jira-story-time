@@ -1,3 +1,6 @@
 before_script:
-- sh -e /etc/init.d/xvfb start
+- sudo apt-get install chrome
+- "DISPLAY=:99.0 sh -e /etc/init.d/xvfb start"
+- sleep 3 # give xvfb some time to start
+
 script: DISPLAY=:99.0 bundle exec rake jasmine:ci
