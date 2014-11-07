@@ -4623,6 +4623,7 @@ blanket.defaultReporter = function(coverage){
 
     var files = coverage.files;
     var totals = {
+      files: {},
       totalSmts: 0,
       numberOfFilesCovered: 0,
       passedBranches: 0,
@@ -4735,7 +4736,13 @@ blanket.defaultReporter = function(coverage){
         }
 
         var result = percentage(numberOfFilesCovered, totalSmts);
-
+        totals.files[file] = {
+          percentage: result,
+          totalSmts: totalSmts,
+          numberOfFilesCovered: numberOfFilesCovered,
+          passedBranches: passedBranches,
+          totalBranches: totalBranches
+        }
         var output = fileTemplate.replace("{{file}}", file)
                                  .replace("{{percentage}}",result)
                                  .replace("{{numberCovered}}", numberOfFilesCovered)
@@ -4769,6 +4776,7 @@ blanket.defaultReporter = function(coverage){
             .replace("{{statusclass}}", statusClass);
 
         bodyContent += totalsOutput;
+        totals.percentage = totalPercent;
     };
 
     // if "data-cover-modulepattern" was provided, 
@@ -4801,6 +4809,8 @@ blanket.defaultReporter = function(coverage){
         appendTag('div', body, bodyContent);
     }
     //appendHtml(body, '</div>');
+    totals.successRate = successRate
+    return totals;
 };
 
 (function(){
