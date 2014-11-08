@@ -15,6 +15,9 @@ class JiraStoryTime.Views.Subsets extends JiraStoryTime.Utils.Observer
     @unobserve @subsets.subsets
     $.map @subsetViews, (sv) ->
       sv.deconstruct()
+    @subsetViews = []
+    @subsets.deconstruct()
+    @subsets = null
 
   onObservedChange: (change) =>
     if change.object is @applicationState
