@@ -1,7 +1,7 @@
 class JiraStoryTime.Views.Subsets extends JiraStoryTime.Utils.Observer
   constructor: (@applicationState, @backlog) ->
     super()
-    @el = $(JiraStoryTime.Utils.Templates.get('epics.html'))
+    @el = $(JiraStoryTime.Utils.Templates.get('subsets.html'))
     @subsetViews = []
     @observe @applicationState
     @setUpSubsets()
@@ -9,7 +9,7 @@ class JiraStoryTime.Views.Subsets extends JiraStoryTime.Utils.Observer
   setUpSubsets: () =>
     @subsets = new JiraStoryTime.Models.Subsets(@backlog, @applicationState.subsets)
     @observe @subsets.subsets
-    $.map @subsets.subsets, @addEpicView
+    $.map @subsets.subsets, @addSubsetView
 
   tearDownSubsets: () =>
     @unobserve @subsets.subsets
@@ -21,10 +21,10 @@ class JiraStoryTime.Views.Subsets extends JiraStoryTime.Utils.Observer
       @tearDownSubsets()
       @setUpSubsets()
     else if change.object is @subsets.subsets and change.type is 'add'
-      @addEpicView(@subsets.subsets[change.name])
+      @addSubsetView(@subsets.subsets[change.name])
 
-  addEpicView: (subset) =>
-    subsetView = new JiraStoryTime.Views.Epic(subset)
+  addSubsetView: (subset) =>
+    subsetView = new JiraStoryTime.Views.Subset(subset)
     @subsetViews.push(subsetView)
     @el.append subsetView.el
 
