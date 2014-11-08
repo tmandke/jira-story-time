@@ -37,7 +37,7 @@ module Jasmine
         results = driver.execute_script(<<-JS)
           return window.blanketResults;
         JS
-        puts results
+
         expectations = results['files'].map{|f,d| __createBlanketExpectation(f, d) }
         expectations << __createBlanketExpectation("Global Total", results)
         jasmineResult = {
