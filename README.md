@@ -1,5 +1,6 @@
 jira-story-time
 ===============
+[![Build Status](https://travis-ci.org/tmandke/jira-story-time.svg?branch=master)](https://travis-ci.org/tmandke/jira-story-time)
 
 Notes: 
 - in `src/story.js` if you set `Story.devMode = false;` it will start updating story points.
