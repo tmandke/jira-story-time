@@ -17,6 +17,11 @@ describe 'Views.Story', ->
     storyView = new JiraStoryTime.Views.Story story
     setFixtures(storyView.el)
 
+  afterEach ->
+    jasmine.Ajax.uninstall()
+    storyView.deconstruct()
+    story.deconstruct()
+
   describe '.constructor', ->
     it 'renders story', ->
       expect(JiraStoryTime.Views.Story.prototype.render).toHaveBeenCalledWith()

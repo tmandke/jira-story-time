@@ -3,11 +3,11 @@ class JiraStoryTime.Views.Subset extends JiraStoryTime.Utils.Observer
     super()
     @observe @subset
     @el = $(JiraStoryTime.Utils.Templates.get('subset.html'))
-    @el.addClass("epic-color-#{@epic.color}")
+    @el.addClass("epic-color-#{@subset.color}")
     @el.find('input[type=checkbox]').attr('id', "epic-#{@subset.subsetVar}-#{@subset.color}")
     @el.find('label').attr('for', "epic-#{@subset.subsetVar}-#{@subset.color}")
-    @el.find('.epic-name').html(@epic.name)
-    @el.find('input[type=checkbox]').on 'change', @epic.toggleVisibility
+    @el.find('.epic-name').html(@subset.name)
+    @el.find('input[type=checkbox]').on 'change', @subset.toggleVisibility
     @updatePoints()
 
   onObservedChange: (change) =>

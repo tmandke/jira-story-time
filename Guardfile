@@ -50,7 +50,7 @@ class Reloader
   end
   
   def reload!
-    system "osascript -e '#{RELOAD_SCRIPT}'"
+    system "osascript -e '#{RELOAD_SCRIPT}'"  unless Env['DISABLE_RELOADER'] == 'true'
     @should_reload = false
   end
 end
@@ -70,7 +70,7 @@ guard 'shell' do
   end
   
   watch(%r{^extension/.+\.(html|js|css|png|gif|jpg)}) do |m|
-    RELOADER.reload unless Env['DISABLE_RELOADER'] == 'true'
+    RELOADER.reload
   end
 end
 
