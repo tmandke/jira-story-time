@@ -1,7 +1,7 @@
 describe 'Models.ApplicationState', ->
   describe '.constructor', ->
     state = null
-    params = ['autoUpdate', 'serverSync', 'storyTimeActive', 'pointsType', 'view']
+    params = ['autoUpdate', 'serverSync', 'storyTimeActive', 'pointsType', 'subsets']
     beforeEach ->
       state = new JiraStoryTime.Models.ApplicationState()
 
@@ -29,7 +29,7 @@ describe 'Models.ApplicationState', ->
         state.serverSync = false
         state.storyTimeActive = true
         state.pointsType = 'Business Value'
-        state.view = 'Forced'
+        state.subsets = 'epic'
         Object.deliverChangeRecords observer.observer
 
         expect(observedChanges).toEqual(params)
