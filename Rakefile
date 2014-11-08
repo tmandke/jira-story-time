@@ -13,6 +13,10 @@ end
 
 require 'jasmine'
 require 'jasmine_selenium_runner'
+require 'guard'
+task :guard_all do
+  Guard.run_all()
+end
 
 module Jasmine
   module Runners
@@ -33,7 +37,7 @@ module Jasmine
         results = driver.execute_script(<<-JS)
           return window.blanketResults;
         JS
-
+        puts results
         expectations = results['files'].map{|f,d| __createBlanketExpectation(f, d) }
         expectations << __createBlanketExpectation("Global Total", results)
         jasmineResult = {

@@ -70,7 +70,7 @@ guard 'shell' do
   end
   
   watch(%r{^extension/.+\.(html|js|css|png|gif|jpg)}) do |m|
-    RELOADER.reload
+    RELOADER.reload unless Env['DISABLE_RELOADER'] == 'true'
   end
 end
 
