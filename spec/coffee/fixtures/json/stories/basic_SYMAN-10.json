@@ -1,0 +1,44 @@
+{
+  "id": 10009,
+  "key": "SYMAN-10",
+  "hidden": false,
+  "typeName": "Story",
+  "typeId": "10001",
+  "summary": "g",
+  "typeUrl": "http://localhost:8080/images/icons/ico_story.png",
+  "priorityUrl": "http://localhost:8080/images/icons/priorities/major.png",
+  "priorityName": "Major",
+  "done": false,
+  "assignee": "tmandke",
+  "assigneeName": "tejas mandke",
+  "avatarUrl": "http://www.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
+  "hasCustomUserAvatar": true,
+  "color": "#cc0000",
+  "epic": "SYMAN-31",
+  "estimateStatistic": {
+    "statFieldId": "customfield_10002",
+    "statFieldValue": {
+      "value": 8.0,
+      "text": "8"
+    }
+  },
+  "statusId": "10000",
+  "statusName": "To Do",
+  "statusUrl": "http://localhost:8080/images/icons/subtask.gif",
+  "status": {
+    "id": "10000",
+    "name": "To Do",
+    "description": "",
+    "iconUrl": "http://localhost:8080/images/icons/subtask.gif",
+    "statusCategory": {
+      "id": "1",
+      "key": "undefined",
+      "colorName": "medium-gray"
+    }
+  },
+  "fixVersions": [
+
+  ],
+  "projectId": 10000,
+  "linkedPagesCount": 0
+}

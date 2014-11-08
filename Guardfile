@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'fileutils'
 RELOAD_SCRIPT = <<SCRIPT
 tell application "Google Chrome" to tell the active tab of its first window
   activate
@@ -26,7 +27,7 @@ manifest = {
       run_at:   "document_end",
       html:     [ "templates/*.html", "templates/*.css" ],
       matches:  [ "https://*/secure/RapidBoard.jspa*", "http://*/secure/RapidBoard.jspa*" ],
-      js: ["js/templates.js"]
+      js: %w(js/jquery.min.js js/init.js)
     }
   ],
   web_accessible_resources: [ "templates/*.html", "templates/*.css" ]
@@ -49,7 +50,7 @@ class Reloader
   end
   
   def reload!
-    system "osascript -e '#{RELOAD_SCRIPT}'"
+    system "osascript -e '#{RELOAD_SCRIPT}'"  unless Env['DISABLE_RELOADER'] == 'true'
     @should_reload = false
   end
 end
@@ -59,9 +60,13 @@ RELOADER ||= Reloader.new
 
 guard 'shell' do
   watch(%r{^extension/.+\.js}) do |m|
-    manifest[:content_scripts][0][:js] += Dir["extension/js/*.js"].map{|f| f.gsub('extension/', '')}
+    jsList = manifest[:content_scripts][0][:js]
+    manifest[:content_scripts][0][:js] += Dir['extension/js/utils/*.js'].map{|f| f.gsub('extension/', '')}
+    manifest[:content_scripts][0][:js] += Dir['extension/js/models/*.js'].map{|f| f.gsub('extension/', '')}
+    manifest[:content_scripts][0][:js] += Dir['extension/js/**/*.js'].map{|f| f.gsub('extension/', '')}
     manifest[:content_scripts][0][:js].uniq!
     File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
+    manifest[:content_scripts][0][:js] = jsList
   end
   
   watch(%r{^extension/.+\.(html|js|css|png|gif|jpg)}) do |m|
@@ -76,4 +81,16 @@ end
 guard 'sass', input: 'src/sass', output: 'extension/templates'
 
 guard 'coffeescript', input: 'src/coffee', output: 'extension/js', bare: true
+group :spec do
+  guard 'shell' do
+    watch( %r{spec/coffee/fixtures/(.+).slim} ) { |m| `slimrb -p #{m[0]} spec/javascripts/fixtures/#{m[1]}.html` }
+    watch( %r{spec/coffee/fixtures/json/(.+).json} ) { |m|
+      file_name = "spec/javascripts/fixtures/json/#{m[1]}.json"
+      FileUtils.mkdir_p(File.dirname file_name)
+      `cp -p #{m[0]} #{file_name}`
+    }
+  end
+
+  guard 'coffeescript', input: 'spec/coffee', output: 'spec/javascripts', bare: true
+end
 

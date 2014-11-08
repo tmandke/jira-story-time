@@ -12,6 +12,9 @@
     min-width: 164px
   }
   &.over {
+    > .story_board_row_drop_mask {
+      display: block;
+    }
     background-color: rgba(white, .6);
     .story_board_row_points {
       z-index: 98;
@@ -29,7 +32,7 @@
     padding-left: 3px;
     display: none;
   }
-  .story~.backlog {
+  .story:not([class*='hide-me']) ~ .backlog {
     display: block;
   }
   .story_board_row_drop_mask {
@@ -62,7 +65,8 @@
   height: 10%;
 }
 
-#story-points--- {
+#story-points-undefined {
+  flex: none;
   position: absolute;
   top: 90%;
   display: block;

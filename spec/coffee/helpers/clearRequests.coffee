@@ -1,0 +1,2 @@
+afterEach ->
+  JiraStoryTime.Util.abortAllXHR()

@@ -1,8 +1,5 @@
-window.JiraStoryTime.Templates.fetchAll ->
-  renderStoryTime = ->
-    mainView.applyRadioChange()
-    
-  $("#ghx-modes").append window.JiraStoryTime.Templates['storyTimeToggle.html']
-
-  $("#story-toggle").on "click", renderStoryTime
-  mainView = new window.JiraStoryTime.TopBarView()
+$ ->
+  unless jasmine?
+    body = $('body')
+    JiraStoryTime.appState = new JiraStoryTime.Models.ApplicationState
+    JiraStoryTime.appLauncher = new JiraStoryTime.Views.ApplicationLauncher body, JiraStoryTime.appState

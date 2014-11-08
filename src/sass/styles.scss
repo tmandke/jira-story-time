@@ -4,7 +4,8 @@
 @import "_colors";
 @import "_storyCard";
 @import "_column";
-@import "_epic";
+@import "_subset";
+@import "_menu";
 
 $font-stack: "Roboto Condensed", sans-serif;
 
@@ -37,9 +38,12 @@ html {
   padding: 15px;
   background-color: $header-container;
   font-weight: 300;
+  @include flexbox();
+  justify-content: space-between;
+  align-items: center;
 }
 
-#story_board_top {
+#story-board-selecters {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -64,6 +68,10 @@ html {
 
 .show-me {
   display: block !important;
+}
+
+.hide-me {
+  display: none !important;
 }
 
 .story_board_row.forced-ordering {

@@ -1,0 +1,43 @@
+.story-board-subsets {
+  @include flexbox();
+  @include flex(row wrap);
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  @include fontsize(1.4);
+  flex-shrink: 100;
+  padding: 10px;
+}
+.epic {
+  color: white;
+  margin:5px;
+  font-weight: 400;
+
+  input {
+    display: none;
+  }
+  input:not(:checked) + label {
+    background-color: lighten($base-color, 60%)
+  }
+  label{
+    @include border-radius(3px);
+    @include flexbox();
+    @include flex(row wrap);
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    white-space: nowrap;
+    .epic-name {
+      padding: 4px 8px;
+    }
+
+    .story-points {
+      background-color: rgba(black, .1);
+      padding: 4px 7px;
+    }
+  }
+
+  @for $i from 1 through 11 {
+    &.epic-color-#{$i} > label {
+      background-color: nth($colors, $i);
+    }
+  }
+}
