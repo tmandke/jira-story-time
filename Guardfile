@@ -61,9 +61,9 @@ RELOADER ||= Reloader.new
 guard 'shell' do
   watch(%r{^extension/.+\.js}) do |m|
     jsList = manifest[:content_scripts][0][:js]
-    manifest[:content_scripts][0][:js] += Dir['extension/js/utils/*.js'].map{|f| f.gsub('extension/', '')}
-    manifest[:content_scripts][0][:js] += Dir['extension/js/models/*.js'].map{|f| f.gsub('extension/', '')}
-    manifest[:content_scripts][0][:js] += Dir['extension/js/**/*.js'].map{|f| f.gsub('extension/', '')}
+    ['extension/js/utils/*.js', 'extension/js/models/*.js', 'extension/js/**/*.js'].each do |pattern|
+      manifest[:content_scripts][0][:js] += Dir[pattern].map{|f| f.gsub('extension/', '')}
+    end
     manifest[:content_scripts][0][:js].uniq!
     File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
     manifest[:content_scripts][0][:js] = jsList
