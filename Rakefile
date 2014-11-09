@@ -18,6 +18,10 @@ task :guard_all do
   Guard.run_all()
 end
 
+task :coffeelint do
+  exit system "coffeelint -f CoffeeLint.json #{Dir["**/*.coffee"].join(" ")}"
+end
+
 module Jasmine
   module Runners
     class Selenium

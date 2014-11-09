@@ -1,5 +1,6 @@
 addons:
   sauce_connect: true
+
 env:
   global:
   - DISABLE_RELOADER=true
@@ -7,4 +8,9 @@ env:
   - secure: eaUJwXMLfg51MpzkWMr+Ek57mFtiw40ReSSvynAcjY9rFfoY0N8ESnILal4OK4U9eZHNx0qm3CfzhsYuQi7B/XsO3sOahlJdn7rw9R27ZTTh0cmatIXYempMqJlEJPkbtckmXYwHkGkYA/u5b3Xq2fys+c/gV8n77GP0+zfl8Vs=
   - secure: S8fuMXoBSNyCZ4vugKF30UZQRNDQsoWARXUMotVTE2XUFXccKiln+KrvoGUWZL0O5rf5hlinAZ88r3EWkkfpy/9y98s0NaaW/fzVYk2EC+CnYwyb31oxCLWijPOnVoYYHhpcs5IXil06m0PQG3YmuQJDZw51nj4ipztKhiLCoDs=
 
-script: bundle exec rake guard_all jasmine:ci
+before_install:
+  - npm install -g coffeelint
+
+script:
+  - bundle exec rake coffeelint
+  - bundle exec rake guard_all jasmine:ci
