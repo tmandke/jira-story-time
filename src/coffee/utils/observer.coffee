@@ -11,8 +11,9 @@ class window.JiraStoryTime.Utils.Observer
     changes.forEach @onObservedChange
 
   #implement this method
-  onObservedChange: (change)=>
-    throw "onObservedChange has not been implemented"
+  onObservedChange: (change) ->
+    throw new Error("onObservedChange has not been implemented")
+
 
   unobserve: (obj)=>
     @observedObjects ||= []

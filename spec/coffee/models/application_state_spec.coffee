@@ -14,7 +14,7 @@ describe 'Models.ApplicationState', ->
       observedChanges = null
 
       beforeEach ->
-        observer = new JiraStoryTime.Utils.Observer
+        observer = new JiraStoryTime.Utils.Observer()
         observedChanges = []
         spyOn(observer, 'onObservedChange').and.callFake((change) ->
           observedChanges.push change.name

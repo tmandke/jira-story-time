@@ -52,19 +52,19 @@ describe 'Models.Subset', ->
         expect(epic.points).toBe 18
 
   describe "#toggleVisibility", ->
-      it "switch all stories but 1 to not visible", ->
-        epic.toggleVisibility()
-        expect(stories['1'].visible).toBe true
-        expect(stories['2'].visible).toBe false
-        expect(stories['3'].visible).toBe false
-        expect(stories['4'].visible).toBe false
-        expect(stories['5'].visible).toBe false
+    it "switch all stories but 1 to not visible", ->
+      epic.toggleVisibility()
+      expect(stories['1'].visible).toBe true
+      expect(stories['2'].visible).toBe false
+      expect(stories['3'].visible).toBe false
+      expect(stories['4'].visible).toBe false
+      expect(stories['5'].visible).toBe false
 
-      it "all stories become visible when toggeled again", ->
-        epic.toggleVisibility()
-        epic.toggleVisibility()
-        expect(stories['1'].visible).toBe true
-        expect(stories['2'].visible).toBe true
-        expect(stories['3'].visible).toBe true
-        expect(stories['4'].visible).toBe true
-        expect(stories['5'].visible).toBe true
+    it "all stories become visible when toggeled again", ->
+      epic.toggleVisibility()
+      epic.toggleVisibility()
+      expect(stories['1'].visible).toBe true
+      expect(stories['2'].visible).toBe true
+      expect(stories['3'].visible).toBe true
+      expect(stories['4'].visible).toBe true
+      expect(stories['5'].visible).toBe true

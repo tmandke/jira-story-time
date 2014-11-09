@@ -11,7 +11,7 @@ class window.JiraStoryTime.Utils.Params
 
       if @isValueValid val then val else @default
 
-    parseValue: (val) =>
+    parseValue: (val) ->
       val
 
     isValueValid: (val) =>
@@ -29,7 +29,7 @@ class window.JiraStoryTime.Utils.Params
     constructor: (@paramName, @humanName, @default) ->
       super @paramName, @humanName, 'bool', @default, [true, false]
 
-    parseValue: (val) =>
+    parseValue: (val) ->
       $.parseJSON(val)
 
   @boolParam: (paramName, humanName, defaultVal) ->
@@ -61,7 +61,7 @@ class window.JiraStoryTime.Utils.Params
       while i < pairs.length
         keyValuePair = pairs[i].split("=")
         key = decodeURIComponent(keyValuePair[0])
-        value = (if (keyValuePair.length > 1) then decodeURIComponent(keyValuePair[1]) else `undefined`)
+        value = (if (keyValuePair.length > 1) then decodeURIComponent(keyValuePair[1]) else 'undefined')
         map[key] = if typeof value is 'string' then value.replace("+"," ") else value
         i += 1
     map

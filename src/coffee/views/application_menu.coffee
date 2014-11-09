@@ -18,7 +18,7 @@ class JiraStoryTime.Views.ApplicationMenu
         @listEl.find('.menu-item-title').last().html(param.humanName)
         radioParam = @listEl.find('.radio-menu-item').last()
         currVal = param.getParam()
-        param.possibleValues.forEach (val) =>
+        param.possibleValues.forEach (val) ->
           radioParam.append JiraStoryTime.Utils.Templates.get("menu_item_radio_item.html")
           cleanVal = val.replace new RegExp(' ','g') , ""
           radioParam.find('input').last().attr('id', "JST-#{param.paramName}-#{cleanVal}")
@@ -28,8 +28,8 @@ class JiraStoryTime.Views.ApplicationMenu
           radioParam.find('label').last().html val
           radioParam.find('label').last().attr('for', "JST-#{param.paramName}-#{cleanVal}")
 
-        radioParam.find('input').change(->
+        radioParam.find('input').change( ->
           appState[param.paramName] = radioParam.find("input[name=JST-#{param.paramName}]:checked").val()
         )
 
-  deconstruct: () =>
+  deconstruct: () ->

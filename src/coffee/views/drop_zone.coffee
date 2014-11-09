@@ -27,7 +27,7 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
         else
           @el.find('.stories').append(@storyViews[i + change.index].el)
 
-  handleDragStart: (e) =>
+  handleDragStart: (e) ->
     e.originalEvent.dataTransfer.setData "storyId", $(e.target).closest(".story").attr('data-story-id')
 
   handleDragEnter: (e) =>

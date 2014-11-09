@@ -13,7 +13,7 @@ describe 'Views.ApplicationMenu', ->
         if param.type is 'bool'
           expect(menuEl).toContainElement(".bool-menu-item input#JST-#{param.paramName}")
         else
-          param.possibleValues.forEach (val) =>
+          param.possibleValues.forEach (val) ->
             cleanVal = val.replace new RegExp(' ','g') , ""
             expect(menuEl).toContainElement(".radio-menu-item input#JST-#{param.paramName}-#{cleanVal}")
 

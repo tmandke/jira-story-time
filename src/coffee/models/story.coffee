@@ -95,8 +95,8 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     vis
 
   _parsePoints: (text) ->
-      ret = parseInt text
-      if ret then ret else undefined
+    ret = parseInt text
+    if ret then ret else undefined
 
   deconstruct: =>
     clearInterval @autoUpdateInterval

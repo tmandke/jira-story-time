@@ -57,7 +57,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     @removeStoryView(storyView)
     storyViews = @dropZoneLists[storyView.story[@valueProperty]]
     insertIndex = 0
-    storyViews.every (view) =>
+    storyViews.every (view) ->
       if (!storyView.story.isCurrent and (view.backlogBanner or view.story.isCurrent)) or (storyView.story.epicColor > view.story.epicColor) or (storyView.story.id > view.story.id)
         insertIndex+=1
         true
