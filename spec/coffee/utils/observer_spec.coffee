@@ -37,7 +37,7 @@ describe 'Utils.Observer', ->
   describe '#onObservedChange', ->
     it 'throws unimplimented', ->
       obj = new window.JiraStoryTime.Utils.Observer
-      expect(obj.onObservedChange).toThrow("onObservedChange has not been implemented")
+      expect(obj.onObservedChange).toThrowError("onObservedChange has not been implemented")
 
   describe '#unobserve', ->
     it 'unobserves obj2', ->
