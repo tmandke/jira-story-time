@@ -7,7 +7,7 @@
   flex-shrink: 100;
   padding: 10px;
 }
-.epic {
+.subset {
   color: white;
   margin:5px;
   font-weight: 400;
@@ -25,7 +25,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     white-space: nowrap;
-    .epic-name {
+    .subset-name {
       padding: 4px 8px;
     }
 
@@ -36,7 +36,7 @@
   }
 
   @for $i from 1 through 11 {
-    &.epic-color-#{$i} > label {
+    &.subset-color-#{$i} > label {
       background-color: nth($colors, $i);
     }
   }

@@ -79,13 +79,13 @@ describe 'Views.Story', ->
       Object.deliverChangeRecords storyView.observer
       expect(storyView.el).toHaveAttr("draggable", "true")
 
-    it 'updates epic-color', ->
-      expect(storyView.el).toHaveClass("epic-color-undefined")
-      expect(storyView.el).not.toHaveClass("epic-color-1")
+    it 'updates subset-color', ->
+      expect(storyView.el).toHaveClass("subset-color-undefined")
+      expect(storyView.el).not.toHaveClass("subset-color-1")
       story.color = 1
       Object.deliverChangeRecords storyView.observer
-      expect(storyView.el).not.toHaveClass("epic-color-undefined")
-      expect(storyView.el).toHaveClass("epic-color-1")
+      expect(storyView.el).not.toHaveClass("subset-color-undefined")
+      expect(storyView.el).toHaveClass("subset-color-1")
 
     it 'toggles description open and close', ->
       expect(storyView.el.find('.story-description')).not.toHaveClass("show-me")

@@ -5,12 +5,12 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
     @el = $(window.JiraStoryTime.Utils.Templates.get('regularColumn.html'))
     @el.attr "data-story-points", @value
     @el.attr "id", "story-points-#{@value}"
-    @el.find(".story_board_row_points").html @value
+    @el.find(".strory-drop-zone-points").html @value
 
     @el.on "dragstart", @handleDragStart
     @el.on "dragenter", @handleDragEnter
-    @el.find(".story_board_row_drop_mask").on "dragleave", @handleDragLeave
-    @el.find(".story_board_row_drop_mask").on "drop", @handleDrop
+    @el.find(".strory-drop-zone-mask").on "dragleave", @handleDragLeave
+    @el.find(".strory-drop-zone-mask").on "drop", @handleDrop
 
     @storyViews.forEach (view) =>
       @el.find('.stories').append(view.el)
@@ -46,5 +46,5 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
   deconstruct: () =>
     @unobserveAll()
     @el.off()
-    @el.find(".story_board_row_drop_mask").off()
+    @el.find(".strory-drop-zone-mask").off()
     @el.remove()

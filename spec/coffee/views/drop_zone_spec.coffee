@@ -39,7 +39,7 @@ describe 'Views.DropZone', ->
     it 'sets basic drop zone dom properties', ->
       expect(dropZone.el).toHaveAttr("data-story-points", "21")
       expect(dropZone.el).toHaveId("story-points-21")
-      expect(dropZone.el.find('.story_board_row_points')).toHaveText('21')
+      expect(dropZone.el.find('.strory-drop-zone-points')).toHaveText('21')
 
     it 'observes storyViews', ->
       storyViews.splice 0, 0, generateStoryView()
@@ -64,17 +64,17 @@ describe 'Views.DropZone', ->
       dropZone.el.trigger e
       expect(dropZone.el).toHaveClass('over')
 
-    it 'sets up drag leave event on story_board_row_drop_mask', ->
+    it 'sets up drag leave event on strory-drop-zone-mask', ->
       expect(dropZone.el).not.toHaveClass('over')
       e = $.Event('dragenter')
       dropZone.el.trigger e
       expect(dropZone.el).toHaveClass('over')
 
       e = $.Event('dragleave')
-      dropZone.el.find('.story_board_row_drop_mask').trigger e
+      dropZone.el.find('.strory-drop-zone-mask').trigger e
       expect(dropZone.el).not.toHaveClass('over')
 
-    it 'sets up drag drop event on story_board_row_drop_mask', ->
+    it 'sets up drag drop event on strory-drop-zone-mask', ->
       expect(dropZone.el).not.toHaveClass('over')
       e = $.Event('dragenter')
       dropZone.el.trigger e
@@ -83,6 +83,6 @@ describe 'Views.DropZone', ->
       e = $.Event('drop')
       e.originalEvent = dataTransfer: dataTransferObject()
       e.originalEvent.dataTransfer.setData('storyId', '123')
-      dropZone.el.find('.story_board_row_drop_mask').trigger e
+      dropZone.el.find('.strory-drop-zone-mask').trigger e
       expect(dropZone.el).not.toHaveClass('over')
       expect(dropHandler).toHaveBeenCalledWith(e, 21, '123')

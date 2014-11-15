@@ -10,12 +10,12 @@
     margin-bottom: 11px;
     cursor: pointer;
   }
-  &.epic-color-0 {
+  &.subset-color-0 {
     background-color: lighten($base-color, 75%);
     border-color: lighten($base-color, 60%);
   }
   @for $i from 1 through 11 {
-    &.epic-color-#{$i} {
+    &.subset-color-#{$i} {
       background-color: nth($colors2, $i);
       border-color: nth($colors, $i);
     }

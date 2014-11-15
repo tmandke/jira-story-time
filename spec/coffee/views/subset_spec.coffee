@@ -20,7 +20,7 @@ describe 'Views.Subset', ->
 
   describe '.constructor', ->
     it 'adds color class, sets name and points', ->
-      expect(subsetView.el).toHaveClass('epic-color-9')
+      expect(subsetView.el).toHaveClass('subset-color-9')
       expect(subsetView.el).toContainText('test subset')
       expect(subsetView.el).toContainText('10 / 20')
 

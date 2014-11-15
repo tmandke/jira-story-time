@@ -8,7 +8,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     super()
     @observe @applicationState
     @observe @backlog.stories
-    @el = $('<div id="story_board"></div>')
+    @el = $('<div id="story-board"></div>')
     @setValueProperty()
     $.map @backlog.stories, @createStroyView
     @createDropZones()

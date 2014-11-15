@@ -52,7 +52,7 @@ html {
   }
 }
 
-#story_board {
+#story-board {
   flex-shrink: 20000;
   flex-grow: 20000;
   overflow: hidden;
@@ -62,7 +62,7 @@ html {
   justify-content: left;
 }
 
-.story_board_row_points {
+.strory-drop-zone-points {
   text-align: center;
 }
 
@@ -74,7 +74,7 @@ html {
   display: none !important;
 }
 
-.story_board_row.forced-ordering {
+.strory-drop-zone.forced-ordering {
   display: flex;
   flex-direction: column;
   justify-content: space-around;

@@ -29,8 +29,8 @@ class JiraStoryTime.Views.Story extends JiraStoryTime.Utils.Observer
 
     if !change? or change.name is "color"
       @el.removeClass (idx, css) ->
-        (css.match(/(^|\s)epic-color-\S+/g) || []).join(' ')
-      @el.addClass "epic-color-" + @story.color
+        (css.match(/(^|\s)subset-color-\S+/g) || []).join(' ')
+      @el.addClass "subset-color-" + @story.color
 
     if !change? or change.name is "isOpen"
       @el.find('.story-description')[if @story.isOpen then 'addClass' else 'removeClass']('show-me')
