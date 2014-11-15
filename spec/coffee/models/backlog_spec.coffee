@@ -23,6 +23,23 @@ describe 'Models.Backlog', ->
       expect(JiraStoryTime.Models.Backlog.prototype.updateState).toHaveBeenCalled()
       expect(backlog.autoUpdateInterval).toBeUndefined()
 
+    it 'observes all stories', ->
+      backlog.parseResponse(fixtures.backlog)
+      expect(backlog.stories[fixtures.backlog.issues[0].id]).toBeDefined()
+      expect(backlog.issues[fixtures.backlog.issues[0].id]).toBeDefined()
+      backlog.issues[fixtures.backlog.issues[0].id].type = 'Task'
+      Object.deliverChangeRecords backlog.observer
+      expect(backlog.stories[fixtures.backlog.issues[0].id]).toBeUndefined()
+      expect(backlog.issues[fixtures.backlog.issues[0].id]).toBeDefined()
+      backlog.issues[fixtures.backlog.issues[0].id].type = 'Task2'
+      Object.deliverChangeRecords backlog.observer
+      expect(backlog.stories[fixtures.backlog.issues[0].id]).toBeUndefined()
+      expect(backlog.issues[fixtures.backlog.issues[0].id]).toBeDefined()
+      backlog.issues[fixtures.backlog.issues[0].id].type = 'Story'
+      Object.deliverChangeRecords backlog.observer
+      expect(backlog.stories[fixtures.backlog.issues[0].id]).toBeDefined()
+      expect(backlog.issues[fixtures.backlog.issues[0].id]).toBeDefined()
+
     it 'sets up autoUpdateInterval', ->
       expect(JiraStoryTime.Models.Backlog.prototype.updateState).toHaveBeenCalled()
       expect(backlog.autoUpdateInterval).toBeDefined()
