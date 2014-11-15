@@ -12,7 +12,7 @@ describe 'Views.Story', ->
     spyOn(JiraStoryTime.Views.Story.prototype, 'render').and.callThrough()
     appState  = new JiraStoryTime.Models.ApplicationState()
     appState.autoUpdate = false
-    story     = new JiraStoryTime.Models.Story basicData, 1, appState
+    story     = new JiraStoryTime.Models.Issue basicData, 1, appState
     spyOn(story, 'toggelOpen').and.callThrough()
     storyView = new JiraStoryTime.Views.Story story
     setFixtures(storyView.el)

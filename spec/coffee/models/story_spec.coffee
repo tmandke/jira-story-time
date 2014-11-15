@@ -1,4 +1,4 @@
-describe 'Models.Story', ->
+describe 'Models.Issue', ->
   story     = null
   appState  = null
   basicData = null
@@ -7,10 +7,10 @@ describe 'Models.Story', ->
     basicData = getJSONFixture('stories/basic_SYMAN-10.json')
     fullData  = getJSONFixture('stories/full_SYMAN-10.json')
     jasmine.Ajax.install()
-    spyOn(JiraStoryTime.Models.Story.prototype, 'updateState').and.callThrough()
-    spyOn(JiraStoryTime.Models.Story.prototype, 'getFullStory').and.callThrough()
+    spyOn(JiraStoryTime.Models.Issue.prototype, 'updateState').and.callThrough()
+    spyOn(JiraStoryTime.Models.Issue.prototype, 'getFullStory').and.callThrough()
     appState  = new JiraStoryTime.Models.ApplicationState()
-    story     = new JiraStoryTime.Models.Story basicData, 1, appState
+    story     = new JiraStoryTime.Models.Issue basicData, 1, appState
 
   afterEach ->
     story.deconstruct()
@@ -21,19 +21,19 @@ describe 'Models.Story', ->
       expect(story.id).toBe basicData.id
 
     it 'calls getFullStory', ->
-      expect(JiraStoryTime.Models.Story.prototype.getFullStory).toHaveBeenCalled()
+      expect(JiraStoryTime.Models.Issue.prototype.getFullStory).toHaveBeenCalled()
 
     it 'calls updateState', ->
-      expect(JiraStoryTime.Models.Story.prototype.updateState).toHaveBeenCalled()
+      expect(JiraStoryTime.Models.Issue.prototype.updateState).toHaveBeenCalled()
       expect(story.serverSync).toBe appState.serverSync
       #assuming auto update is enabled by default
       expect(story.autoUpdateInterval).toBeDefined()
 
     it 'application state is observed', ->
-      JiraStoryTime.Models.Story.prototype.updateState.calls.reset()
+      JiraStoryTime.Models.Issue.prototype.updateState.calls.reset()
       appState.serverSync = !appState.serverSync
       Object.deliverChangeRecords story.observer
-      expect(JiraStoryTime.Models.Story.prototype.updateState).toHaveBeenCalled()
+      expect(JiraStoryTime.Models.Issue.prototype.updateState).toHaveBeenCalled()
       expect(story.serverSync).toBe appState.serverSync
 
   describe '#updateIsCurrent', ->

@@ -1,4 +1,4 @@
-class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
+class JiraStoryTime.Models.Issue extends JiraStoryTime.Utils.Observer
   @_fieldIds =
     id: "id"
     key: "issuekey"
@@ -16,6 +16,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
   constructor: (@basicData, @rapidView, @applicationState) ->
     super()
     @id = @basicData.id
+    @type = @basicData.typeName
     @observe(@applicationState)
     @getFullStory()
     @updateState()
@@ -50,6 +51,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
 
   setMoreData: (data) =>
     @moreData = data
+    @type = data.typeName
     data.fields.forEach (f) =>
       switch f.id
         when @constructor._fieldIds.key
