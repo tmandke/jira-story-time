@@ -16,7 +16,7 @@ manifest = {
   description:      "this adds overlay to ",
   homepage_url:     "http://extensionizr.com",
   default_locale:   "en",
-  permissions: [ "https://*/*" ],
+  permissions: [ "tabs", "https://*/*" ],
   icons: {
     16 =>   "icons/icon16.png",
     48 =>   "icons/icon48.png",
@@ -65,7 +65,7 @@ guard 'shell' do
       manifest[:content_scripts][0][:js] += Dir[pattern].map{|f| f.gsub('extension/', '')}
     end
     manifest[:content_scripts][0][:js].uniq!
-    File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
+    File.open('extension/manifest.json', 'w') { |file| file.write(JSON.pretty_generate(manifest)) }
     manifest[:content_scripts][0][:js] = jsList
   end
   
