@@ -16,7 +16,7 @@ manifest = {
   description:      "this adds overlay to ",
   homepage_url:     "http://extensionizr.com",
   default_locale:   "en",
-  permissions: [ "tabs", "https://*/*" ],
+  permissions: [ "https://*/*" ],
   icons: {
     16 =>   "icons/icon16.png",
     48 =>   "icons/icon48.png",
@@ -25,12 +25,12 @@ manifest = {
   content_scripts: [
     {
       run_at:   "document_end",
-      html:     [ "templates/*.html", "templates/*.css" ],
+      html:     [ "templates/*.html", "*.svg", "templates/print_cards/*.html", "templates/*.css" ],
       matches:  [ "https://*/secure/RapidBoard.jspa*", "http://*/secure/RapidBoard.jspa*" ],
       js: %w(js/jquery.min.js js/init.js)
     }
   ],
-  web_accessible_resources: [ "templates/*.html", "templates/*.css" ]
+  web_accessible_resources: [ "*.svg", "templates/*.html", "templates/print_cards/*.html", "templates/*.css" ]
 }
 
 class Reloader
@@ -75,7 +75,11 @@ guard 'shell' do
 end
 
 guard 'shell' do
-  watch( %r{src/(.+).slim} ) { |m| `slimrb -p #{m[0]} extension/#{m[1]}.html` }
+  watch( %r{src/(.+).slim} ) { |m|
+    file_name = "extension/#{m[1]}.html"
+    FileUtils.mkdir_p(File.dirname file_name)
+    `slimrb -p #{m[0]} #{file_name}`
+  }
 end
 
 guard 'sass', input: 'src/sass', output: 'extension/templates'

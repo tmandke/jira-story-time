@@ -6,6 +6,7 @@
 @import "_column";
 @import "_subset";
 @import "_menu";
+@import "_print_cards";
 
 $font-stack: "Roboto Condensed", sans-serif;
 
@@ -41,6 +42,7 @@ html {
   @include flexbox();
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 }
 
 #story-board-selecters {

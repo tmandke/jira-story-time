@@ -25,11 +25,21 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
         @subsetsView.deconstruct()
         @backlog.deconstruct()
         @menuView.deconstruct()
+        if @printCardsView?
+          @printCardsView.deconstruct()
+          delete @printCardsView
         delete @backlog
         window.JiraStoryTime.Util.abortAllXHR()
         @overlay().off()
         @overlay().find("*").addBack().off()
         @overlay()[0].remove()
+
+    else if change.name is 'printCards'
+      if @applicationState.printCards is true
+        @_createPrintCards()
+      else
+        @printCardsView.deconstruct()
+        delete @printCardsView
 
     else if change.name is 'pointsType'
       @updateBannerTitle()
@@ -46,13 +56,25 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     cssUrl = JiraStoryTime.Utils.Templates.templateUrl 'styles.css'
     @overlay().prepend("<link href='#{cssUrl}' media='all' rel='stylesheet' type='text/css'>")
     @overlay().keyup(@onKeyup)
-    @_launchMenu()
     @_createBacklog()
+    @_launchMenu()
     @_createSubsets()
     @_createBoard()
+    @_createPrintCards()
 
   _launchMenu: =>
-    @menuView = new JiraStoryTime.Views.ApplicationMenu(@applicationState)
+    menuActions = {}
+    @applicationState.queryParams.forEach (param) =>
+      menuActions[param.paramName] =
+        new JiraStoryTime.Utils.MenuAction param, (val) =>
+          @applicationState[param.paramName] = val
+
+    menuActions.storyTimeActive.onChange = () =>
+      @applicationState.storyTimeActive = false
+    menuActions.printCards.onChange = () =>
+      @applicationState.printCards = true
+
+    @menuView = new JiraStoryTime.Views.ApplicationMenu(menuActions)
     @overlay().find("#story-board-banner").append @menuView.el
 
   _createBacklog: =>
@@ -63,15 +85,22 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @subsetsView = new JiraStoryTime.Views.Subsets(@applicationState, @backlog)
     @overlay().find("#story-board-selecters").append(@subsetsView.el)
 
+  _createPrintCards: =>
+    if @applicationState.printCards is true and !@printCardsView?
+      @printCardsView = new JiraStoryTime.Views.PrintCards(@applicationState, @baseElem, @backlog)
+      @printCardsView.el.insertBefore(@overlay().find('#story-board-selecters'))
+
   _createBoard: =>
     @board = new JiraStoryTime.Views.RegularStoryTime(@applicationState, @backlog)
     @board.el.insertBefore(@overlay().find('#story-unassigned-placeholder'))
 
+
   onKeyup: (e) =>
     if e.keyCode is 27 #Esc
-      if @confirmExitIfNessary()
+      if @applicationState.printCards is true
+        @applicationState.printCards = false
+      else if @confirmExitIfNessary()
         @applicationState.storyTimeActive = false
-
 
   confirmExitIfNessary: =>
     if @applicationState.view is 'Forced'

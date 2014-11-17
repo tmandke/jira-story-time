@@ -14,3 +14,11 @@ Development
 - bundle exec guard
 - in the bundle console run `all` (needs to be done first time to create all files)
 - go to Jira agile board and start developing
+
+Images from
+===========
+- spike.svg http://www.clker.com/clipart-cactus.html
+- story.svg http://www.clker.com/clipart-open-book.html
+- deploy.svg http://www.clker.com/clipart-6878.html
+- bug.svg http://www.clker.com/clipart-3331.html
+- task.svg http://www.clker.com/clipart-task.html

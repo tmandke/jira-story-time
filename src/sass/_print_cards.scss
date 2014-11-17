@@ -1,0 +1,121 @@
+.print-cards-selection ~ #story-board,
+.print-cards-selection ~ #story-board-selecters {
+  display: none !important
+}
+.print-cards-selection {
+  flex-grow: 100000;
+  overflow-x: none;
+  overflow-y: auto;
+  .card-selectors {
+    width: 100%;
+    @include flexbox;
+    flex-direction: row;
+    overflow: none;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .issue-description {
+    display: none;
+  }
+}
+#printable-cards {
+  font-size: 130%;
+  @include clearfix;
+  box-sizing: border-box;
+  overflow-x: none;
+  overflow-y: auto;
+  width: 12.4in;
+  @include flexbox;
+  flex-direction: row;
+  overflow: none;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  input {
+    display: none;
+  }
+  .issue {
+    width: 6in;
+    height: 5.789999in;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-top: 2px solid;
+    margin: 0;
+  }
+}
+.issue {
+  @include flexbox;
+  flex-direction: column;
+  justify-content: space-start;
+  width: 500px;
+  .issue-image{
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  &.Story {
+    border-left-color: green;
+  }
+  &.Task {
+    border-left-color: yellow;
+  }
+  &.Bug {
+    border-left-color: red;
+  }
+  &.Deploy {
+    border-left-color: blue;
+  }
+  &.Spike {
+    border-left-color: orange;
+  }
+  background-color: white;
+  margin-bottom: 8px;
+  min-width: 150px;
+  // max-width: 350px
+  transition: all 0.1s ease-out;
+  border-left: 15px solid;
+  .issue-main {
+    flex-shrink: 0;
+    @include flexbox;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    .issue-small {
+      flex-grow: 10000;
+      padding: 10px;
+      .issue-key {
+        font-size: 1.4em;
+        color: #999999;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+      }
+      .issue-summary {
+        font-size: 1.8em;
+        font-weight: 400;
+      }
+    }
+  }
+  .issue-points-bar {
+    font-size: 2.1em;
+    font-weight: 300;
+    color: lighten($base-color, 60%);
+    padding: 5px 6px 0 0;
+    text-align: right;
+    line-height: 27px;
+    min-width: 18px;
+  }
+  .issue-description {
+    border-top: 2px dashed;
+    font-size: 1.3em;
+    color: lighten($base-color, 20%);
+    line-height: 1.4em;
+    padding: 12px;
+    background-color: rgba(white, 0.5);
+    overflow: hidden;
+    white-space: nowrap;
+    flex-grow: 1000000;
+  }
+}

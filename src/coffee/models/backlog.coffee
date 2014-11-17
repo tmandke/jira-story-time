@@ -37,7 +37,7 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
 
   _updateIssuesHash: (response) =>
     newSetOfIssues = []
-    response.issues.forEach (s) =>
+    response.issues.forEach (s, idx) =>
       newSetOfIssues.push(s.id.toString())
       unless @issues[s.id]?
         issue = new JiraStoryTime.Models.Issue s, @rapidView, @applicationState
@@ -45,6 +45,7 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
         @observe issue
         if issue.type is "Story"
           @stories[issue.id] = issue
+      @issues[s.id].rank = idx
 
     $(Object.keys(@issues)).filter( (idx, id)->
       newSetOfIssues.indexOf(id) is -1
@@ -55,6 +56,7 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
       delete @stories[issueId]
 
   _updateCurrentStatusOfIssues: (response) =>
+    @sprints = response.sprints
     currentIssues = $.map(response.sprints, (sprint) ->
       if sprint.state is "ACTIVE" then sprint.issuesIds else null
     )
