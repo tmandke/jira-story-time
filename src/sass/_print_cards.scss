@@ -19,27 +19,26 @@
   }
 }
 #printable-cards {
-  font-size: 130%;
+  font-size: 110%;
   @include clearfix;
+  &:before {
+    display: none;
+  }
   box-sizing: border-box;
   overflow-x: none;
   overflow-y: auto;
-  width: 12.4in;
-  @include flexbox;
-  flex-direction: row;
-  overflow: none;
-  flex-wrap: wrap;
-  justify-content: flex-start;
   input {
     display: none;
   }
+  .issue:nth-child(6n) {
+    page-break-after: always;
+  }
   .issue {
-    width: 6in;
-    height: 5.789999in;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
-    border-top: 2px solid;
+    width: 4.9in;
+    height: 4.5in;
+    border: 2px solid;
     margin: 0;
+    float: left;
   }
 }
 .issue {
@@ -56,26 +55,26 @@
     flex-grow: 0;
   }
   &.Story {
-    border-left-color: green;
+    background-color: lighten($color-2, 50%);
   }
   &.Task {
-    border-left-color: yellow;
+    background-color: lighten(yellow, 40%);
   }
   &.Bug {
-    border-left-color: red;
+    background-color: lighten($color-1, 28%);
   }
   &.Deploy {
-    border-left-color: blue;
+    background-color: lighten($color-5, 45%);
   }
   &.Spike {
-    border-left-color: orange;
+    background-color: lighten($color-3, 54%);
   }
   background-color: white;
   margin-bottom: 8px;
   min-width: 150px;
   // max-width: 350px
   transition: all 0.1s ease-out;
-  border-left: 15px solid;
+  // border-left: 15px solid;
   .issue-main {
     flex-shrink: 0;
     @include flexbox;

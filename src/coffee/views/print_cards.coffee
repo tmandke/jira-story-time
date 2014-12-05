@@ -11,8 +11,8 @@ class JiraStoryTime.Views.PrintCards
   renderSelectable: () =>
     issuesList = $.map(@backlog.issues, (issue) =>
       issue
-    ).sort((issue) ->
-      issue.rank
+    ).sort((issue1, issue2) ->
+      issue1.rank - issue2.rank
     ).map((issue) ->
       selectableIssue = $(JiraStoryTime.Utils.Templates.get('print_cards/selectable_issue.html'))
       imageUrl = chrome.extension.getURL("/#{issue.type}.svg")
@@ -34,7 +34,7 @@ class JiraStoryTime.Views.PrintCards
     @baseElem.children().addClass('hide-me')
     @printableCards = $('<div id="printable-cards"></div>')
     @baseElem.append(@printableCards)
-    @el.find('input[checked]').map((i, elem) =>
+    @el.find('input:checked').map((i, elem) =>
       @printableCards.append($(elem).parent().parent())
     )
     window.print()
