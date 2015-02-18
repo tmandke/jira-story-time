@@ -34,7 +34,7 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
   handleDragEnter: (e) =>
     @el.addClass "over"
 
-  handleDragOver: (e) =>
+  handleDragOver: (e) ->
     e.preventDefault()
 
   handleDragLeave: (e) =>
