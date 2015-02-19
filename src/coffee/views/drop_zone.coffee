@@ -9,6 +9,7 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
 
     @el.on "dragstart", @handleDragStart
     @el.on "dragenter", @handleDragEnter
+    @el.find(".story_board_row_drop_mask").on "dragover", @handleDragOver
     @el.find(".story_board_row_drop_mask").on "dragleave", @handleDragLeave
     @el.find(".story_board_row_drop_mask").on "drop", @handleDrop
 
@@ -32,6 +33,9 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
 
   handleDragEnter: (e) =>
     @el.addClass "over"
+
+  handleDragOver: (e) ->
+    e.preventDefault()
 
   handleDragLeave: (e) =>
     @el.removeClass "over"
