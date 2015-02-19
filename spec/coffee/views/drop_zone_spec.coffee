@@ -64,6 +64,12 @@ describe 'Views.DropZone', ->
       dropZone.el.trigger e
       expect(dropZone.el).toHaveClass('over')
 
+    it 'sets up drag over event', ->
+      e = $.Event('dragover')
+      spyOn(e, 'preventDefault')
+      dropZone.el.find('.story_board_row_drop_mask').trigger e
+      expect(e.preventDefault).toHaveBeenCalled()
+
     it 'sets up drag leave event on strory-drop-zone-mask', ->
       expect(dropZone.el).not.toHaveClass('over')
       e = $.Event('dragenter')
