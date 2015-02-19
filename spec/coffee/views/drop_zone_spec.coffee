@@ -66,7 +66,7 @@ describe 'Views.DropZone', ->
 
     it 'sets up drag over event', ->
       e = $.Event('dragover')
-      spyOn(e, 'preventDefault');
+      spyOn(e, 'preventDefault')
       dropZone.el.find('.story_board_row_drop_mask').trigger e
       expect(e.preventDefault).toHaveBeenCalled()
 
