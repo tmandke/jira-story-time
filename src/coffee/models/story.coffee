@@ -4,10 +4,12 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     key: "issuekey"
     description: "description"
     summary: "summary"
-    business: "customfield_10003"
-    points: "customfield_10002"
-    epic: "customfield_10007"
     version: "fixVersions"
+  @_fieldLabels =
+    business: "Business Value"
+    points: "Story Points"
+    epic: "Epic"
+
 
   isCurrent: false
   isOpen: false
@@ -56,16 +58,22 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
           @key = f.text
         when @constructor._fieldIds.summary
           @summary = f.text
-        when @constructor._fieldIds.points
-          @points = @_parsePoints f[f.renderer]
-        when @constructor._fieldIds.business
-          @business = @_parsePoints f[f.renderer]
         when @constructor._fieldIds.description
           @description = f.html
-        when @constructor._fieldIds.epic
-          @epic = f.text
         when @constructor._fieldIds.version
           @version = f.text
+
+      switch f.label
+        when @constructor._fieldLabels.points
+          @points = @_parsePoints f[f.renderer]
+          @constructor._fieldIds['points'] = f.id
+        when @constructor._fieldLabels.business
+          @business = @_parsePoints f[f.renderer]
+          @constructor._fieldIds['business'] = f.id
+        when @constructor._fieldLabels.epic
+          @epic = f.text
+          @constructor._fieldIds['epic'] = f.id
+
 
   setProperty: (prop, points) =>
     @[prop] = points
