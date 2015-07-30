@@ -36,7 +36,7 @@ describe 'Views.ApplicationLauncher', ->
       launcher = new JiraStoryTime.Views.ApplicationLauncher(dummyJiraPage, appState)
 
     it 'auto adds overlay', ->
-      expect(dummyJiraPage.find('#ghx-modes').find('#story-toggle')[0]).toBeInDOM()
+      expect(dummyJiraPage.find('#story-toggle')[0]).toBeInDOM()
       expect(JiraStoryTime.Views.ApplicationLauncher.prototype.launch).toHaveBeenCalled()
 
   describe 'with storyTime inactive', ->
@@ -44,10 +44,10 @@ describe 'Views.ApplicationLauncher', ->
       launcher = new JiraStoryTime.Views.ApplicationLauncher(dummyJiraPage, appState)
 
     it 'adds a StoryTime button to the "ghx-modes"', ->
-      expect(dummyJiraPage.find('#ghx-modes').find('#story-toggle')[0]).toBeInDOM()
+      expect(dummyJiraPage.find('#story-toggle')[0]).toBeInDOM()
 
     it '"#story-toggle" click makes storyTimeActive to true', ->
-      dummyJiraPage.find('#ghx-modes').find('#story-toggle').click()
+      dummyJiraPage.find('#story-toggle').click()
       expect(appState.storyTimeActive).toBe true
 
     it 'pressing esc keyboard makes storyTimeActive to false', ->
@@ -78,7 +78,7 @@ describe 'Views.ApplicationLauncher', ->
       expect(JiraStoryTime.Models.Backlog().deconstruct).toHaveBeenCalled()
 
     it '"#story-toggle" click should add overlay, banner and stylesheet', ->
-      dummyJiraPage.find('#ghx-modes').find('#story-toggle').click()
+      dummyJiraPage.find('#story-toggle').click()
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage).toContainElement('.overlay')
       expect(dummyJiraPage.find('.overlay')).toBeFocused()
@@ -86,7 +86,7 @@ describe 'Views.ApplicationLauncher', ->
       expect(dummyJiraPage).toContainElement('.overlay link[type="text/css"]')
 
     it 'points type update should chaneg the banner', ->
-      dummyJiraPage.find('#ghx-modes').find('#story-toggle').click()
+      dummyJiraPage.find('#story-toggle').click()
       Object.deliverChangeRecords launcher.observer
       expect(dummyJiraPage.find('#story-board-banner')).toContainText('Storytime: Test Board (Story Points)')
       appState.pointsType = "Business Value"

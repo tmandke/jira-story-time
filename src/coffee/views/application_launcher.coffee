@@ -3,7 +3,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
 
   constructor: (@baseElem, @applicationState) ->
     super()
-    @baseElem.find("#ghx-modes").append(
+    @baseElem.prepend(
       JiraStoryTime.Utils.Templates.get('storyTimeToggle.html'))
 
     @observe @applicationState
