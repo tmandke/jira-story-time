@@ -19,7 +19,7 @@ class JiraStoryTime.Views.DropZone extends JiraStoryTime.Utils.Observer
   onObservedChange: (change) =>
     change.removed.forEach (view) =>
       if @el.has(view.el).length > 0
-        view.el.remove()
+        view.el.detach()
     if change.addedCount > 0
       for i in [0..change.addedCount-1] by 1
         insertBeforeElement = @el.find('.story-item')[i + change.index]
