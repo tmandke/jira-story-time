@@ -3,7 +3,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
   storyViews: {}
   dropZones: {}
   dropZoneLists: {}
-  possibleValues: [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, undefined]
+  possibleValues: [undefined, 1, 2]
   constructor: (@applicationState, @backlog) ->
     super()
     @observe @applicationState
@@ -28,6 +28,10 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     else if @storyViews[change.object.id]? and (change.name is @valueProperty or change.name is 'isCurrent' or change.name is 'subset_epic')
       @placeStoryView(@storyViews[change.object.id])
 
+  currentFib: () => @possibleValues[@possibleValues.length - 1]
+
+  prevFib: () => @possibleValues[@possibleValues.length - 2]
+
   setValueProperty: () =>
     @valueProperty = if @applicationState.pointsType is 'Story Points' then 'points' else 'business'
 
@@ -36,10 +40,17 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     $.map @storyViews, @placeStoryView
 
   createDropZones: () =>
-    @possibleValues.forEach (v) =>
-      @dropZoneLists[v] = [{backlogBanner: true, story: {}, el: $('<div class="backlog story-item">Backlog</div>')}]
-      @dropZones[v] = new JiraStoryTime.Views.DropZone(@dropZoneLists[v], v, @dropHandler)
-      @el.append(@dropZones[v].el)
+    @possibleValues.forEach @createDropZone
+
+  createDropZone: (v) =>
+    @dropZoneLists[v] = [{backlogBanner: true, story: {}, el: $('<div class="backlog story-item">Backlog</div>')}]
+    @dropZones[v] = new JiraStoryTime.Views.DropZone(@dropZoneLists[v], v, @dropHandler)
+    @el.append(@dropZones[v].el)
+
+  createNextDropZone: () =>
+    nextFib = @prevFib() + @currentFib()
+    @possibleValues.push(nextFib)
+    @createDropZone(nextFib)
 
   createStroyView: (story) =>
     @observe(story)
@@ -55,6 +66,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
 
   placeStoryView: (storyView) =>
     @removeStoryView(storyView)
+    @ensureDropZone(storyView.story[@valueProperty])
     storyViews = @dropZoneLists[storyView.story[@valueProperty]]
     insertIndex = 0
     storyViews.every (view) ->
@@ -67,7 +79,13 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     storyViews.splice(insertIndex, 0, storyView)
     @storyViewToDropZoneList[storyView.story.id] = storyViews
 
+  ensureDropZone: (value) =>
+    if value?
+      while (value > @prevFib())
+        @createNextDropZone()
+
   dropHandler: (event, newValue, storyId) =>
+    @ensureDropZone(newValue)
     @storyViews[storyId].story.setProperty @valueProperty, newValue
 
   deconstruct: () =>
