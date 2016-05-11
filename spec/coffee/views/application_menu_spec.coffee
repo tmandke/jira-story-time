@@ -2,6 +2,12 @@ describe 'Views.ApplicationMenu', ->
   describe '.constructor', ->
     appState = null
     menuEl = null
+    waitsFor = (condition, callback, timeout, iterations) ->
+      if condition() || iterations == 1
+        callback()
+      else
+        setTimeout(waitsFor, timeout, condition, callback, timeout, iterations - 1)
+
     beforeEach ->
       appState = new JiraStoryTime.Models.ApplicationState()
       appState.storyTimeActive = true
@@ -18,12 +24,12 @@ describe 'Views.ApplicationMenu', ->
             expect(menuEl).toContainElement(".radio-menu-item input#JST-#{param.paramName}-#{cleanVal}")
 
 
-    it 'changes appState when other value is clicked', ->
+    it 'changes appState when other value is clicked', (done)->
+      paramsCheckCompleted = 0
       appState.queryParams.forEach (param) ->
         if param.type is 'bool'
           newVal = !param.getParam()
           menuEl.find(".bool-menu-item label[for=JST-#{param.paramName}]").click()
-          expect(param.getParam()).toBe newVal
         else
           currVal = param.getParam()
           newVal = param.possibleValues.filter( (v) ->
@@ -31,7 +37,20 @@ describe 'Views.ApplicationMenu', ->
           )[0]
           cleanVal = newVal.replace new RegExp(' ','g') , ""
           menuEl.find(".radio-menu-item label[for=JST-#{param.paramName}-#{cleanVal}]").click()
-          expect(param.getParam()).toBe newVal
+
+        waitsFor((=>
+            param.getParam() == newVal),
+          (=>
+            expect(param.getParam()).toBe(newVal)
+            paramsCheckCompleted++
+            ),
+          10, 1
+          )
+
+      waitsFor((=>
+          paramsCheckCompleted == appState.queryParams.length),
+        done, 10, 10
+        )
 
   describe '#deconstruct', ->
     it 'has method to deconstruct', ->

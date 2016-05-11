@@ -3,7 +3,7 @@
 extension/js/**/*.js
 extension/templates/*.html
 extension/templates/*.css
-!extension/js/jquery.min.js
+!extension/js/*.min.js
 extension/manifest.json
 spec/javascripts/**/*.js
 spec/javascripts/fixtures/json/**/*.json

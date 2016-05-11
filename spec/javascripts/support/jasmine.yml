@@ -11,6 +11,8 @@
 #   - dist/**/*.js
 #
 src_files:
+  - extension/js/object-observe.min.js
+  - extension/js/array-observe.min.js
   - extension/js/jquer*.js
   - extension/js/init.js
   - extension/js/utils/*.js
