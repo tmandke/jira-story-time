@@ -38,16 +38,18 @@ describe 'Views.ApplicationMenu', ->
           cleanVal = newVal.replace new RegExp(' ','g') , ""
           menuEl.find(".radio-menu-item label[for=JST-#{param.paramName}-#{cleanVal}]").click()
 
-        waitsFor((=>
+        waitsFor(
+          (->
             param.getParam() == newVal),
-          (=>
+          (->
             expect(param.getParam()).toBe(newVal)
             paramsCheckCompleted++
             ),
           10, 1
           )
 
-      waitsFor((=>
+      waitsFor(
+        (->
           paramsCheckCompleted == appState.queryParams.length),
         done, 10, 10
         )
