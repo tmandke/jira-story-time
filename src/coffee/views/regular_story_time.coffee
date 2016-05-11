@@ -3,7 +3,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
   storyViews: {}
   dropZones: {}
   dropZoneLists: {}
-  possibleValues: [1, 2, 3, 5, 8, 13, 21, undefined]
+  possibleValues: [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, undefined]
   constructor: (@applicationState, @backlog) ->
     super()
     @observe @applicationState
