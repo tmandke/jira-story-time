@@ -13,6 +13,7 @@ spec/javascripts/fixtures/**/*.html
 !spec/javascripts/helpers/blanket_jasmine.js
 !spec/javascripts/helpers/jasmine-custom-message.js
 .idea
+.bundle
 
 # Compiles Coffeescripts
 src/js

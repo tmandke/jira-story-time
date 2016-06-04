@@ -16,6 +16,7 @@ describe 'Views.RegularStoryTime', ->
     }
 
   testDZList = (val, args...) ->
+    regularST.ensureDropZone(val)
     list = regularST.dropZoneLists[val]
     expect(list.length).toEqual(args.length)
     args.forEach (backlogIdx, idx) ->
