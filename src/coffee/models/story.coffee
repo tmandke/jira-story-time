@@ -58,7 +58,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         when @constructor._fieldIds.description
           @description = value
         when @constructor._fieldIds.version
-          @version = value[0]
+          @version = if value[0]? then value[0].name else value[0]
         when @constructor._fieldIds.points
           @points = @_parsePoints value
         when @constructor._fieldIds.business
