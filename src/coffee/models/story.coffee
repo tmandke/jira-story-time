@@ -69,11 +69,10 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
   setProperty: (prop, points) =>
     @[prop] = points
     if @serverSync
-      data =
-        update:
-          "#{JiraStoryTime.Models.Story._fieldIds[prop]}": [
-            set: points
-          ]
+      data = update: {}
+      data["update"][JiraStoryTime.Models.Story._fieldIds[prop]] = [
+        set: points
+      ]
       $.ajax(
         url: "/rest/api/2/issue/#{@key}"
         context: this
