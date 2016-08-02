@@ -71,7 +71,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     if @serverSync
       data =
         update:
-          "#{JiraStoryTime.Models.Story._fieldIds[prop]}" : [
+          "#{JiraStoryTime.Models.Story._fieldIds[prop]}": [
             set: points
           ]
       $.ajax(
