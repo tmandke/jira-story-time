@@ -42,7 +42,14 @@
           }
         },
         "fixVersions": [
-
+          {
+            "self": "https://buyaya.atlassian.net/rest/api/2/version/10001",
+            "id": "10001",
+            "description": "",
+            "name": "v2",
+            "archived": false,
+            "released": false
+          }
         ],
         "aggregatetimespent": null,
         "resolution": null,
@@ -57,6 +64,17 @@
         "created": "2016-07-08T17:56:24.000-0700",
         "customfield_10020": "Not started",
         "customfield_10021": null,
+        "epic": {
+          "id": 10101,
+          "key": "BUYA-6",
+          "self": "https://buyaya.atlassian.net/rest/agile/1.0/epic/10101",
+          "name": "Epic 1",
+          "summary": "Epic 1123",
+          "color": {
+            "key": "color_2"
+          },
+          "done": false
+        },
         "customfield_10022": null,
         "priority": {
           "self": "https://buyaya.atlassian.net/rest/api/2/priority/3",
@@ -64,7 +82,7 @@
           "name": "Medium",
           "id": "3"
         },
-        "customfield_10100": null,
+        "customfield_10100": 2.0,
         "customfield_10023": [
 
         ],
@@ -87,7 +105,7 @@
 
         ],
         "assignee": null,
-        "updated": "2016-07-27T16:31:55.000-0700",
+        "updated": "2016-08-02T08:36:56.000-0700",
         "status": {
           "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
           "description": "",
@@ -117,10 +135,10 @@
         },
         "customfield_10015": null,
         "customfield_10006": [
-          "com.atlassian.greenhopper.service.sprint.Sprint@85f6fa[id=1,rapidViewId=1,state=ACTIVE,name=BUYA Sprint 1,goal=,startDate=2016-07-26T10:37:40.148-07:00,endDate=2016-08-09T10:37:00.000-07:00,completeDate=<null>,sequence=1]"
+          "com.atlassian.greenhopper.service.sprint.Sprint@15f221e[id=1,rapidViewId=1,state=ACTIVE,name=BUYA Sprint 1,goal=,startDate=2016-07-26T10:37:40.148-07:00,endDate=2016-08-09T10:37:00.000-07:00,completeDate=<null>,sequence=1]"
         ],
         "customfield_10007": "0|hzzzzz:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@cde56a",
+        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@daa5b0",
         "attachment": [
 
         ],
@@ -167,7 +185,7 @@
           "total": 0
         },
         "customfield_10001": null,
-        "customfield_10002": null,
+        "customfield_10002": "BUYA-6",
         "environment": null,
         "duedate": null,
         "progress": {
@@ -233,13 +251,20 @@
           }
         },
         "fixVersions": [
-
+          {
+            "self": "https://buyaya.atlassian.net/rest/api/2/version/10000",
+            "id": "10000",
+            "description": "",
+            "name": "v1",
+            "archived": false,
+            "released": false
+          }
         ],
         "aggregatetimespent": null,
         "resolution": null,
         "resolutiondate": null,
         "workratio": -1,
-        "lastViewed": "2016-07-08T17:56:36.574-0700",
+        "lastViewed": "2016-08-02T07:27:38.583-0700",
         "watches": {
           "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-2/watchers",
           "watchCount": 1,
@@ -264,7 +289,7 @@
         "labels": [
 
         ],
-        "customfield_10026": null,
+        "customfield_10026": 5.0,
         "customfield_10016": null,
         "customfield_10017": null,
         "customfield_10018": null,
@@ -278,7 +303,7 @@
 
         ],
         "assignee": null,
-        "updated": "2016-07-26T10:37:33.000-0700",
+        "updated": "2016-08-02T09:01:58.000-0700",
         "status": {
           "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
           "description": "",
@@ -297,7 +322,7 @@
 
         ],
         "timeoriginalestimate": null,
-        "description": null,
+        "description": "asdasdddd",
         "customfield_10010": null,
         "customfield_10011": null,
         "customfield_10012": null,
@@ -308,17 +333,17 @@
         },
         "customfield_10015": null,
         "customfield_10006": [
-          "com.atlassian.greenhopper.service.sprint.Sprint@1e548a8[id=2,rapidViewId=1,state=FUTURE,name=BUYA Sprint 2,goal=<null>,startDate=<null>,endDate=<null>,completeDate=<null>,sequence=2]"
+          "com.atlassian.greenhopper.service.sprint.Sprint@a423ec[id=2,rapidViewId=1,state=FUTURE,name=BUYA Sprint 2,goal=<null>,startDate=<null>,endDate=<null>,completeDate=<null>,sequence=2]"
         ],
         "customfield_10007": "0|i00007:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@11102f",
+        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1edd4f4",
         "attachment": [
 
         ],
         "customfield_10009": null,
         "aggregatetimeestimate": null,
         "flagged": false,
-        "summary": "t2",
+        "summary": "3",
         "creator": {
           "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
           "name": "admin",
@@ -439,7 +464,7 @@
           "name": "Medium",
           "id": "3"
         },
-        "customfield_10100": null,
+        "customfield_10100": 8.0,
         "customfield_10023": [
 
         ],
@@ -462,7 +487,7 @@
 
         ],
         "assignee": null,
-        "updated": "2016-07-08T17:56:40.000-0700",
+        "updated": "2016-08-02T08:35:59.000-0700",
         "status": {
           "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
           "description": "",
@@ -493,7 +518,7 @@
         "customfield_10015": null,
         "customfield_10006": null,
         "customfield_10007": "0|i0000f:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1bf2b48",
+        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1740700",
         "attachment": [
 
         ],
@@ -621,7 +646,7 @@
           "name": "Medium",
           "id": "3"
         },
-        "customfield_10100": null,
+        "customfield_10100": 5.0,
         "customfield_10023": [
 
         ],
@@ -644,7 +669,7 @@
 
         ],
         "assignee": null,
-        "updated": "2016-07-08T17:56:45.000-0700",
+        "updated": "2016-08-02T08:35:57.000-0700",
         "status": {
           "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
           "description": "",
@@ -675,7 +700,7 @@
         "customfield_10015": null,
         "customfield_10006": null,
         "customfield_10007": "0|i0000n:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@148e545",
+        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5926d",
         "attachment": [
 
         ],

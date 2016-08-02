@@ -53,7 +53,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
       switch fieldId
         when @constructor._fieldIds.summary
           @summary = value
-        when @constructor._fieldIds.sprint
+        when @constructor._fieldIds.sprintState
           @sprintState = value.state
         when @constructor._fieldIds.description
           @description = value
@@ -75,17 +75,14 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
             set: points
           ]
       $.ajax(
-        url: "/rest/api/2/issue/#{@id}"
+        url: "/rest/api/2/issue/#{@key}"
         context: this
         type: "PUT"
         data: JSON.stringify data
         beforeSend: (request) ->
           request.setRequestHeader("Content-Type", "application/json")
           request.setRequestHeader("Accept", "application/json")
-      ).done (response) ->
-        console.log response
-      .fail (response) ->
-        console.log response
+      )
 
     else
       console.log("#{@key}: #{prop} would have been updated to #{points}")

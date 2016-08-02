@@ -2,6 +2,7 @@ describe 'Models.Story', ->
   story     = null
   appState  = null
   basicData = null
+  fields    = null
   beforeEach ->
     basicData = getJSONFixture('stories/BUYA-1.json')
     fields = getJSONFixture('fields.json')
@@ -15,6 +16,26 @@ describe 'Models.Story', ->
   afterEach ->
     story.deconstruct()
     jasmine.Ajax.uninstall()
+
+  describe '.initFieldIds', ->
+    it 'initializes the _fieldIds field', ->
+      JiraStoryTime.Models.Story._fieldIds =
+        sprintState: "sprint"
+        epic: "epic"
+      fieldIdsHash =
+        sprintState: 'sprint'
+        epic: 'epic'
+        version: 'fixVersions'
+        business: 'customfield_10100'
+        points: 'customfield_10026'
+        description: 'description'
+        summary: 'summary'
+      JiraStoryTime.Models.Story.initFieldIds()
+      request = jasmine.Ajax.requests.mostRecent()
+      expect(request.url).toContain "/rest/api/2/field"
+      expect(request.method).toBe 'GET'
+      request.response({status: 200, responseText: JSON.stringify fields })
+      expect(JiraStoryTime.Models.Story._fieldIds).toEqual(fieldIdsHash)
 
   describe '.constructor', ->
     it 'sets id', ->
@@ -75,16 +96,14 @@ describe 'Models.Story', ->
       it 'sends an update field request and updates property', ->
         story.setProperty('points', 21)
         request = jasmine.Ajax.requests.mostRecent()
-        expect(request.url).toContain "update-field.json"
+        expect(request.url).toContain "/rest/api/2/issue/BUYA-1"
         expect(request.method).toBe 'PUT'
         expect(request.data()).toEqual(
-          fieldId: story.constructor._fieldIds.points
-          issueIdOrKey: story.id
-          newValue: 21
+          update:
+            customfield_10026:[
+              set: 21
+            ]
         )
-        spyOn console, 'log'
-        request.response({status: 200, responseText: '{"test":123}'})
-        expect(console.log).toHaveBeenCalledWith({test:123})
 
     describe 'server sync is disabled', ->
       it 'sends an update field request and updates property', ->
@@ -92,7 +111,7 @@ describe 'Models.Story', ->
         spyOn console, 'log'
         story.setProperty('points', 21)
         request = jasmine.Ajax.requests.mostRecent()
-        expect(request.url).not.toContain "update-field.json"
+        expect(request).toBeUndefined
         expect(console.log).toHaveBeenCalledWith("#{story.key}: points would have been updated to 21")
 
   describe '#isVisible', ->

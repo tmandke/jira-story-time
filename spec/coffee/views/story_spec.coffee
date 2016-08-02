@@ -65,6 +65,7 @@ describe 'Views.Story', ->
 
     it 'updates draggablility based on isCurrent', ->
       story.sprintState = "future"
+      Object.deliverChangeRecords storyView.observer
       expect(storyView.el).toHaveAttr("draggable", "true")
       story.sprintState = "active"
       Object.deliverChangeRecords storyView.observer
