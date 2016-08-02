@@ -5,15 +5,18 @@ describe 'Views.RegularStoryTime', ->
   storyId     = null
   generateStory = (points, business, color) ->
     storyId+=1
-    {
+    story = {
       id:         storyId
-      isCurrent:  false
       points:     points
       color:      color
       business:   business
       isVisible:  ->
         true
     }
+    story.isCurrent = ->
+      story.sprintState? and story.sprintState == "active"
+
+    story
 
   testDZList = (val, args...) ->
     regularST.ensureDropZone(val)
@@ -38,7 +41,7 @@ describe 'Views.RegularStoryTime', ->
         '4': generateStory(5,2,1)
         '5': generateStory(2,2,2)
 
-    backlog.stories['1'].isCurrent = true
+    backlog.stories['1'].sprintState = "active"
     regularST = new JiraStoryTime.Views.RegularStoryTime appState, backlog
     setFixtures(regularST.el)
 
@@ -70,7 +73,7 @@ describe 'Views.RegularStoryTime', ->
 
     it 'observes backlog stories', ->
       backlog.stories['6'] = generateStory()
-      backlog.stories['6'].isCurrent = true
+      backlog.stories['6'].sprintState = "active"
       delete backlog.stories['3']
       Object.deliverChangeRecords regularST.observer
       testDZList(undefined, 1, 6, undefined, 2)
@@ -83,7 +86,7 @@ describe 'Views.RegularStoryTime', ->
       testDZList(21, undefined)
 
     it 'observes each story', ->
-      backlog.stories['3'].isCurrent = true
+      backlog.stories['3'].sprintState = "active"
       Object.deliverChangeRecords regularST.observer
       testDZList(undefined, 1, undefined, 2)
       testDZList(1, undefined)

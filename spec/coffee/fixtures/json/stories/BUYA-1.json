@@ -1,0 +1,205 @@
+{
+  "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+  "id": "10000",
+  "self": "https://buyaya.atlassian.net/rest/agile/1.0/issue/10000",
+  "key": "BUYA-1",
+  "fields": {
+    "issuetype": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/issuetype/10000",
+      "id": "10000",
+      "description": "A user story. Created by JIRA Software - do not edit or delete.",
+      "iconUrl": "https://buyaya.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315
+    },
+    "timespent": null,
+    "sprint": {
+      "id": 1,
+      "self": "https://buyaya.atlassian.net/rest/agile/1.0/sprint/1",
+      "state": "active",
+      "name": "BUYA Sprint 1",
+      "startDate": "2016-07-26T10:37:40.148-07:00",
+      "endDate": "2016-08-09T10:37:00.000-07:00",
+      "originBoardId": 1
+    },
+    "project": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/project/10000",
+      "id": "10000",
+      "key": "BUYA",
+      "name": "buya",
+      "avatarUrls": {
+        "48x48": "https://buyaya.atlassian.net/secure/projectavatar?avatarId=10324",
+        "24x24": "https://buyaya.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
+        "16x16": "https://buyaya.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
+        "32x32": "https://buyaya.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
+      }
+    },
+    "fixVersions": [
+
+    ],
+    "aggregatetimespent": null,
+    "resolution": null,
+    "resolutiondate": null,
+    "workratio": -1,
+    "lastViewed": "2016-07-27T16:07:31.786-0700",
+    "watches": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-1/watchers",
+      "watchCount": 1,
+      "isWatching": true
+    },
+    "created": "2016-07-08T17:56:24.000-0700",
+    "customfield_10020": "Not started",
+    "customfield_10021": null,
+    "customfield_10022": null,
+    "priority": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/priority/3",
+      "iconUrl": "https://buyaya.atlassian.net/images/icons/priorities/medium.svg",
+      "name": "Medium",
+      "id": "3"
+    },
+    "customfield_10100": null,
+    "customfield_10023": [
+
+    ],
+    "customfield_10024": null,
+    "customfield_10025": null,
+    "labels": [
+
+    ],
+    "epic": {
+      "id": 10101,
+      "key": "BUYA-6",
+      "self": "https://buyaya.atlassian.net/rest/agile/1.0/epic/10101",
+      "name": "Epic 2",
+      "summary": "Epic 1123",
+      "color": {
+        "key": "color_2"
+      },
+      "done": false
+    },
+    "customfield_10026": 13.0,
+    "customfield_10100": 3,
+    "customfield_10016": null,
+    "customfield_10017": null,
+    "customfield_10018": null,
+    "customfield_10019": null,
+    "timeestimate": null,
+    "aggregatetimeoriginalestimate": null,
+    "versions": [
+
+    ],
+    "issuelinks": [
+
+    ],
+    "assignee": null,
+    "updated": "2016-07-27T16:31:55.000-0700",
+    "status": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
+      "description": "",
+      "iconUrl": "https://buyaya.atlassian.net/",
+      "name": "To Do",
+      "id": "10000",
+      "statusCategory": {
+        "self": "https://buyaya.atlassian.net/rest/api/2/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+      }
+    },
+    "components": [
+
+    ],
+    "timeoriginalestimate": null,
+    "description": "BUYA-1 test desc",
+    "customfield_10010": null,
+    "customfield_10011": null,
+    "customfield_10012": null,
+    "customfield_10013": null,
+    "customfield_10014": null,
+    "timetracking": {
+
+    },
+    "customfield_10015": null,
+    "customfield_10006": [
+      "com.atlassian.greenhopper.service.sprint.Sprint@85f6fa[id=1,rapidViewId=1,state=ACTIVE,name=BUYA Sprint 1,goal=,startDate=2016-07-26T10:37:40.148-07:00,endDate=2016-08-09T10:37:00.000-07:00,completeDate=<null>,sequence=1]"
+    ],
+    "customfield_10007": "0|hzzzzz:",
+    "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@cde56a",
+    "attachment": [
+
+    ],
+    "customfield_10009": null,
+    "aggregatetimeestimate": null,
+    "flagged": false,
+    "summary": "aaa",
+    "creator": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
+      "name": "admin",
+      "key": "admin",
+      "emailAddress": "tejas.mandke@gmail.com",
+      "avatarUrls": {
+        "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
+        "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
+        "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
+        "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
+      },
+      "displayName": "Tejas  [Administrator]",
+      "active": true,
+      "timeZone": "America/Los_Angeles"
+    },
+    "subtasks": [
+
+    ],
+    "reporter": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
+      "name": "admin",
+      "key": "admin",
+      "emailAddress": "tejas.mandke@gmail.com",
+      "avatarUrls": {
+        "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
+        "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
+        "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
+        "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
+      },
+      "displayName": "Tejas  [Administrator]",
+      "active": true,
+      "timeZone": "America/Los_Angeles"
+    },
+    "customfield_10000": null,
+    "aggregateprogress": {
+      "progress": 0,
+      "total": 0
+    },
+    "customfield_10001": null,
+    "customfield_10002": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+      "progress": 0,
+      "total": 0
+    },
+    "comment": {
+      "comments": [
+
+      ],
+      "maxResults": 0,
+      "total": 0,
+      "startAt": 0
+    },
+    "votes": {
+      "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-1/votes",
+      "votes": 0,
+      "hasVoted": false
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 0,
+      "worklogs": [
+
+      ]
+    }
+  }
+}

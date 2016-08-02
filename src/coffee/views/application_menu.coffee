@@ -2,6 +2,7 @@ class JiraStoryTime.Views.ApplicationMenu
   constructor: (@appState) ->
     @el = $(JiraStoryTime.Utils.Templates.get('menu.html'))
     @listEl = @el.find('#JST-menu-list')
+    appState = @appState
     @appState.queryParams.forEach (param) =>
       if param.type == 'bool'
         @listEl.append JiraStoryTime.Utils.Templates.get("menu_item_bool.html")
