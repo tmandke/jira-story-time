@@ -71,14 +71,17 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     if @serverSync
       data =
         update:
-          summary : [
-            set: "#{points}"
+          "#{JiraStoryTime.Models.Story._fieldIds[prop]}" : [
+            set: points
           ]
       $.ajax(
-        url: "rest/api/2/issue/#{@id}"
-        context: document.body
+        url: "/rest/api/2/issue/#{@id}"
+        context: this
         type: "PUT"
         data: JSON.stringify data
+        beforeSend: (request) ->
+          request.setRequestHeader("Content-Type", "application/json")
+          request.setRequestHeader("Accept", "application/json")
       ).done (response) ->
         console.log response
       .fail (response) ->
