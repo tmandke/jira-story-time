@@ -10,12 +10,11 @@ end tell
 SCRIPT
 
 manifest = {
-  name:             "Jira Story time",
+  name:             "Jira Story Time",
   version:          "0.0.1",
   manifest_version: 2,
-  description:      "this adds overlay to ",
-  homepage_url:     "http://extensionizr.com",
-  default_locale:   "en",
+  description:      "This extention adds a overlay on Jira Agile Board that provides a view to estimate 'Story Points' or 'Business Value'.",
+  homepage_url:     "https://github.com/tmandke/jira-story-time",
   permissions: [ "https://*/*" ],
   icons: {
     16 =>   "icons/icon16.png",
@@ -44,11 +43,11 @@ class Reloader
       end
     }
   end
-  
+
   def reload
     @should_reload = true
   end
-  
+
   def reload!
     system "osascript -e '#{RELOAD_SCRIPT}'"  unless Env['DISABLE_RELOADER'] == 'true'
     @should_reload = false
@@ -68,7 +67,7 @@ guard 'shell' do
     File.open('extension/manifest.json', 'w') { |file| file.write(manifest.to_json) }
     manifest[:content_scripts][0][:js] = jsList
   end
-  
+
   watch(%r{^extension/.+\.(html|js|css|png|gif|jpg)}) do |m|
     RELOADER.reload
   end
@@ -93,4 +92,3 @@ group :spec do
 
   guard 'coffeescript', input: 'spec/coffee', output: 'spec/javascripts', bare: true
 end
-

@@ -1,0 +1,49 @@
+{
+  "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+  "id": "10000",
+  "self": "https://buyaya.atlassian.net/rest/agile/1.0/issue/10000",
+  "key": "BUYA-1",
+  "fields": {
+    "summary": "aaa",
+    "sprint": {
+      "id": 1,
+      "self": "https://buyaya.atlassian.net/rest/agile/1.0/sprint/1",
+      "state": "active",
+      "name": "BUYA Sprint 1",
+      "startDate": "2016-07-26T10:37:40.148-07:00",
+      "endDate": "2016-08-09T10:37:00.000-07:00",
+      "originBoardId": 1
+    },
+    "description": "asdasdaaaaa",
+    "epic": {
+      "id": 10101,
+      "key": "BUYA-6",
+      "self": "https://buyaya.atlassian.net/rest/agile/1.0/epic/10101",
+      "name": "Epic 2",
+      "summary": "Epic 1123",
+      "color": {
+        "key": "color_2"
+      },
+      "done": false
+    },
+    "fixVersions": [
+      {
+        "self": "https://buyaya.atlassian.net/rest/api/2/version/10001",
+        "id": "10001",
+        "description": "",
+        "name": "v2",
+        "archived": false,
+        "released": false
+      }
+    ],
+    "customfield_10100": 3.0,
+    "customfield_10026": 13.0
+  },
+  "renderedFields": {
+    "summary": null,
+    "description": "<p>BUYA-1 test desc</p>",
+    "fixVersions": null,
+    "customfield_10100": null,
+    "customfield_10026": null
+  }
+}

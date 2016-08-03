@@ -1,96 +1,88 @@
 class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
   @_fieldIds =
-    id: "id"
-    key: "issuekey"
-    description: "description"
-    summary: "summary"
-    version: "fixVersions"
+    sprintState: "sprint"
+    epic: "epic"
+
   @_fieldLabels =
-    business: "Business Value"
-    points: "Story Points"
-    epic: "Epic"
+    "Description": "description"
+    "Summary": "summary"
+    "Fix Version/s": "version"
+    "Business Value": "business"
+    "Story Points": "points"
 
 
-  isCurrent: false
   isOpen: false
   visible_default: true
+
+  @initFieldIds: ->
+    $.ajax(
+      url: "/rest/api/2/field"
+      context: this
+    ).done @_initFieldIds
+
+  @_initFieldIds: (data) ->
+    data.forEach (f) ->
+      if (JiraStoryTime.Models.Story._fieldLabels[f.name]?)
+        JiraStoryTime.Models.Story._fieldIds[JiraStoryTime.Models.Story._fieldLabels[f.name]] = f.id
+    console.log(JiraStoryTime.Models.Story._fieldIds)
 
   constructor: (@basicData, @rapidView, @applicationState) ->
     super()
     @id = @basicData.id
+    @key = @basicData.key
     @observe(@applicationState)
-    @getFullStory()
+    @setMoreData(@basicData)
     @updateState()
 
   onObservedChange: (change) =>
     if change.object is @applicationState
       @updateState()
 
-  updateIsCurrent: (currentIssues) =>
-    @isCurrent = currentIssues.indexOf(@id) > -1
+  isCurrent: =>
+    (@sprintState? and @sprintState == "active")
 
   toggelOpen: =>
     @isOpen = not @isOpen
 
   updateState: =>
-    if @applicationState.autoUpdate is true
-      unless @autoUpdateInterval?
-        @autoUpdateInterval = setInterval(@getFullStory, 10000 + Math.random() * 5000)
-    else
-      if @autoUpdateInterval?
-        clearInterval @autoUpdateInterval
-        delete @autoUpdateInterval
-
     @serverSync = @applicationState.serverSync
-
-  getFullStory: =>
-    $.ajax(
-      url: "/rest/greenhopper/1.0/xboard/issue/details.json?" +
-        "issueIdOrKey=#{@id}&loadSubtasks=true&rapidViewId=#{@rapidView}"
-      context: this
-    ).done @setMoreData
 
   setMoreData: (data) =>
     @moreData = data
-    data.fields.forEach (f) =>
-      switch f.id
-        when @constructor._fieldIds.key
-          @key = f.text
+    $.each data.fields, (fieldId, value) =>
+      switch fieldId
         when @constructor._fieldIds.summary
-          @summary = f.text
+          @summary = value
+        when @constructor._fieldIds.sprintState
+          @sprintState = value.state
         when @constructor._fieldIds.description
-          @description = f.html
+          @description = data.renderedFields.description
         when @constructor._fieldIds.version
-          @version = f.text
-
-      switch f.label
-        when @constructor._fieldLabels.points
-          @points = @_parsePoints f[f.renderer]
-          @constructor._fieldIds['points'] = f.id
-        when @constructor._fieldLabels.business
-          @business = @_parsePoints f[f.renderer]
-          @constructor._fieldIds['business'] = f.id
-        when @constructor._fieldLabels.epic
-          @epic = f.text
-          @constructor._fieldIds['epic'] = f.id
-
+          @version = if value[0]? then value[0].name else value[0]
+        when @constructor._fieldIds.points
+          @points = @_parsePoints value
+        when @constructor._fieldIds.business
+          @business = @_parsePoints value
+        when @constructor._fieldIds.epic
+          @epic = value.name
 
   setProperty: (prop, points) =>
     @[prop] = points
     if @serverSync
-      data =
-        fieldId: @constructor._fieldIds[prop]
-        issueIdOrKey: @id
-        newValue: points
+      data = update: {}
+      data["update"][JiraStoryTime.Models.Story._fieldIds[prop]] = [
+        set: points
+      ]
       $.ajax(
-        url: "/rest/greenhopper/1.0/xboard/issue/update-field.json"
-        context: document.body
+        url: "/rest/api/2/issue/#{@key}"
+        context: this
         type: "PUT"
-        headers:
-          "Content-Type": "application/json"
         data: JSON.stringify data
-      ).done (response) ->
-        console.log response
+        beforeSend: (request) ->
+          request.setRequestHeader("Content-Type", "application/json")
+          request.setRequestHeader("Accept", "application/json")
+      )
+
     else
       console.log("#{@key}: #{prop} would have been updated to #{points}")
 
@@ -107,6 +99,4 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     if ret then ret else undefined
 
   deconstruct: =>
-    clearInterval @autoUpdateInterval
-    delete @autoUpdateInterval
     @unobserveAll()

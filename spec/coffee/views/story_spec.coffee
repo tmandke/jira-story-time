@@ -2,12 +2,10 @@ describe 'Views.Story', ->
   story     = null
   appState  = null
   basicData = null
-  fullData  = null
   storyView = null
   beforeEach ->
     JiraStoryTime.Utils.Templates.get('storyCard.html')
-    basicData = getJSONFixture('stories/basic_SYMAN-10.json')
-    fullData  = getJSONFixture('stories/full_SYMAN-10.json')
+    basicData = getJSONFixture('stories/BUYA-1.json')
     jasmine.Ajax.install()
     spyOn(JiraStoryTime.Views.Story.prototype, 'render').and.callThrough()
     appState  = new JiraStoryTime.Models.ApplicationState()
@@ -50,8 +48,6 @@ describe 'Views.Story', ->
 
   describe '#render', ->
     it 'updates points and business text', ->
-      expect(storyView.el.find(".story-points")).toHaveHtml("_")
-      expect(storyView.el.find(".story-business")).toHaveHtml("_")
       story.points = 2
       story.business = 21
       Object.deliverChangeRecords storyView.observer
@@ -59,9 +55,6 @@ describe 'Views.Story', ->
       expect(storyView.el.find(".story-business")).toHaveHtml("21")
 
     it 'updates key, summary and description text', ->
-      expect(storyView.el.find(".story-key")).toHaveHtml("")
-      expect(storyView.el.find(".story-summary")).toHaveHtml("")
-      expect(storyView.el.find(".story-description")).toHaveHtml("")
       story.key = 'k1'
       story.summary = 's1'
       story.description = 'd1'
@@ -71,11 +64,13 @@ describe 'Views.Story', ->
       expect(storyView.el.find(".story-description")).toHaveHtml("d1")
 
     it 'updates draggablility based on isCurrent', ->
+      story.sprintState = "future"
+      Object.deliverChangeRecords storyView.observer
       expect(storyView.el).toHaveAttr("draggable", "true")
-      story.isCurrent = true
+      story.sprintState = "active"
       Object.deliverChangeRecords storyView.observer
       expect(storyView.el).toHaveAttr("draggable", "false")
-      story.isCurrent = false
+      delete story.sprintState
       Object.deliverChangeRecords storyView.observer
       expect(storyView.el).toHaveAttr("draggable", "true")
 
@@ -115,4 +110,3 @@ describe 'Views.Story', ->
       expect($("##{jasmine.getFixtures().containerId}")).toContainElement "#story-#{story.id}"
       storyView.deconstruct()
       expect($("##{jasmine.getFixtures().containerId}")).not.toContainElement "#story-#{story.id}"
-

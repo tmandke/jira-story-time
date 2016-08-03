@@ -24,8 +24,8 @@ class JiraStoryTime.Views.Story extends JiraStoryTime.Utils.Observer
       if !change? or change.name == field
         @el.find(".story-#{field}").html(@story[field])
 
-    if !change? or change.name is 'isCurrent'
-      @el.attr "draggable", not @story.isCurrent
+    if !change? or change.name is 'sprintState'
+      @el.attr "draggable", not @story.isCurrent()
 
     if !change? or change.name is "color"
       @el.removeClass (idx, css) ->

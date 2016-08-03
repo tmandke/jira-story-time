@@ -25,7 +25,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
       else if change.type is 'delete'
         @removeStoryView @storyViews[change.name]
         @storyViews[change.name].deconstruct()
-    else if @storyViews[change.object.id]? and (change.name is @valueProperty or change.name is 'isCurrent' or change.name is 'subset_epic')
+    else if @storyViews[change.object.id]? and (change.name is @valueProperty or change.name is 'sprintState' or change.name is 'subset_epic')
       @placeStoryView(@storyViews[change.object.id])
 
   currentFib: () => @possibleValues[@possibleValues.length - 1]
@@ -70,7 +70,7 @@ class JiraStoryTime.Views.RegularStoryTime extends JiraStoryTime.Utils.Observer
     storyViews = @dropZoneLists[storyView.story[@valueProperty]]
     insertIndex = 0
     storyViews.every (view) ->
-      if (!storyView.story.isCurrent and (view.backlogBanner or view.story.isCurrent)) or (storyView.story.epicColor > view.story.epicColor) or (storyView.story.id > view.story.id)
+      if (!storyView.story.isCurrent() and (view.backlogBanner or view.story.isCurrent())) or (storyView.story.epicColor > view.story.epicColor) or (storyView.story.id > view.story.id)
         insertIndex+=1
         true
       else

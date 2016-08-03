@@ -50,8 +50,7 @@ describe 'Models.Backlog', ->
       spyOn backlog, 'parseResponse'
       backlog.updateBacklog()
       request = jasmine.Ajax.requests.mostRecent()
-      expect(request.url).toContain "data.json"
-      expect(request.url).toContain "rapidViewId=#{backlog.rapidView}"
+      expect(request.url).toContain "/rest/agile/1.0/board/1/issue/"
       expect(request.method).toBe 'GET'
       request.response({status: 200, responseText: "{}"})
       expect(backlog.parseResponse).toHaveBeenCalled()
@@ -71,7 +70,7 @@ describe 'Models.Backlog', ->
         issue.id.toString()
       ).toArray().sort()
       expect(Object.keys(backlog.stories)).toEqual(ids)
-      removed = fixtures.backlog.issues.splice(5,1)
+      removed = fixtures.backlog.issues.splice(2,1)
       ids.splice(ids.indexOf(removed[0].id.toString()),1)
       backlog.parseResponse(fixtures.backlog)
       expect(Object.keys(backlog.stories)).toEqual(ids)
