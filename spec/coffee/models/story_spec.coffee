@@ -88,7 +88,7 @@ describe 'Models.Story', ->
       expect(story.summary).toBe 'aaa'
       expect(story.points).toBe 13
       expect(story.business).toBe 3
-      expect(story.description).toBe 'BUYA-1 test desc'
+      expect(story.description).toBe '<p>BUYA-1 test desc</p>'
       expect(story.epic).toBe 'Epic 2'
 
   describe '#setProperty', ->

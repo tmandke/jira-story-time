@@ -20,8 +20,9 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
         delete @autoUpdateInterval
 
   updateBacklog: =>
+    fieldsList = $.map JiraStoryTime.Models.Story._fieldIds, (v) -> v
     $.ajax(
-      url: "/rest/agile/1.0/board/#{@rapidView}/issue/?jql=issuetype=Story"
+      url: "/rest/agile/1.0/board/#{@rapidView}/issue/?jql=issuetype=Story&expand=renderedFields&fields=#{fieldsList}&maxResults=100"
       context: document.body
     ).done @parseResponse
 
@@ -32,7 +33,9 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
     newSetOfStories = []
     response.issues.forEach (s) =>
       newSetOfStories.push(s.id.toString())
-      unless @stories[s.id]?
+      if @stories[s.id]?
+        @stories[s.id].setMoreData(s)
+      else
         @stories[s.id] = new JiraStoryTime.Models.Story s, @rapidView, @applicationState
 
     $(Object.keys(@stories)).filter( (idx, id)->

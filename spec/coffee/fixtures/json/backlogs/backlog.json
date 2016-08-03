@@ -1,7 +1,7 @@
 {
   "expand": "schema,names",
   "startAt": 0,
-  "maxResults": 50,
+  "maxResults": 100,
   "total": 4,
   "issues": [
     {
@@ -10,16 +10,7 @@
       "self": "https://buyaya.atlassian.net/rest/agile/1.0/issue/10000",
       "key": "BUYA-1",
       "fields": {
-        "issuetype": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issuetype/10000",
-          "id": "10000",
-          "description": "A user story. Created by JIRA Software - do not edit or delete.",
-          "iconUrl": "https://buyaya.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
-          "name": "Story",
-          "subtask": false,
-          "avatarId": 10315
-        },
-        "timespent": null,
+        "summary": "aaa",
         "sprint": {
           "id": 1,
           "self": "https://buyaya.atlassian.net/rest/agile/1.0/sprint/1",
@@ -29,41 +20,7 @@
           "endDate": "2016-08-09T10:37:00.000-07:00",
           "originBoardId": 1
         },
-        "project": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/project/10000",
-          "id": "10000",
-          "key": "BUYA",
-          "name": "buya",
-          "avatarUrls": {
-            "48x48": "https://buyaya.atlassian.net/secure/projectavatar?avatarId=10324",
-            "24x24": "https://buyaya.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
-            "16x16": "https://buyaya.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
-            "32x32": "https://buyaya.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
-          }
-        },
-        "fixVersions": [
-          {
-            "self": "https://buyaya.atlassian.net/rest/api/2/version/10001",
-            "id": "10001",
-            "description": "",
-            "name": "v2",
-            "archived": false,
-            "released": false
-          }
-        ],
-        "aggregatetimespent": null,
-        "resolution": null,
-        "resolutiondate": null,
-        "workratio": -1,
-        "lastViewed": "2016-07-27T16:07:31.786-0700",
-        "watches": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-1/watchers",
-          "watchCount": 1,
-          "isWatching": true
-        },
-        "created": "2016-07-08T17:56:24.000-0700",
-        "customfield_10020": "Not started",
-        "customfield_10021": null,
+        "description": "asdasdaaaaa",
         "epic": {
           "id": 10101,
           "key": "BUYA-6",
@@ -75,144 +32,25 @@
           },
           "done": false
         },
-        "customfield_10022": null,
-        "priority": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/priority/3",
-          "iconUrl": "https://buyaya.atlassian.net/images/icons/priorities/medium.svg",
-          "name": "Medium",
-          "id": "3"
-        },
-        "customfield_10100": 2.0,
-        "customfield_10023": [
-
-        ],
-        "customfield_10024": null,
-        "customfield_10025": null,
-        "labels": [
-
-        ],
-        "customfield_10026": 21.0,
-        "customfield_10016": null,
-        "customfield_10017": null,
-        "customfield_10018": null,
-        "customfield_10019": null,
-        "timeestimate": null,
-        "aggregatetimeoriginalestimate": null,
-        "versions": [
-
-        ],
-        "issuelinks": [
-
-        ],
-        "assignee": null,
-        "updated": "2016-08-02T08:36:56.000-0700",
-        "status": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
-          "description": "",
-          "iconUrl": "https://buyaya.atlassian.net/",
-          "name": "To Do",
-          "id": "10000",
-          "statusCategory": {
-            "self": "https://buyaya.atlassian.net/rest/api/2/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
+        "fixVersions": [
+          {
+            "self": "https://buyaya.atlassian.net/rest/api/2/version/10001",
+            "id": "10001",
+            "description": "",
+            "name": "v2",
+            "archived": false,
+            "released": false
           }
-        },
-        "components": [
-
         ],
-        "timeoriginalestimate": null,
-        "description": "asdasdaaaaa",
-        "customfield_10010": null,
-        "customfield_10011": null,
-        "customfield_10012": null,
-        "customfield_10013": null,
-        "customfield_10014": null,
-        "timetracking": {
-
-        },
-        "customfield_10015": null,
-        "customfield_10006": [
-          "com.atlassian.greenhopper.service.sprint.Sprint@15f221e[id=1,rapidViewId=1,state=ACTIVE,name=BUYA Sprint 1,goal=,startDate=2016-07-26T10:37:40.148-07:00,endDate=2016-08-09T10:37:00.000-07:00,completeDate=<null>,sequence=1]"
-        ],
-        "customfield_10007": "0|hzzzzz:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@daa5b0",
-        "attachment": [
-
-        ],
-        "customfield_10009": null,
-        "aggregatetimeestimate": null,
-        "flagged": false,
-        "summary": "aaa",
-        "creator": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "subtasks": [
-
-        ],
-        "reporter": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "customfield_10000": null,
-        "aggregateprogress": {
-          "progress": 0,
-          "total": 0
-        },
-        "customfield_10001": null,
-        "customfield_10002": "BUYA-6",
-        "environment": null,
-        "duedate": null,
-        "progress": {
-          "progress": 0,
-          "total": 0
-        },
-        "comment": {
-          "comments": [
-
-          ],
-          "maxResults": 0,
-          "total": 0,
-          "startAt": 0
-        },
-        "votes": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-1/votes",
-          "votes": 0,
-          "hasVoted": false
-        },
-        "worklog": {
-          "startAt": 0,
-          "maxResults": 20,
-          "total": 0,
-          "worklogs": [
-
-          ]
-        }
+        "customfield_10100": 2.0,
+        "customfield_10026": 21.0
+      },
+      "renderedFields": {
+        "summary": null,
+        "description": "<p>asdasdaaaaa</p>",
+        "fixVersions": null,
+        "customfield_10100": null,
+        "customfield_10026": null
       }
     },
     {
@@ -221,35 +59,8 @@
       "self": "https://buyaya.atlassian.net/rest/agile/1.0/issue/10001",
       "key": "BUYA-2",
       "fields": {
-        "issuetype": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issuetype/10000",
-          "id": "10000",
-          "description": "A user story. Created by JIRA Software - do not edit or delete.",
-          "iconUrl": "https://buyaya.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
-          "name": "Story",
-          "subtask": false,
-          "avatarId": 10315
-        },
-        "timespent": null,
-        "sprint": {
-          "id": 2,
-          "self": "https://buyaya.atlassian.net/rest/agile/1.0/sprint/2",
-          "state": "future",
-          "name": "BUYA Sprint 2",
-          "originBoardId": 1
-        },
-        "project": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/project/10000",
-          "id": "10000",
-          "key": "BUYA",
-          "name": "buya",
-          "avatarUrls": {
-            "48x48": "https://buyaya.atlassian.net/secure/projectavatar?avatarId=10324",
-            "24x24": "https://buyaya.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
-            "16x16": "https://buyaya.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
-            "32x32": "https://buyaya.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
-          }
-        },
+        "summary": "3",
+        "description": "asdasdddd",
         "fixVersions": [
           {
             "self": "https://buyaya.atlassian.net/rest/api/2/version/10000",
@@ -260,157 +71,22 @@
             "released": false
           }
         ],
-        "aggregatetimespent": null,
-        "resolution": null,
-        "resolutiondate": null,
-        "workratio": -1,
-        "lastViewed": "2016-08-02T07:27:38.583-0700",
-        "watches": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-2/watchers",
-          "watchCount": 1,
-          "isWatching": true
-        },
-        "created": "2016-07-08T17:56:36.000-0700",
-        "customfield_10020": "Not started",
-        "customfield_10021": null,
-        "customfield_10022": null,
-        "priority": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/priority/3",
-          "iconUrl": "https://buyaya.atlassian.net/images/icons/priorities/medium.svg",
-          "name": "Medium",
-          "id": "3"
-        },
         "customfield_10100": null,
-        "customfield_10023": [
-
-        ],
-        "customfield_10024": null,
-        "customfield_10025": null,
-        "labels": [
-
-        ],
         "customfield_10026": 5.0,
-        "customfield_10016": null,
-        "customfield_10017": null,
-        "customfield_10018": null,
-        "customfield_10019": null,
-        "timeestimate": null,
-        "aggregatetimeoriginalestimate": null,
-        "versions": [
-
-        ],
-        "issuelinks": [
-
-        ],
-        "assignee": null,
-        "updated": "2016-08-02T09:01:58.000-0700",
-        "status": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
-          "description": "",
-          "iconUrl": "https://buyaya.atlassian.net/",
-          "name": "To Do",
-          "id": "10000",
-          "statusCategory": {
-            "self": "https://buyaya.atlassian.net/rest/api/2/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
-          }
-        },
-        "components": [
-
-        ],
-        "timeoriginalestimate": null,
-        "description": "asdasdddd",
-        "customfield_10010": null,
-        "customfield_10011": null,
-        "customfield_10012": null,
-        "customfield_10013": null,
-        "customfield_10014": null,
-        "timetracking": {
-
-        },
-        "customfield_10015": null,
-        "customfield_10006": [
-          "com.atlassian.greenhopper.service.sprint.Sprint@a423ec[id=2,rapidViewId=1,state=FUTURE,name=BUYA Sprint 2,goal=<null>,startDate=<null>,endDate=<null>,completeDate=<null>,sequence=2]"
-        ],
-        "customfield_10007": "0|i00007:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1edd4f4",
-        "attachment": [
-
-        ],
-        "customfield_10009": null,
-        "aggregatetimeestimate": null,
-        "flagged": false,
-        "summary": "3",
-        "creator": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "subtasks": [
-
-        ],
-        "reporter": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "customfield_10000": null,
-        "aggregateprogress": {
-          "progress": 0,
-          "total": 0
-        },
-        "customfield_10001": null,
-        "customfield_10002": null,
-        "environment": null,
-        "duedate": null,
-        "progress": {
-          "progress": 0,
-          "total": 0
-        },
-        "comment": {
-          "comments": [
-
-          ],
-          "maxResults": 0,
-          "total": 0,
-          "startAt": 0
-        },
-        "votes": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-2/votes",
-          "votes": 0,
-          "hasVoted": false
-        },
-        "worklog": {
-          "startAt": 0,
-          "maxResults": 20,
-          "total": 0,
-          "worklogs": [
-
-          ]
+        "sprint": {
+          "id": 2,
+          "self": "https://buyaya.atlassian.net/rest/agile/1.0/sprint/2",
+          "state": "future",
+          "name": "BUYA Sprint 2",
+          "originBoardId": 1
         }
+      },
+      "renderedFields": {
+        "summary": null,
+        "description": "<p>asdasdddd</p>",
+        "fixVersions": null,
+        "customfield_10100": null,
+        "customfield_10026": null
       }
     },
     {
@@ -419,180 +95,20 @@
       "self": "https://buyaya.atlassian.net/rest/agile/1.0/issue/10002",
       "key": "BUYA-3",
       "fields": {
-        "issuetype": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issuetype/10000",
-          "id": "10000",
-          "description": "A user story. Created by JIRA Software - do not edit or delete.",
-          "iconUrl": "https://buyaya.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
-          "name": "Story",
-          "subtask": false,
-          "avatarId": 10315
-        },
-        "timespent": null,
-        "project": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/project/10000",
-          "id": "10000",
-          "key": "BUYA",
-          "name": "buya",
-          "avatarUrls": {
-            "48x48": "https://buyaya.atlassian.net/secure/projectavatar?avatarId=10324",
-            "24x24": "https://buyaya.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
-            "16x16": "https://buyaya.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
-            "32x32": "https://buyaya.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
-          }
-        },
+        "summary": "t3",
+        "description": null,
         "fixVersions": [
 
         ],
-        "aggregatetimespent": null,
-        "resolution": null,
-        "resolutiondate": null,
-        "workratio": -1,
-        "lastViewed": "2016-07-08T17:56:41.187-0700",
-        "watches": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-3/watchers",
-          "watchCount": 1,
-          "isWatching": true
-        },
-        "created": "2016-07-08T17:56:40.000-0700",
-        "customfield_10020": "Not started",
-        "customfield_10021": null,
-        "customfield_10022": null,
-        "priority": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/priority/3",
-          "iconUrl": "https://buyaya.atlassian.net/images/icons/priorities/medium.svg",
-          "name": "Medium",
-          "id": "3"
-        },
         "customfield_10100": 8.0,
-        "customfield_10023": [
-
-        ],
-        "customfield_10024": null,
-        "customfield_10025": null,
-        "labels": [
-
-        ],
-        "customfield_10026": null,
-        "customfield_10016": null,
-        "customfield_10017": null,
-        "customfield_10018": null,
-        "customfield_10019": null,
-        "timeestimate": null,
-        "aggregatetimeoriginalestimate": null,
-        "versions": [
-
-        ],
-        "issuelinks": [
-
-        ],
-        "assignee": null,
-        "updated": "2016-08-02T08:35:59.000-0700",
-        "status": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
-          "description": "",
-          "iconUrl": "https://buyaya.atlassian.net/",
-          "name": "To Do",
-          "id": "10000",
-          "statusCategory": {
-            "self": "https://buyaya.atlassian.net/rest/api/2/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
-          }
-        },
-        "components": [
-
-        ],
-        "timeoriginalestimate": null,
-        "description": null,
-        "customfield_10010": null,
-        "customfield_10011": null,
-        "customfield_10012": null,
-        "customfield_10013": null,
-        "customfield_10014": null,
-        "timetracking": {
-
-        },
-        "customfield_10015": null,
-        "customfield_10006": null,
-        "customfield_10007": "0|i0000f:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1740700",
-        "attachment": [
-
-        ],
-        "customfield_10009": null,
-        "aggregatetimeestimate": null,
-        "flagged": false,
-        "summary": "t3",
-        "creator": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "subtasks": [
-
-        ],
-        "reporter": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "customfield_10000": null,
-        "aggregateprogress": {
-          "progress": 0,
-          "total": 0
-        },
-        "customfield_10001": null,
-        "customfield_10002": null,
-        "environment": null,
-        "duedate": null,
-        "progress": {
-          "progress": 0,
-          "total": 0
-        },
-        "comment": {
-          "comments": [
-
-          ],
-          "maxResults": 0,
-          "total": 0,
-          "startAt": 0
-        },
-        "votes": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-3/votes",
-          "votes": 0,
-          "hasVoted": false
-        },
-        "worklog": {
-          "startAt": 0,
-          "maxResults": 20,
-          "total": 0,
-          "worklogs": [
-
-          ]
-        }
+        "customfield_10026": null
+      },
+      "renderedFields": {
+        "summary": null,
+        "description": "",
+        "fixVersions": null,
+        "customfield_10100": null,
+        "customfield_10026": null
       }
     },
     {
@@ -601,180 +117,20 @@
       "self": "https://buyaya.atlassian.net/rest/agile/1.0/issue/10003",
       "key": "BUYA-4",
       "fields": {
-        "issuetype": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issuetype/10000",
-          "id": "10000",
-          "description": "A user story. Created by JIRA Software - do not edit or delete.",
-          "iconUrl": "https://buyaya.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
-          "name": "Story",
-          "subtask": false,
-          "avatarId": 10315
-        },
-        "timespent": null,
-        "project": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/project/10000",
-          "id": "10000",
-          "key": "BUYA",
-          "name": "buya",
-          "avatarUrls": {
-            "48x48": "https://buyaya.atlassian.net/secure/projectavatar?avatarId=10324",
-            "24x24": "https://buyaya.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
-            "16x16": "https://buyaya.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
-            "32x32": "https://buyaya.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
-          }
-        },
+        "summary": "t4",
+        "description": null,
         "fixVersions": [
 
         ],
-        "aggregatetimespent": null,
-        "resolution": null,
-        "resolutiondate": null,
-        "workratio": -1,
-        "lastViewed": "2016-07-08T17:56:45.321-0700",
-        "watches": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-4/watchers",
-          "watchCount": 1,
-          "isWatching": true
-        },
-        "created": "2016-07-08T17:56:45.000-0700",
-        "customfield_10020": "Not started",
-        "customfield_10021": null,
-        "customfield_10022": null,
-        "priority": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/priority/3",
-          "iconUrl": "https://buyaya.atlassian.net/images/icons/priorities/medium.svg",
-          "name": "Medium",
-          "id": "3"
-        },
         "customfield_10100": 5.0,
-        "customfield_10023": [
-
-        ],
-        "customfield_10024": null,
-        "customfield_10025": null,
-        "labels": [
-
-        ],
-        "customfield_10026": null,
-        "customfield_10016": null,
-        "customfield_10017": null,
-        "customfield_10018": null,
-        "customfield_10019": null,
-        "timeestimate": null,
-        "aggregatetimeoriginalestimate": null,
-        "versions": [
-
-        ],
-        "issuelinks": [
-
-        ],
-        "assignee": null,
-        "updated": "2016-08-02T08:35:57.000-0700",
-        "status": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/status/10000",
-          "description": "",
-          "iconUrl": "https://buyaya.atlassian.net/",
-          "name": "To Do",
-          "id": "10000",
-          "statusCategory": {
-            "self": "https://buyaya.atlassian.net/rest/api/2/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
-          }
-        },
-        "components": [
-
-        ],
-        "timeoriginalestimate": null,
-        "description": null,
-        "customfield_10010": null,
-        "customfield_10011": null,
-        "customfield_10012": null,
-        "customfield_10013": null,
-        "customfield_10014": null,
-        "timetracking": {
-
-        },
-        "customfield_10015": null,
-        "customfield_10006": null,
-        "customfield_10007": "0|i0000n:",
-        "customfield_10008": "com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5926d",
-        "attachment": [
-
-        ],
-        "customfield_10009": null,
-        "aggregatetimeestimate": null,
-        "flagged": false,
-        "summary": "t4",
-        "creator": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "subtasks": [
-
-        ],
-        "reporter": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/user?username=admin",
-          "name": "admin",
-          "key": "admin",
-          "emailAddress": "tejas.mandke@gmail.com",
-          "avatarUrls": {
-            "48x48": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=48",
-            "24x24": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=24",
-            "16x16": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=16",
-            "32x32": "https://secure.gravatar.com/avatar/8b81204de675eace33e4fb1278210c10?d=mm&s=32"
-          },
-          "displayName": "Tejas  [Administrator]",
-          "active": true,
-          "timeZone": "America/Los_Angeles"
-        },
-        "customfield_10000": null,
-        "aggregateprogress": {
-          "progress": 0,
-          "total": 0
-        },
-        "customfield_10001": null,
-        "customfield_10002": null,
-        "environment": null,
-        "duedate": null,
-        "progress": {
-          "progress": 0,
-          "total": 0
-        },
-        "comment": {
-          "comments": [
-
-          ],
-          "maxResults": 0,
-          "total": 0,
-          "startAt": 0
-        },
-        "votes": {
-          "self": "https://buyaya.atlassian.net/rest/api/2/issue/BUYA-4/votes",
-          "votes": 0,
-          "hasVoted": false
-        },
-        "worklog": {
-          "startAt": 0,
-          "maxResults": 20,
-          "total": 0,
-          "worklogs": [
-
-          ]
-        }
+        "customfield_10026": 3.0
+      },
+      "renderedFields": {
+        "summary": null,
+        "description": "",
+        "fixVersions": null,
+        "customfield_10100": null,
+        "customfield_10026": null
       }
     }
   ]

@@ -56,7 +56,7 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         when @constructor._fieldIds.sprintState
           @sprintState = value.state
         when @constructor._fieldIds.description
-          @description = value
+          @description = data.renderedFields.description
         when @constructor._fieldIds.version
           @version = if value[0]? then value[0].name else value[0]
         when @constructor._fieldIds.points
