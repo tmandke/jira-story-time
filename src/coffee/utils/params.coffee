@@ -1,6 +1,8 @@
 class window.JiraStoryTime.Utils.Params
   @GenralParam: class GenralParam
-    constructor: (@paramName, @humanName, @type, @default, @possibleValues) ->
+    constructor: (@paramName, @humanName, @type, @default, @possibleValues, @visible) ->
+      unless @visible?
+        @visible = true
 
     getParam: =>
       params = window.JiraStoryTime.Utils.Params.getCurrentParams()
@@ -26,20 +28,20 @@ class window.JiraStoryTime.Utils.Params
         throw("Invalid Value '#{val}' for param #{@paramName}")
 
   @BoolParam: class BoolParam extends GenralParam
-    constructor: (@paramName, @humanName, @default) ->
-      super @paramName, @humanName, 'bool', @default, [true, false]
+    constructor: (@paramName, @humanName, @default, @visible) ->
+      super @paramName, @humanName, 'bool', @default, [true, false], @visible
 
     parseValue: (val) ->
       $.parseJSON(val)
 
-  @boolParam: (paramName, humanName, defaultVal) ->
-    new BoolParam paramName, humanName, defaultVal
+  @boolParam: (paramName, humanName, defaultVal, visible) ->
+    new BoolParam paramName, humanName, defaultVal, visible
 
-  @radioParam: (paramName, humanName, defaultVal, possibleValues) ->
-    @genralParam paramName, humanName, 'radio', defaultVal, possibleValues
+  @radioParam: (paramName, humanName, defaultVal, possibleValues, visible) ->
+    @genralParam paramName, humanName, 'radio', defaultVal, possibleValues, visible
 
-  @genralParam: (paramName, humanName, type, defaultVal, possibleValues) ->
-    new GenralParam(paramName, humanName, type, defaultVal, possibleValues)
+  @genralParam: (paramName, humanName, type, defaultVal, possibleValues, visible) ->
+    new GenralParam(paramName, humanName, type, defaultVal, possibleValues, visible)
 
   @getCurrentParams: ->
     @currParams ||= window.JiraStoryTime.Utils.Params.deparam(@url().split("?")[1])
