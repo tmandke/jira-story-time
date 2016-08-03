@@ -1,11 +1,11 @@
 class window.JiraStoryTime.Models.ApplicationState
-  devMode: false
+  @devMode: false
 
   constructor: ->
     @queryParams = [
       JiraStoryTime.Utils.Params.boolParam('storyTimeActive', 'Story Time', false),
-      JiraStoryTime.Utils.Params.boolParam('autoUpdate', 'Auto Update', true),
-      JiraStoryTime.Utils.Params.boolParam('serverSync', 'Server Sync', true),
+      JiraStoryTime.Utils.Params.boolParam('autoUpdate', 'Auto Update', true, JiraStoryTime.Models.ApplicationState.devMode),
+      JiraStoryTime.Utils.Params.boolParam('serverSync', 'Server Sync', true, JiraStoryTime.Models.ApplicationState.devMode),
       JiraStoryTime.Utils.Params.radioParam('pointsType', 'Points Type', 'Story Points', ['Story Points', 'Business Value']),
       JiraStoryTime.Utils.Params.radioParam('subsets', 'Subsets', 'version', ['version', 'epic'])
       # JiraStoryTime.Utils.Params.radioParam('view', 'Process View', 'Regular', ['Regular', 'Forced'])
