@@ -21,7 +21,7 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
 
   updateBacklog: =>
     $.ajax(
-      url: "/rest/agile/1.0/board/#{@rapidView}/issue/"
+      url: "/rest/agile/1.0/board/#{@rapidView}/issue/?jql=issuetype=Story"
       context: document.body
     ).done @parseResponse
 
