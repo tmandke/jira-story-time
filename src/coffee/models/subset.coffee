@@ -18,7 +18,7 @@ class JiraStoryTime.Models.Subset extends JiraStoryTime.Utils.Observer
         @unobserve change.oldValue
       @recomputePoints()
     else if change.name is 'points' or change.name is 'business' or change.name is "subset_#{@subsetVar}"
-      if change.object["subset_#{@subsetVar}"] is @
+      if change.object["subset_#{@subsetVar}"] is this
         change.object.visible = @visible
         change.object.color = @color
       @recomputePoints()
@@ -27,7 +27,7 @@ class JiraStoryTime.Models.Subset extends JiraStoryTime.Utils.Observer
     points    = 0
     business  = 0
     $.map @allStories, (story) =>
-      if story["subset_#{@subsetVar}"] is @
+      if story["subset_#{@subsetVar}"] is this
         points   += story.points || 0
         business += story.business || 0
       true
@@ -38,6 +38,6 @@ class JiraStoryTime.Models.Subset extends JiraStoryTime.Utils.Observer
   toggleVisibility: () =>
     @visible = !@visible
     $.map @allStories, (story) =>
-      if story["subset_#{@subsetVar}"] is @
+      if story["subset_#{@subsetVar}"] is this
         story.visible = @visible
       true

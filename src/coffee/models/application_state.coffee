@@ -11,7 +11,7 @@ class window.JiraStoryTime.Models.ApplicationState
       # JiraStoryTime.Utils.Params.radioParam('view', 'Process View', 'Regular', ['Regular', 'Forced'])
     ]
     @queryParams.forEach (param) =>
-      Object.defineProperty(@, param.paramName,
+      Object.defineProperty(this, param.paramName,
         get: param.getParam
         set: (val) ->
           if param.isValueValid val
