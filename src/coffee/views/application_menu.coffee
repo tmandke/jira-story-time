@@ -6,18 +6,18 @@ class JiraStoryTime.Views.ApplicationMenu
     @appState.queryParams.forEach (param) =>
       if param.visible == true
         if param.type == 'bool'
-          @listEl.append JiraStoryTime.Utils.Templates.get("menu_item_bool.html")
-          @listEl.find('.menu-item-title').last().html(param.humanName)
-          @listEl.find('input.onoffswitch-checkbox').last().attr('id', "JST-#{param.paramName}")
-          @listEl.find('input.onoffswitch-checkbox').last().attr('checked', param.getParam())
-          @listEl.find('input.onoffswitch-checkbox').last().attr('name', "JST-#{param.paramName}")
-          @listEl.find('label.onoffswitch-label').last().attr('for', "JST-#{param.paramName}")
-          @listEl.find('input.onoffswitch-checkbox').last().change(->
+          @listEl.find('li:last').before JiraStoryTime.Utils.Templates.get("menu_item_bool.html")
+          @listEl.find('.bool-menu-item .menu-item-title').last().html(param.humanName)
+          @listEl.find('.bool-menu-item input.onoffswitch-checkbox').last().attr('id', "JST-#{param.paramName}")
+          @listEl.find('.bool-menu-item input.onoffswitch-checkbox').last().attr('checked', param.getParam())
+          @listEl.find('.bool-menu-item input.onoffswitch-checkbox').last().attr('name', "JST-#{param.paramName}")
+          @listEl.find('.bool-menu-item label.onoffswitch-label').last().attr('for', "JST-#{param.paramName}")
+          @listEl.find('.bool-menu-item input.onoffswitch-checkbox').last().change(->
             appState[param.paramName] = @.checked
           )
         else if param.type == 'radio'
-          @listEl.append JiraStoryTime.Utils.Templates.get("menu_item_radio.html")
-          @listEl.find('.menu-item-title').last().html(param.humanName)
+          @listEl.find('li:last').before JiraStoryTime.Utils.Templates.get("menu_item_radio.html")
+          @listEl.find('.radio-menu-item .menu-item-title').last().html(param.humanName)
           radioParam = @listEl.find('.radio-menu-item').last()
           currVal = param.getParam()
           param.possibleValues.forEach (val) ->

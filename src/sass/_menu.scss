@@ -32,6 +32,23 @@
         @include fontsize(2);
       }
     }
+    li.link-menu-item {
+      a{
+        display: block;
+        &:link {
+          color: white;
+        }
+        &:visited {
+            color: white;
+        }
+        &:hover {
+            color: lightgray;
+        }
+        &:active {
+            color: white;
+        }
+      }
+    }
     li.radio-menu-item {
       input {
         display: none;
