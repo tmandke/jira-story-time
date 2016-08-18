@@ -11,7 +11,7 @@ SCRIPT
 
 manifest = {
   name:             "Jira Story Time",
-  version:          "0.0.1",
+  version:          "0.0.2",
   manifest_version: 2,
   description:      "This extention adds a overlay on Jira Agile Board that provides a view to estimate 'Story Points' or 'Business Value'.",
   homepage_url:     "https://github.com/tmandke/jira-story-time",
