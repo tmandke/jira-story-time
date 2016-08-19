@@ -18,7 +18,9 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     $.ajax(
       url: "/rest/api/2/field"
       context: this
-    ).done @_initFieldIds
+    ).done(@_initFieldIds)
+    .fail (jqXHR) ->
+      JiraStoryTime.Models.Errors.push(new JiraStoryTime.Models.Error "Error while fetching field info", jqXHR)
 
   @_initFieldIds: (data) ->
     data.forEach (f) ->
