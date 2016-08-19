@@ -32,6 +32,39 @@ html {
   color: black;
 }
 
+#error-banner {
+  @include fontsize(1);
+  color: white;
+  padding: 15px;
+  background-color: red;
+  font-weight: 300;
+  margin: 0;
+
+  .error-message {
+    @include fontsize(2);
+    padding: 10px
+  }
+  li {
+    display: block;
+    list-style-position:inside;
+    border: 1px solid black;
+    margin: 2px;
+  }
+  table {
+    width: 100%;
+    margin: 10px;
+    border-collapse: collapse;
+    border-style: hidden;
+  }
+  table td, table th {
+    padding: 10px;
+    border: 1px solid black;
+  }
+  &:empty {
+    display: none;
+  }
+}
+
 #story-board-banner {
   @include fontsize(3.6);
   color: white;

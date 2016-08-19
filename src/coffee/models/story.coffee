@@ -81,7 +81,8 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         beforeSend: (request) ->
           request.setRequestHeader("Content-Type", "application/json")
           request.setRequestHeader("Accept", "application/json")
-      )
+      ).fail (jqXHR) ->
+        JiraStoryTime.Models.Errors.push(new JiraStoryTime.Models.Error "Error while setting property '#{prop}' for '#{@key}'", jqXHR)
 
     else
       console.log("#{@key}: #{prop} would have been updated to #{points}")
