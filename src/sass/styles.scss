@@ -40,26 +40,50 @@ html {
   font-weight: 300;
   margin: 0;
 
-  .error-message {
-    @include fontsize(2);
-    padding: 10px
-  }
   li {
     display: block;
     list-style-position:inside;
     border: 1px solid black;
     margin: 2px;
-  }
-  table {
-    width: 100%;
-    margin: 10px;
-    border-collapse: collapse;
-    border-style: hidden;
-  }
-  table td, table th {
     padding: 10px;
-    border: 1px solid black;
+
+    a {
+      font-style: italic;
+      font-weight: bold;
+      &:link {
+        color: lightgray;
+      }
+      &:visited {
+          color: lightgray;
+      }
+      &:hover {
+          color: lightgray;
+      }
+      &:active {
+          color: lightgray;
+      }
+    }
+
+    .error-message {
+      @include fontsize(3);
+    }
+
+    .possible-solution {
+      @include fontsize(2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-style: hidden;
+    }
+
+    table td, table th {
+      padding: 10px;
+      border: 1px solid black;
+    }
   }
+
   &:empty {
     display: none;
   }
