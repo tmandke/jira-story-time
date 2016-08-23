@@ -13,6 +13,7 @@ class JiraStoryTime.Models.Error
 
   _link: (href, text) ->
     "<a href=\"#{href}\" target=\"_blank\">#{text}</a>"
+
   responseStatus: =>
     @jqXHR.status
 
