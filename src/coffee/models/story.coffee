@@ -66,7 +66,10 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         when @constructor._fieldIds.business
           @business = @_parsePoints value
         when @constructor._fieldIds.epic
-          @epic = value.name
+          if value.name == ""
+            @epic = "unlabelled-#{value.key}"
+          else
+            @epic = value.name
 
   setProperty: (prop, points) =>
     @[prop] = points

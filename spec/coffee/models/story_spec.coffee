@@ -113,6 +113,10 @@ describe 'Models.Story', ->
       expect(story.description).toBe '<p>BUYA-1 test desc</p>'
       expect(story.epic).toBe 'Epic 2'
 
+    it 'epic as unlabelled', ->
+      story.setMoreData({fields:{epic: {name: "", key: "BUYA-222"}}})
+      expect(story.epic).toBe 'unlabelled-BUYA-222'
+
   describe '#setProperty', ->
     describe 'server sync is enabled', ->
       it 'sends an update field request and updates property', ->
