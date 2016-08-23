@@ -37,6 +37,28 @@ describe 'Models.Story', ->
       request.response({status: 200, responseText: JSON.stringify fields })
       expect(JiraStoryTime.Models.Story._fieldIds).toEqual(fieldIdsHash)
 
+    it 'addes error when request fails', ->
+      JiraStoryTime.Models.Story._fieldIds =
+        sprintState: "sprint"
+        epic: "epic"
+      fieldIdsHash =
+        sprintState: 'sprint'
+        epic: 'epic'
+        version: 'fixVersions'
+        business: 'customfield_10100'
+        points: 'customfield_10026'
+        description: 'description'
+        summary: 'summary'
+      JiraStoryTime.Models.Story.initFieldIds()
+      request = jasmine.Ajax.requests.mostRecent()
+      text = "Fields fetch failed"
+      resp = {status: 500, responseText: text }
+      request.response(resp)
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].message).toEqual("Error while fetching field info")
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.status).toEqual(resp.status)
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.responseText).toEqual(resp.responseText)
+
+
   describe '.constructor', ->
     it 'sets id', ->
       expect(story.id).toBe basicData.id
@@ -104,6 +126,16 @@ describe 'Models.Story', ->
               set: 21
             ]
         )
+
+      it 'addes error when request fails', ->
+        story.setProperty('points', 21)
+        request = jasmine.Ajax.requests.mostRecent()
+        text = "{\"errorMessages\":[],\"errors\":{\"customfield_10026\":\"Field 'customfield_10026' cannot be set. It is not on the appropriate screen, or unknown.\"}}"
+        resp = {status: 500, responseText: text }
+        request.response(resp)
+        expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].message).toEqual("Error while setting property 'points' for 'BUYA-1'")
+        expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.status).toEqual(resp.status)
+        expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.responseText).toEqual(resp.responseText)
 
     describe 'server sync is disabled', ->
       it 'sends an update field request and updates property', ->

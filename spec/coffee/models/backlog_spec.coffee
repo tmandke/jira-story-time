@@ -55,6 +55,14 @@ describe 'Models.Backlog', ->
       request.response({status: 200, responseText: "{}"})
       expect(backlog.parseResponse).toHaveBeenCalled()
 
+    it 'calls adds error message when it fails request', ->
+      backlog.updateBacklog()
+      request = jasmine.Ajax.requests.mostRecent()
+      request.response({status: 500, responseText: "{}"})
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].message).toEqual("Error while fetching backlog.")
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.status).toEqual(500)
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.responseText).toEqual("{}")
+
   describe '#parseResponse', ->
     it 'generates a hash of stories', ->
       backlog.parseResponse(fixtures.backlog)

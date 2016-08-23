@@ -19,6 +19,17 @@ describe 'Utils.Templates', ->
       expect(JiraStoryTime.Utils.Templates.get('test.html')).toBe('<p>awesome test string</p>')
       expect(JiraStoryTime.Utils.Templates.get('test.html')).toBe('<p>awesome test string</p>')
       expect(jasmine.Ajax.requests.count()).toBe 1
+
+    it 'addes error when request fails', ->
+      JiraStoryTime.Utils.Templates.get('test2.html')
+      request = jasmine.Ajax.requests.mostRecent()
+      text = "File not found"
+      resp = {status: 404, responseText: text }
+      request.response(resp)
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].message).toEqual("Error while fetching template 'test2.html' with url '/extension/templates/test2.html'")
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.status).toEqual(resp.status)
+      expect(JiraStoryTime.Models.Errors[JiraStoryTime.Models.Errors.length - 1].jqXHR.responseText).toEqual(resp.responseText)
+
   describe '.templateUrl', ->
     beforeEach ->
       JiraStoryTime.Utils.Templates.templateUrl.and.callThrough()
