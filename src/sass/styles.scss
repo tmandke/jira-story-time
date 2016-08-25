@@ -80,11 +80,15 @@ html {
         padding: 3px 10px;
 
         &.heading {
-          @include fontsize(1.2);
           text-transform: uppercase;
           padding: 3px 0;
           width: 1%;
           white-space: nowrap;
+        }
+        &.response-text {
+          max-height: 300px;
+          display: block;
+          overflow: scroll;
         }
       }
     }
