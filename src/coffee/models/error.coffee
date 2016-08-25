@@ -12,7 +12,7 @@ class JiraStoryTime.Models.Error
         "for this error and if there is none create one."
 
   _link: (href, text) ->
-    "<a href=\"#{href}\" target=\"_blank\">#{text}</a>"
+    "<a href=\"#{href}\" target=\"_blank\">#{text}&rarr;</a>"
 
   responseStatus: =>
     @jqXHR.status

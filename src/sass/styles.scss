@@ -33,54 +33,60 @@ html {
 }
 
 #error-banner {
-  @include fontsize(1);
+  @include fontsize(1.4);
   color: white;
   padding: 15px;
-  background-color: red;
+  background-color: #ef6060;
   font-weight: 300;
   margin: 0;
 
   li {
     display: block;
     list-style-position:inside;
-    border: 1px solid black;
     margin: 2px;
     padding: 10px;
 
     a {
-      font-style: italic;
-      font-weight: bold;
+      text-decoration: none;
       &:link {
-        color: lightgray;
+        color: white;
+        text-decoration: none;
       }
       &:visited {
-          color: lightgray;
+        color: white;
+        text-decoration: none;
       }
       &:hover {
-          color: lightgray;
+        text-decoration: none;
+        color: white;
       }
       &:active {
-          color: lightgray;
+        text-decoration: none;
+        color: white;
       }
     }
 
     .error-message {
-      @include fontsize(3);
-    }
-
-    .possible-solution {
-      @include fontsize(2);
+      @include fontsize(2.5);
+      margin-bottom: 14px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       border-style: hidden;
-    }
 
-    table td, table th {
-      padding: 10px;
-      border: 1px solid black;
+      td {
+        padding: 3px 10px;
+
+        &.heading {
+          @include fontsize(1.2);
+          text-transform: uppercase;
+          padding: 3px 0;
+          width: 1%;
+          white-space: nowrap;
+        }
+      }
     }
   }
 
