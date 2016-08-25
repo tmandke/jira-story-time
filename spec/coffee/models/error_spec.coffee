@@ -33,4 +33,4 @@ describe 'Models.Error', ->
   describe '#_link', ->
     it 'returns link which opens it in new tab', ->
       error = new JiraStoryTime.Models.Error("msg", {status: 500, responseText: "nothing is working"})
-      expect(error._link("abc", "xyz")).toEqual('<a href="abc" target="_blank">xyz</a>')
+      expect(error._link("abc", "xyz")).toEqual('<a href="abc" target="_blank">xyz&rarr;</a>')

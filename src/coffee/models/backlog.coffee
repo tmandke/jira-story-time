@@ -21,8 +21,9 @@ class JiraStoryTime.Models.Backlog extends JiraStoryTime.Utils.Observer
 
   updateBacklog: =>
     fieldsList = $.map JiraStoryTime.Models.Story._fieldIds, (v) -> v
+    jqlQuery = "issuetype=Story AND (Sprint in (openSprints(), futureSprints()) OR status not in (Closed, Done))"
     $.ajax(
-      url: "/rest/agile/1.0/board/#{@rapidView}/issue/?jql=issuetype=Story AND (Sprint in (openSprints(), futureSprints()) OR status not in (Closed, Done))&expand=renderedFields&fields=#{fieldsList}&maxResults=100"
+      url: "/rest/agile/1.0/board/#{@rapidView}/issue/?jql=#{jqlQuery}&expand=renderedFields&fields=#{fieldsList}&maxResults=100"
       context: document.body
     ).done(@parseResponse)
     .fail (jqXHR) ->
