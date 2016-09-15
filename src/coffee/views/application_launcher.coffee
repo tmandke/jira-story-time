@@ -21,6 +21,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
       if @applicationState.storyTimeActive is true
         @launch()
       else
+        @errorsView.deconstruct()
         @board.deconstruct()
         @subsetsView.deconstruct()
         @backlog.deconstruct()
@@ -43,6 +44,7 @@ class JiraStoryTime.Views.ApplicationLauncher extends JiraStoryTime.Utils.Observ
     @baseElem.append window.JiraStoryTime.Utils.Templates.get('board.html')
     @overlay().focus()
     @updateBannerTitle()
+    @errorsView = new JiraStoryTime.Views.Errors(JiraStoryTime.Models.Errors)
     cssUrl = JiraStoryTime.Utils.Templates.templateUrl 'styles.css'
     @overlay().prepend("<link href='#{cssUrl}' media='all' rel='stylesheet' type='text/css'>")
     @overlay().keyup(@onKeyup)

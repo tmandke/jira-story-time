@@ -18,7 +18,9 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
     $.ajax(
       url: "/rest/api/2/field"
       context: this
-    ).done @_initFieldIds
+    ).done(@_initFieldIds)
+    .fail (jqXHR) ->
+      JiraStoryTime.Models.Errors.push(new JiraStoryTime.Models.Error "Error while fetching field info", jqXHR)
 
   @_initFieldIds: (data) ->
     data.forEach (f) ->
@@ -64,7 +66,10 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         when @constructor._fieldIds.business
           @business = @_parsePoints value
         when @constructor._fieldIds.epic
-          @epic = value.name
+          if value.name == ""
+            @epic = "unlabelled-#{value.key}"
+          else
+            @epic = value.name
 
   setProperty: (prop, points) =>
     @[prop] = points
@@ -81,7 +86,8 @@ class JiraStoryTime.Models.Story extends JiraStoryTime.Utils.Observer
         beforeSend: (request) ->
           request.setRequestHeader("Content-Type", "application/json")
           request.setRequestHeader("Accept", "application/json")
-      )
+      ).fail (jqXHR) ->
+        JiraStoryTime.Models.Errors.push(new JiraStoryTime.Models.Error "Error while setting property '#{prop}' for '#{@key}'", jqXHR)
 
     else
       console.log("#{@key}: #{prop} would have been updated to #{points}")

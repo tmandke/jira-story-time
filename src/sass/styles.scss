@@ -32,6 +32,73 @@ html {
   color: black;
 }
 
+#error-banner {
+  @include fontsize(1.4);
+  color: white;
+  padding: 15px;
+  background-color: #ef6060;
+  font-weight: 300;
+  margin: 0;
+
+  li {
+    display: block;
+    list-style-position:inside;
+    margin: 2px;
+    padding: 10px;
+
+    a {
+      text-decoration: none;
+      &:link {
+        color: white;
+        text-decoration: none;
+      }
+      &:visited {
+        color: white;
+        text-decoration: none;
+      }
+      &:hover {
+        text-decoration: none;
+        color: white;
+      }
+      &:active {
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    .error-message {
+      @include fontsize(2.5);
+      margin-bottom: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-style: hidden;
+
+      td {
+        padding: 3px 10px;
+
+        &.heading {
+          text-transform: uppercase;
+          padding: 3px 0;
+          width: 1%;
+          white-space: nowrap;
+        }
+        &.response-text {
+          max-height: 300px;
+          display: block;
+          overflow: scroll;
+        }
+      }
+    }
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+
 #story-board-banner {
   @include fontsize(3.6);
   color: white;
